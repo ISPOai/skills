@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "skills": [
+    {
+      "id": "markdown-to-epub-converter",
+      "name": "Markdown to EPUB Converter",
+      "description": "Convert Markdown documents and chat summaries into portable, formatted EPUB3 ebooks.",
+      "category": "Document Processing",
+      "subpath": "skills/markdown-to-epub-converter",
+      "ref": "165964c64dbfb51d138f1d91167df1846a87d0c7",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": true,
+      "requirements": [
+        "python>=3.9",
+        "ebooklib==0.18.0",
+        "markdown2==2.4.12",
+        "Pygments==2.17.2"
+      ]
+    },
+    {
+      "id": "analytics-strategy",
+      "name": "Analytics Strategy",
+      "description": "Design KPI hierarchies, event taxonomies, dashboards, attribution models, and measurement plans.",
+      "category": "Data & Analysis",
+      "subpath": "skills/analytics-strategy",
+      "ref": "165964c64dbfb51d138f1d91167df1846a87d0c7",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "brand-discovery",
+      "name": "Brand Discovery",
+      "description": "Research audiences, competitors, category dynamics, problem spaces, and positioning territories.",
+      "category": "Business & Marketing",
+      "subpath": "skills/brand-discovery",
+      "ref": "165964c64dbfb51d138f1d91167df1846a87d0c7",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "stakeholder-communication",
+      "name": "Stakeholder Communication",
+      "description": "Write status updates, executive readouts, decision requests, escalations, and project communications.",
+      "category": "Communication & Writing",
+      "subpath": "skills/stakeholder-communication",
+      "ref": "165964c64dbfb51d138f1d91167df1846a87d0c7",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "art-direction",
+      "name": "Art Direction",
+      "description": "Direct photography, illustration, video, campaigns, and other branded creative deliverables.",
+      "category": "Creative & Media",
+      "subpath": "skills/art-direction",
+      "ref": "165964c64dbfb51d138f1d91167df1846a87d0c7",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "roadmap-planning",
+      "name": "Roadmap Planning",
+      "description": "Prioritize, sequence, and communicate multi-quarter work from a backlog and real capacity constraints.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/roadmap-planning",
+      "ref": "165964c64dbfb51d138f1d91167df1846a87d0c7",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    }
+  ]
+}
