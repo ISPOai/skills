@@ -2,31 +2,182 @@
   "schemaVersion": 1,
   "skills": [
     {
-      "id": "markdown-to-epub-converter",
-      "name": "Markdown to EPUB Converter",
-      "description": "Convert Markdown documents and chat summaries into portable, formatted EPUB3 ebooks.",
-      "category": "Document Processing",
-      "subpath": "skills/markdown-to-epub-converter",
-      "ref": "165964c64dbfb51d138f1d91167df1846a87d0c7",
+      "id": "accessibility-audit",
+      "name": "Accessibility Audit",
+      "description": "Run a comprehensive WCAG accessibility audit covering perceivable, operable, understandable, and robust principles. Use this skill whenever the user wants to audit accessibility, review WCAG compliance, fix accessibility issues, prepare for accessibility certification, address an accessibility lawsuit risk, or systematically improve a site's accessibility. Triggers on accessibility audit, WCAG audit, a11y audit, accessibility compliance, ADA compliance, screen reader test, keyboard navigation, accessibility report, fix accessibility, axe scan. Also triggers when accessibility issues have been reported and need systematic remediation.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/accessibility-audit",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "ads-creative-development",
+      "name": "Ads Creative Development",
+      "description": "How to produce ad creative that converts at performance scale. Hook patterns, format selection, video pacing, variation systems, sequential testing methodology, fatigue detection, brand-voice alignment without conversion dilution, and platform-specific creative norms. Triggers on ad creative, ad design, hook patterns, ad video pacing, creative testing, ad variations, creative refresh, creative fatigue, refresh ad creative, video ads for Meta, TikTok creative, LinkedIn ad creative, ad asset library. Also triggers when a team is producing creative at scale, planning a creative test cycle, or auditing why creative is not converting.",
+      "category": "Business & Marketing",
+      "subpath": "skills/ads-creative-development",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "ads-performance-analytics",
+      "name": "Ads Performance Analytics",
+      "description": "How to read paid media dashboards without fooling yourself. Attribution models, platform reporting quirks, multi-platform reconciliation, ROAS vs LTV horizon traps, statistical noise in performance metrics, incrementality testing, and the failure modes that produce expensive lessons. Triggers on read paid media dashboard, attribution analysis, ROAS vs LTV, multi-platform reconciliation, ad incrementality, geo holdout, conversion lift study, ghost bidding, paid media reporting, board-deck paid media metrics, blended CAC, MMM, MTA, last-click attribution. Also triggers when a marketer is about to scale, kill, or rebudget a campaign based on platform metrics, or when reconciling platform reports against warehouse revenue.",
+      "category": "Data & Analysis",
+      "subpath": "skills/ads-performance-analytics",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "after-action-report",
+      "name": "After Action Report",
+      "description": "Run a structured after-action review (postmortem, retrospective) on a launch, incident, or completed project to capture timeline, root cause analysis, contributing factors, and actionable lessons. Use this skill whenever the user wants to run a postmortem, retrospective, AAR, or after-action review on any past event. Triggers on after-action report, AAR, postmortem, retrospective, retro, post-incident review, what went well what didn't, lessons learned, blameless postmortem, root cause analysis, RCA, five whys. Also triggers when the user has just shipped something or just resolved an incident and wants to capture learnings.",
+      "category": "Communication & Writing",
+      "subpath": "skills/after-action-report",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "ai-content-collaboration",
+      "name": "AI Content Collaboration",
+      "description": "How humans and AI compose in content workflows. Where AI legitimately participates, where humans must own, hybrid workflow patterns, voice ownership preservation, the AI slop problem, disclosure and transparency, team calibration, and the ethics of intellectually honest AI-assisted content production. Triggers on AI content workflow, AI-assisted writing, hybrid content production, AI in editorial, AI slop, AI disclosure, AI usage policy, AI content ethics, voice preservation with AI, team AI calibration. Also triggers when content feels generic despite quality tools, when team AI usage has drifted into inconsistency, or when a regulated or trust-sensitive context requires explicit AI policy.",
+      "category": "Communication & Writing",
+      "subpath": "skills/ai-content-collaboration",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "analytics-strategy",
+      "name": "Analytics Strategy",
+      "description": "Design measurement frameworks including event taxonomy, KPI hierarchy, dashboard architecture, attribution models, and analytics implementation strategy. Use this skill whenever the user wants to plan analytics, design dashboards, build event taxonomies, define KPIs, set up tracking, or audit existing measurement. Triggers on analytics strategy, measurement plan, event taxonomy, tracking plan, KPI framework, dashboard design, north star metric, attribution model, conversion tracking, GA4 setup, Mixpanel setup, analytics audit. Also triggers when the user has data but no clear way to use it, or wants to make decisions but doesn't know what to track.",
+      "category": "Data & Analysis",
+      "subpath": "skills/analytics-strategy",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "anydesign",
+      "name": "AnyDesign",
+      "description": "Analyze images, websites, and Figma files to extract their design and generate a `design.md` with token system, component inventory, and reconstruction notes. Use this skill whenever the user wants to understand, document, replicate, or audit the design of something visual: a screenshot, a URL, a Figma link, a Pinterest reference, a mockup, a competitor's site, a component, a dashboard, a landing page. Also when they ask 'extract the design system from X', 'document the style of Y', 'analyze this visually', 'convert this image into tokens', 'help me replicate this design', 'what palette does this site use', 'how is this built'. Also for single elements: 'copy this navbar', 'recreate this illustration', 'give me a prompt to regenerate this graphic' — element mode outputs a focused element.md, with token-grounded image-model prompts when the element is visual art. If the user brings any visual source and wants to understand it at a design level — this skill should activate.",
+      "category": "Creative & Media",
+      "subpath": "skills/anydesign",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
       "providers": [
         "claude",
         "codex"
       ],
       "hasScripts": true,
+      "requirements": []
+    },
+    {
+      "id": "art-direction",
+      "name": "Art Direction",
+      "description": "Direct visual and creative work for campaigns, photography, illustration, video, and branded experiences. Use this skill whenever the user wants to brief a photographer, direct illustrators, plan a creative campaign, develop visual concepts, write a creative direction document, or evaluate creative work for fit. Triggers on art direction, photo brief, photography brief, illustration brief, campaign concept, creative concept, visual direction, mood board, look and feel, visual treatment, video direction. Also triggers when the user has approved brand identity but needs to extend it into specific creative deliverables.",
+      "category": "Creative & Media",
+      "subpath": "skills/art-direction",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "article-extractor",
+      "name": "Article Extractor",
+      "description": "Extract clean article content from URLs (blog posts, articles, tutorials) and save as readable text. Use when user wants to download, extract, or save an article/blog post from a URL without ads, navigation, or clutter.",
+      "category": "Communication & Writing",
+      "subpath": "skills/article-extractor",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
       "requirements": [
-        "python>=3.9",
-        "ebooklib==0.18.0",
-        "markdown2==2.4.12",
-        "Pygments==2.17.2"
+        "reader CLI or trafilatura"
       ]
     },
     {
-      "id": "analytics-strategy",
-      "name": "Analytics Strategy",
-      "description": "Design KPI hierarchies, event taxonomies, dashboards, attribution models, and measurement plans.",
-      "category": "Data & Analysis",
-      "subpath": "skills/analytics-strategy",
-      "ref": "165964c64dbfb51d138f1d91167df1846a87d0c7",
+      "id": "backup-and-disaster-recovery",
+      "name": "Backup And Disaster Recovery",
+      "description": "Plan and run backups, set recovery objectives, and run disaster recovery drills. Use this skill when defining RPO/RTO targets, designing backup architecture, deciding what to back up and how often, planning for full-region or platform outages, or running a restoration drill. Triggers on backup, restore, RPO, RTO, disaster recovery, DR, business continuity, what if the database is gone, what if our hosting goes down, recovery drill, ransomware planning. Also triggers when an incident reveals a gap in restoration capability.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/backup-and-disaster-recovery",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "beta-program-management",
+      "name": "Beta Program Management",
+      "description": "Running closed and open betas that produce real signal. Beta participant selection, structured feedback collection, beta-to-GA decision criteria, and the difference between soft-launch (no structure, no signal), kitchen-sink (everyone in, no actionable feedback), and structured beta (calibrated cohort, intentional feedback loops, clear graduation criteria). Triggers on beta program, alpha test, beta cohort, beta participant, beta feedback, beta to GA decision, design partner, early access program, closed beta, open beta, RC release. Also triggers when a feature is approaching launch and the team needs structured pre-GA validation, when prior betas produced noise rather than signal, or when the team has soft-launched before but wants more structured feedback this time.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/beta-program-management",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "brainstorming",
+      "name": "Brainstorming",
+      "description": "You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation.",
+      "category": "Communication & Writing",
+      "subpath": "skills/brainstorming",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": true,
+      "requirements": []
+    },
+    {
+      "id": "brand-archetype-system",
+      "name": "Brand Archetype System",
+      "description": "Apply pre-composed aesthetic archetype defaults to jumpstart brand design work covering color, typography, layout, voice, and imagery direction. Use this skill whenever the user wants a starting point for brand visual and verbal direction, references a brand they want to design near (for example 'something like Stripe' or 'editorial like Linear'), needs to converge faster from many directions to one, or wants known-good defaults for a specific industry vertical. Triggers on archetype, design archetype, brand archetype, near to (brand), in the style of, similar aesthetic, design starting point, brand template, vertical-typical, industry-typical. Also triggers when the user has a brief and wants to map it to a known aesthetic family rather than design from first principles.",
+      "category": "Business & Marketing",
+      "subpath": "skills/brand-archetype-system",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
       "providers": [
         "claude",
         "codex"
@@ -37,10 +188,10 @@
     {
       "id": "brand-discovery",
       "name": "Brand Discovery",
-      "description": "Research audiences, competitors, category dynamics, problem spaces, and positioning territories.",
+      "description": "Run upstream brand discovery covering audience research, competitive landscape, category dynamics, problem space, and positioning territory exploration. Use this skill at the very start of a brand or website project when the user needs to understand who they're for, who they compete with, what the audience actually needs, and where the brand could plausibly stand. Triggers on brand discovery, audience research, market research, competitive scan, category research, customer research, who is this for, who are we, positioning research, intake, kickoff. Also triggers when a creative brief is requested but the upstream inputs (audience, competitors, problem space) are not yet clear.",
       "category": "Business & Marketing",
       "subpath": "skills/brand-discovery",
-      "ref": "165964c64dbfb51d138f1d91167df1846a87d0c7",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
       "providers": [
         "claude",
         "codex"
@@ -49,12 +200,12 @@
       "requirements": []
     },
     {
-      "id": "stakeholder-communication",
-      "name": "Stakeholder Communication",
-      "description": "Write status updates, executive readouts, decision requests, escalations, and project communications.",
-      "category": "Communication & Writing",
-      "subpath": "skills/stakeholder-communication",
-      "ref": "165964c64dbfb51d138f1d91167df1846a87d0c7",
+      "id": "brand-guidelines",
+      "name": "Brand Guidelines",
+      "description": "Applies Anthropic's official brand colors and typography to any sort of artifact that may benefit from having Anthropic's look-and-feel. Use it when brand colors or style guidelines, visual formatting, or company design standards apply.",
+      "category": "Business & Marketing",
+      "subpath": "skills/brand-guidelines",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
       "providers": [
         "claude",
         "codex"
@@ -63,12 +214,1332 @@
       "requirements": []
     },
     {
-      "id": "art-direction",
-      "name": "Art Direction",
-      "description": "Direct photography, illustration, video, campaigns, and other branded creative deliverables.",
+      "id": "brand-ideation",
+      "name": "Brand Ideation",
+      "description": "Generate, evaluate, and narrow brand concepts during early ideation including positioning territories, naming candidates, mood directions, and narrative angles. Use this skill whenever the user is in the early phase of brand creation, exploring brand directions, brainstorming names, building moodboards, generating positioning options, or trying to choose between multiple brand directions. Triggers on brand ideation, brand concept, naming, brand name, name candidates, positioning, brand positioning, mood board, brand directions, exploring brands, early brand work, brand exploration, brand brainstorm, brand options. Also triggers when the user has multiple half-formed brand ideas and needs help converging on one, even if they do not say 'ideation' explicitly.",
+      "category": "Business & Marketing",
+      "subpath": "skills/brand-ideation",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "brand-identity",
+      "name": "Brand Identity",
+      "description": "Design or evaluate a brand visual identity system covering logo, color, typography, imagery direction, iconography, and motion principles. Use this skill whenever the user wants to design a logo, build a visual identity, define brand colors, choose brand typography, develop iconography, plan brand imagery, or evaluate an existing identity for cohesion. Triggers on logo design, brand identity, visual identity, brand mark, wordmark, monogram, color palette, brand colors, brand typography, type system, iconography, brand imagery, motion design, brand system, identity system. Also triggers when the user has a brand direction approved and now needs the visual artifacts that express it.",
       "category": "Creative & Media",
-      "subpath": "skills/art-direction",
-      "ref": "165964c64dbfb51d138f1d91167df1846a87d0c7",
+      "subpath": "skills/brand-identity",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "brand-style-guide",
+      "name": "Brand Style Guide",
+      "description": "Build or audit a comprehensive brand style guide that documents the full brand system including story, logo system, color, typography, imagery, voice, applications, and dos/don'ts. Use this skill whenever the user wants to create brand guidelines, document an existing brand, build a brand book, audit an existing style guide for completeness, or produce the artifact that other teams will reference for years. Triggers on style guide, brand guidelines, brand book, brand standards, brand manual, style sheet, brand documentation, brand reference. Also triggers when the brand identity is finished and needs to be documented for handoff to designers, developers, vendors, or future team members.",
+      "category": "Creative & Media",
+      "subpath": "skills/brand-style-guide",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "brand-voice",
+      "name": "Brand Voice",
+      "description": "Develop or document a complete brand voice and tone system covering voice attributes, tone shifts by context, vocabulary preferences, grammar rules, and copy examples. Use this skill whenever the user wants to define how a brand sounds, write a voice and tone document, audit existing copy for voice consistency, train a team or AI assistant on brand voice, or refine the personality of brand writing. Triggers on brand voice, voice and tone, tone of voice, writing voice, brand personality, copy voice, voice document, voice guidelines, how should we write, voice training, voice audit. Also triggers when the user has copy that 'feels off' and the underlying issue is voice, even if not stated explicitly.",
+      "category": "Business & Marketing",
+      "subpath": "skills/brand-voice",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "bug-from-user",
+      "name": "Bug From User",
+      "description": "Convert a vague user complaint into a reproducible bug report a solo dev can act on. Use when the user pastes a confusing customer message, says \"user says it's broken but I can't repro\", \"this email makes no sense\", or wants to triage a bug report.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/bug-from-user",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "calculator-design",
+      "name": "Calculator Design",
+      "description": "Designing interactive calculators (ROI calculators, pricing estimators, savings projections, mortgage calculators, custom assessments) that deliver real decision-support value while serving as lead magnets and qualified-traffic generators. Honest about vanity-calculator (no real value), lead-trap (hides the answer behind email), and transparent-decision-tool (gives the result and earns the email through tiered value) patterns. Triggers on calculator, ROI calculator, pricing estimator, savings calculator, custom calculator, interactive tool, decision tool, financial calculator. Also triggers when an audience needs a calculation-driven lead magnet, when a vanity calculator is producing leads but no qualified ones, or when a calculator is being scoped for the first time.",
+      "category": "Business & Marketing",
+      "subpath": "skills/calculator-design",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "canvas-design",
+      "name": "Canvas Design",
+      "description": "Create beautiful visual art in .png and .pdf documents using design philosophy. You should use this skill when the user asks to create a poster, piece of art, design, or other static piece. Create original visual designs, never copying existing artists' work to avoid copyright violations.",
+      "category": "Creative & Media",
+      "subpath": "skills/canvas-design",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": [
+        "Python 3"
+      ]
+    },
+    {
+      "id": "changelog-from-commits",
+      "name": "Changelog From Commits",
+      "description": "Generate a user-facing CHANGELOG entry from raw git log output. Use when the user is preparing a release, says \"what changed since last version\", asks to write release notes, or wants to summarize a batch of commits for end users.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/changelog-from-commits",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "chatbot-flow-design",
+      "name": "Chatbot Flow Design",
+      "description": "Designing conversational flows for website chatbots and AI agents. Intent recognition architecture, branching logic, fallback handling, escalation to human, conversation analytics. Honest about scripted-bot (rigid trees, fail edge cases), hallucinating-bot (LLM without structure, makes things up), and structured-guided-conversation (LLM-powered with intent architecture and fallback discipline) patterns. Distinguishes chatbot DESIGN (this skill) from chatbot IMPLEMENTATION (engineering and platform work). Triggers on chatbot, conversational AI, AI agent, chat widget, intent design, conversational flow, bot escalation, LLM grounding. Also triggers when a chatbot is hallucinating, when a scripted bot is failing edge cases, or when a chatbot is being scoped for the first time.",
+      "category": "Business & Marketing",
+      "subpath": "skills/chatbot-flow-design",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "code-review-web",
+      "name": "Code Review Web",
+      "description": "Review web application code for bugs, security issues, performance problems, and stack-specific anti-patterns. Use this skill whenever the user wants to review code, debug a production issue, investigate a build failure, audit security, or check a PR before merging. Triggers on code review, review my code, debug, build error, broken, not working, why is X failing, check this code, security check, PR review, audit code, refactor. Also triggers when investigating 4xx or 5xx errors, deploy failures, environment variable issues, and CMS integration problems.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/code-review-web",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "comparison-tool-design",
+      "name": "Comparison Tool Design",
+      "description": "Designing side-by-side comparison tools (plan-compare, product-compare, alternative-compare) that help users decide rather than just listing features. Axis selection, default-comparison logic, recommendation discipline. Honest about feature-list-dump (every feature in a row, no decision support), hidden-recommendation (biased comparison pretending to be neutral), and honest-comparison-with-guidance (genuine comparison plus opinionated recommendation) patterns. Triggers on comparison tool, plan compare, product compare, alternative compare, vs page, decision support tool. Also triggers when conversion through comparison stages is poor, when users are abandoning at the comparison step, or when a comparison tool is being scoped for the first time.",
+      "category": "Business & Marketing",
+      "subpath": "skills/comparison-tool-design",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "competitive-ads-extractor",
+      "name": "Competitive Ads Extractor",
+      "description": "Extracts and analyzes competitors' ads from ad libraries (Facebook, LinkedIn, etc.) to understand what messaging, problems, and creative approaches are working. Helps inspire and improve your own ad campaigns.",
+      "category": "Business & Marketing",
+      "subpath": "skills/competitive-ads-extractor",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "competitor-experience-audit",
+      "name": "Competitor Experience Audit",
+      "description": "Audit the brand, UX, and site design of the leading sites in a vertical as a set of observable cross-site patterns, producing the experience bar a new build must meet or beat. Use this skill whenever the user wants to assess the competitive design field, capture vertical conventions, identify the design and UX bar of a category, or set the experience standard before a build. Triggers on competitor experience audit, UX audit, site design audit, brand audit, design conventions, what makes these sites good, vertical conventions, storefront patterns, merchandising patterns, layout density, primary task, design bar, category conventions, retail vs marketing register, what does the field do. Also triggers when an audit of the competitive field has captured technical signals (SEO, accessibility) but never named the brand, UX, or design conventions, and the build downstream will read as off-vertical without that bar.",
+      "category": "Business & Marketing",
+      "subpath": "skills/competitor-experience-audit",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "content-and-copy",
+      "name": "Content And Copy",
+      "description": "Write or edit website copy, blog content, and editorial pieces with attention to voice, structure, and goal. Use this skill whenever the user wants to write an article, draft website copy, edit existing content for clarity or voice, write a blog post, or produce general editorial content. Triggers on write a blog post, draft an article, write copy for, edit this, rewrite this, write content, write a guide, draft a how-to, write web copy. Also triggers when content has been outlined and now needs to be written, or when existing content needs voice or clarity edits.",
+      "category": "Communication & Writing",
+      "subpath": "skills/content-and-copy",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "content-brief-authoring",
+      "name": "Content Brief Authoring",
+      "description": "How to author a content brief that actually guides a writer (human or AI) to produce a piece that ranks, converts, or both. Per-piece editorial brief: target keyword and cluster, search intent, audience and JTBD, heading structure, entity coverage for AEO/GEO, internal linking strategy, success criteria. The middle path between thin briefs (a keyword and a deadline) and thick briefs (a 4-page document nobody reads). Triggers on content brief, brief the writer, brief the article, brief authoring, content brief template, brief audit, per-piece brief, editorial brief, target keyword brief, search intent brief. Also triggers when briefing a human writer or an AI agent on a single content piece.",
+      "category": "Communication & Writing",
+      "subpath": "skills/content-brief-authoring",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "content-distribution",
+      "name": "Content Distribution",
+      "description": "Content distribution as a discipline. Owned channels (newsletter, blog, social), earned channels (PR, syndication, mentions), paid channels (boosted posts, syndication networks), and the channel-fit decisions that distinguish strategic distribution from spam-everywhere. Audience-channel matching, content-channel matching, distribution cadence. Triggers on content distribution, channel strategy for content, owned earned paid channels, content amplification, content promotion, audience-channel matching, content-channel matching, distribution cadence, syndication strategy, organic distribution. Also triggers when content is publishing but reach is low, when the team is distributing on every channel without strategy, or when the content program needs a distribution discipline rather than just publication.",
+      "category": "Communication & Writing",
+      "subpath": "skills/content-distribution",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "content-migration",
+      "name": "Content Migration",
+      "description": "Move content between platforms, domains, or URL structures while preserving SEO equity, user bookmarks, and integrations. Use this skill when planning a CMS migration, replatforming, consolidating sites, changing URL structures, or merging content from multiple sources. Triggers on content migration, replatform, CMS migration, domain migration, URL restructure, redirect map, site merge, content consolidation, migration plan, post-migration drop. Also triggers when planning a launch that involves moving existing content.",
+      "category": "Document Processing",
+      "subpath": "skills/content-migration",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "content-refresh-system",
+      "name": "Content Refresh System",
+      "description": "Systematic content refresh discipline. Quarterly audits, refresh prioritization (which pieces, when, how deep), refresh-vs-merge-vs-delete decisions, the lifecycle that distinguishes intentional refresh from set-and-forget decay. Builds on the refresh sections of pillar-content-architecture and editorial-qa with a program-level discipline. Triggers on content refresh, content decay, content audit, refresh prioritization, content lifecycle, refresh strategy, traffic decay, ranking drop, content freshness, evergreen content, content maintenance. Also triggers when traffic is eroding silently across an aging content library, when teams cannot decide which pieces to refresh, or when refresh work is happening but the impact is unclear.",
+      "category": "Communication & Writing",
+      "subpath": "skills/content-refresh-system",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "content-repurposing",
+      "name": "Content Repurposing",
+      "description": "Cross-format content adaptation. Turning one substantial piece into many derivative formats (blog series, email sequences, social posts, webinars, podcasts, video shorts) without losing the original's value or producing AI-slop variants. The discipline of adaptation per medium rather than mass-blast distribution. Triggers on content repurposing, content adaptation, cross-format content, content atomization, content multiplication, content distribution across formats, source-piece-to-derivative, video shorts from blog, email from whitepaper, podcast from article, blog series from research. Also triggers when a flagship piece is shipping but the team has not planned how to extend it across formats, when repurposing is happening but the derivatives feel mass-produced, or when AI-assisted repurposing is producing slop variants of strong source pieces.",
+      "category": "Communication & Writing",
+      "subpath": "skills/content-repurposing",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "content-research-writer",
+      "name": "Content Research Writer",
+      "description": "Assists in writing high-quality content by conducting research, adding citations, improving hooks, iterating on outlines, and providing real-time feedback on each section. Transforms your writing process from solo effort to collaborative partnership.",
+      "category": "Communication & Writing",
+      "subpath": "skills/content-research-writer",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "content-strategy",
+      "name": "Content Strategy",
+      "description": "Develop a content strategy covering editorial positioning, content pillars, formats, calendar, governance, and topical authority planning. Use this skill whenever the user wants to plan a content program, define content pillars, build an editorial calendar, structure topic clusters, set up content governance, or align content production with broader brand and SEO goals. Triggers on content strategy, content plan, editorial strategy, content pillars, content calendar, editorial calendar, topical authority, topic clusters, content governance, content roadmap, content production. Also triggers when the user is about to start producing content without a strategic plan.",
+      "category": "Communication & Writing",
+      "subpath": "skills/content-strategy",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "cost-optimization",
+      "name": "Cost Optimization",
+      "description": "Audit and reduce infrastructure and tooling costs without sacrificing reliability or velocity. Use this skill when reviewing monthly cloud or SaaS spend, finding unused resources, rightsizing infrastructure, negotiating vendor contracts, deciding what to consolidate, or planning for budget cuts. Triggers on cost optimization, cloud spend, SaaS spend, rightsizing, unused resources, FinOps, infrastructure audit, vendor consolidation, budget cut, cost review. Also triggers when finance flags rising costs or when a contract renewal is up.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/cost-optimization",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "creative-brief",
+      "name": "Creative Brief",
+      "description": "Create or refine a creative brief that bridges discovery and execution. Use this skill whenever the user is starting a new project, kicking off a website, beginning a brand build or redesign, briefing a designer or developer or AI agent, or trying to align a team before building. Triggers on creative brief, design brief, brand brief, project kickoff, kicking off, briefing the team, project intake, design direction, brief the designer, brief the dev, where do we start, how do we start, write a brief, project overview, scope this project, align on direction. Also triggers when the user has a vague idea and needs to make it concrete enough to hand off, even if they do not say 'brief' explicitly.",
+      "category": "Creative & Media",
+      "subpath": "skills/creative-brief",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "creative-brief-selector",
+      "name": "Creative Brief Selector",
+      "description": "Produce a creative brief grounded in live reference sites and deliberately distinct from existing demos, for any new brand build. Composes with brand-archetype-system and creative-direction. Use this skill at the start of any brand or microsite build when the result needs to land in a specific aesthetic position and not drift into a default house style. Triggers on creative brief, design brief, build brief, brand direction, where should this brand sit, what should this site look like, reference sites for, archetype for, distinct from our other brands, divergence from prior, not the same as. Also triggers when prior builds have come out as siblings and a systematic divergence approach is needed.",
+      "category": "Creative & Media",
+      "subpath": "skills/creative-brief-selector",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "creative-direction",
+      "name": "Creative Direction",
+      "description": "Walk the user through four directional axes (tone register, aesthetic philosophy, audience relationship, sensory ambition) and produce a structured aesthetic brief that downstream content, copy, design, and art-direction skills consume as required input. The aesthetic depth layer, distinct from `creative-brief` (operational kickoff: scope, audience, deliverables, constraints). Use when a project needs aesthetic coherence across many small decisions and the user has only a vague feeling, or when multiple downstream aesthetic-producing skills need a shared brief. Triggers on creative direction, aesthetic direction, set the aesthetic, define the visual direction, what's the vibe, what's the tone, the four axes. Does NOT fire for a general kickoff brief (use `creative-brief`), tactical single-piece work, already-documented direction, purely functional output, or locked production-stage work.",
+      "category": "Creative & Media",
+      "subpath": "skills/creative-direction",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "cro-optimization",
+      "name": "CRO Optimization",
+      "description": "Run conversion rate optimization through hypothesis-driven testing including audit, hypothesis generation, test design, statistical analysis, and rollout decisions. Use this skill whenever the user wants to optimize conversion, run A/B tests, audit a funnel, generate test hypotheses, design experiments, or analyze test results. Triggers on conversion optimization, CRO, A/B test, split test, multivariate test, hypothesis, conversion funnel, funnel audit, experiment design, statistical significance, lift, optimization. Also triggers when the user has a conversion problem and isn't sure where to start, or when test results are ambiguous and need interpretation.",
+      "category": "Business & Marketing",
+      "subpath": "skills/cro-optimization",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "data-warehouse-experimentation",
+      "name": "Data Warehouse Experimentation",
+      "description": "Running experiments out of the data warehouse instead of via dedicated experiment platforms. SQL-based assignment, exposure logging discipline, metric definitions in dbt models, statistical analysis in SQL or Python, variance reduction with CUPED, sequential testing, and the operational tradeoffs vs platforms like Statsig and Optimizely. Triggers on warehouse-native experimentation, run experiments in BigQuery, run experiments in Snowflake, dbt experiments, SQL t-test, CUPED variance reduction, exposure log, sample ratio mismatch, sequential testing, mSPRT, doubly robust estimation, build vs buy experimentation. Also triggers when the team is choosing between platform and warehouse, building warehouse-native experiment infrastructure, auditing one, or running an experiment with a custom metric the platform cannot handle.",
+      "category": "Data & Analysis",
+      "subpath": "skills/data-warehouse-experimentation",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "deep-research",
+      "name": "Deep Research",
+      "description": "Execute autonomous multi-step research using Google Gemini Deep Research Agent. Use for: market analysis, competitive landscaping, literature reviews, technical research, due diligence. Takes 2-10 minutes but produces detailed, cited reports. Costs $2-5 per task.",
+      "category": "Data & Analysis",
+      "subpath": "skills/deep-research",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": true,
+      "requirements": [
+        "Google Gemini API key",
+        "Python 3"
+      ]
+    },
+    {
+      "id": "dependency-management",
+      "name": "Dependency Management",
+      "description": "Manage third-party libraries, runtimes, and SaaS dependencies. Use this skill when setting an update cadence, responding to security advisories, dealing with deprecated dependencies, evaluating new dependencies, auditing what's installed, or unblocking a dependency upgrade. Triggers on dependency, package update, security patch, lockfile, deprecated, breaking change, supply chain, dependency audit, npm audit, dependabot, renovate. Also triggers when a build breaks after an update or when an advisory is published for a used package.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/dependency-management",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "design-standards",
+      "name": "Design Standards",
+      "description": "Apply production-grade design standards when building or reviewing pages, components, or UI. Use this skill whenever the user asks to build a page, design a component, lay out a section, review the UI, fix the layout, or check design quality. Triggers on build a page, create a component, design a section, hero, card, CTA, layout, review the UI, fix the design, design system, design tokens, spacing, typography scale, button standards, mobile design. Also triggers for any production design decision where contrast, accessibility, spacing, or visual hierarchy matters.",
+      "category": "Creative & Media",
+      "subpath": "skills/design-standards",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "design-system",
+      "name": "Design System",
+      "description": "Build or audit a design system including component library, design tokens, naming conventions, contribution model, and documentation. Use this skill whenever the user wants to build a design system, audit an existing system, define design tokens at the system level, structure a component library, or set up design system governance. Triggers on design system, component library, design tokens, atomic design, atoms, molecules, organisms, design system documentation, Storybook, Figma library, system governance, design contribution model. Also triggers when teams are inconsistent across products and a system is the answer.",
+      "category": "Creative & Media",
+      "subpath": "skills/design-system",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "discovery-research-synthesis",
+      "name": "Discovery Research Synthesis",
+      "description": "Turning research artifacts into actionable PM insight. Customer interviews, user research notes, support ticket reviews, sales call transcripts, survey data, in-app feedback, all synthesized into the decisions they are meant to inform. The discipline of moving from raw discovery data to clear product direction without losing signal in the synthesis or fabricating insight that was not actually there. Triggers on research synthesis, customer interview synthesis, user research analysis, discovery readout, research insights, sales call analysis, support ticket analysis, qualitative data analysis. Also triggers when a team has done research but cannot turn it into decisions, when synthesis is producing pretty decks but no roadmap movement, or when an upcoming PM decision needs to be grounded in research already conducted.",
+      "category": "Data & Analysis",
+      "subpath": "skills/discovery-research-synthesis",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "documentation-strategy",
+      "name": "Documentation Strategy",
+      "description": "Design and run a documentation system for a team or product. Use this skill when planning what to document, choosing a documentation tool, organizing existing docs, fixing stale documentation, designing a maintenance cadence, or scoping technical writing work. Triggers on documentation, docs, tech writing, knowledge base, wiki, runbook, README, internal docs, doc audit, doc maintenance, stale docs, where do we document. Also triggers when the team is repeatedly answering the same questions or when onboarding takes too long.",
+      "category": "Document Processing",
+      "subpath": "skills/documentation-strategy",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "domain-name-brainstormer",
+      "name": "Domain Name Brainstormer",
+      "description": "Generates creative domain name ideas for your project and checks availability across multiple TLDs (.com, .io, .dev, .ai, etc.). Saves hours of brainstorming and manual checking.",
+      "category": "Business & Marketing",
+      "subpath": "skills/domain-name-brainstormer",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": [
+        "Internet access"
+      ]
+    },
+    {
+      "id": "domain-strategy",
+      "name": "Domain Strategy",
+      "description": "Plan, manage, and optimize a domain portfolio. Use this skill for DNS architecture decisions, redirect strategies, registrar choice, parking unused domains, multi-site setups, and domain consolidation or split planning. Triggers on DNS, domain, registrar, redirect, parking, subdomain, apex, www vs non-www, multi-site, portfolio, hreflang setup, domain migration. Also triggers when planning a new site that needs domain decisions made before launch.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/domain-strategy",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "editorial-qa",
+      "name": "Editorial QA",
+      "description": "Pre-publish QA framework for content. Brief adherence, voice consistency, fact accuracy, structure and clarity, AI-content audit, SEO and AEO compliance, internal linking and schema validation, QA at scale via sampling, the QA workflow, and the discipline that distinguishes catch-problems QA from checkbox QA. Triggers on editorial QA, content review, pre-publish review, content audit, content QA process, AI-content audit, hallucination check, content sampling, programmatic QA, voice consistency check, brief adherence check. Also triggers when a content team is shipping sloppy work, when AI-co-authored content is reaching publish unaudited, when a QA process burns reviewers out, or when a programmatic SEO set needs sampling discipline.",
+      "category": "Communication & Writing",
+      "subpath": "skills/editorial-qa",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "email-customer",
+      "name": "Email Customer",
+      "description": "Draft a polite-but-firm reply to a tricky customer email — refund request, scope creep, complaint, billing dispute. Use when the user pastes a customer email and asks for a reply, mentions \"how do I respond\", \"user is asking for a refund\", \"they want a discount\", or any awkward customer-facing communication.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/email-customer",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "email-deliverability",
+      "name": "Email Deliverability",
+      "description": "Make sure email actually reaches inboxes. Use this skill when setting up email authentication (SPF, DKIM, DMARC), diagnosing emails landing in spam, planning a domain reputation strategy, monitoring sender reputation, or hardening against email spoofing. Triggers on email deliverability, SPF, DKIM, DMARC, spam folder, sender reputation, mailbox provider, soft bounces, bounce rate, BIMI, MTA-STS, deliverability audit. Also triggers when a marketing or transactional email isn't reaching users.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/email-deliverability",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "email-sequences",
+      "name": "Email Sequences",
+      "description": "Design and write email campaigns and sequences including onboarding flows, lifecycle campaigns, transactional emails, newsletters, broadcast sends, and launch and announcement emails. Use this skill whenever the user wants to write email copy, plan an email sequence, design an onboarding drip, or set up lifecycle email campaigns. Triggers on email sequence, drip campaign, onboarding email, lifecycle email, welcome email, transactional email, newsletter, email broadcast, launch email, announcement email, nurture sequence, abandoned cart, re-engagement, win-back. Also triggers when planning email automation flows or writing email subject lines for campaigns.",
+      "category": "Communication & Writing",
+      "subpath": "skills/email-sequences",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "evidence-based-reviews",
+      "name": "Evidence Based Reviews",
+      "description": "Produce honest product reviews and buying guides without fabricated first-hand experience, using disclosed evidence tiers: verified specs, owner-experience synthesis at scale, expert triangulation, and hands-on only when true. Use this skill whenever the user wants to write product reviews or buying guides without hands-on access, set up a review methodology, add evidence disclosure to review content, align reviews with Google's reviews system or FTC affiliate disclosure expectations, or decide when Review and Product schema are honest to use. Triggers on product review, buying guide, best-of list, review methodology, evidence basis, hands-on testing, we tested, affiliate review site, review disclosure, methodology block, original research, reviews system. Also triggers when review content claims testing that did not happen, or when an affiliate site needs a trust mechanism that survives scrutiny.",
+      "category": "Communication & Writing",
+      "subpath": "skills/evidence-based-reviews",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "experiment-design",
+      "name": "Experiment Design",
+      "description": "A discipline for designing experiments (A/B tests, multivariate, holdouts) so the results actually answer the question you asked. Hypothesis writing, sample size, duration, segment analysis, interpretation, decision-making, and the common failure modes that produce confidently wrong shipping decisions.",
+      "category": "Data & Analysis",
+      "subpath": "skills/experiment-design",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "experimentation-analytics",
+      "name": "Experimentation Analytics",
+      "description": "How to read experiment results without fooling yourself. Confidence intervals, p-values, multiple testing, sequential testing, CUPED, heterogeneous treatment effects, ratio metrics, network effects, dashboard reconciliation, and the interpretation failures that produce confidently wrong shipping decisions.",
+      "category": "Data & Analysis",
+      "subpath": "skills/experimentation-analytics",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "experimentation-platform-orchestrator",
+      "name": "Experimentation Platform Orchestrator",
+      "description": "A platform decision framework for experimentation. When to use Statsig vs PostHog vs GrowthBook vs Optimizely vs Amplitude vs Eppo vs Kameleoon. How to migrate between them. How to coordinate when multi-platform is genuinely warranted. The decisions that compound for years and the ones you can defer. Triggers on which experimentation platform, choose Statsig vs PostHog, evaluate experimentation tools, switch experimentation platform, migrate from Optimizely, consolidate experimentation tools, multi-platform experimentation, experimentation platform decision, ab test platform selection, feature flag platform vs experiment platform, warehouse-native experiments, vendor lock-in experimentation. Also triggers when a team is asking about cost, governance, or migration cost across experimentation tools, or when an evaluation is starting.",
+      "category": "Data & Analysis",
+      "subpath": "skills/experimentation-platform-orchestrator",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "family-history-planning",
+      "name": "Family History Planning",
+      "description": "Provides assistance with planning family history and genealogy research projects.",
+      "category": "Communication & Writing",
+      "subpath": "skills/family-history-planning",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "feature-flagging",
+      "name": "Feature Flagging",
+      "description": "Operational discipline for feature flags as production infrastructure. Flag types, naming, targeting rules, rollout strategy, lifecycle, governance, stale flag management, and the technical debt patterns that bite teams who weren't deliberate about it.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/feature-flagging",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "feature-launch-playbook",
+      "name": "Feature Launch Playbook",
+      "description": "The operational playbook for launching a feature well. Positioning, internal alignment, customer comms, sales enablement, support readiness, rollout strategy, monitoring with pre-defined rollback triggers, post-launch measurement against spec hypotheses, and the discipline that distinguishes shipping from releasing from actually launching. Triggers on launch plan, feature launch, launch checklist, ship vs release, rollout strategy, gradual rollout, sales enablement, support readiness, launch announcement, post-launch measurement, launch failure, declared victory too early. Also triggers when planning a launch (any size, any segment), auditing an existing launch process, fixing the we shipped it but the metric did not move problem, or building a launch checklist for the team.",
+      "category": "Business & Marketing",
+      "subpath": "skills/feature-launch-playbook",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "file-organizer",
+      "name": "File Organizer",
+      "description": "Intelligently organizes your files and folders across your computer by understanding context, finding duplicates, suggesting better structures, and automating cleanup tasks. Reduces cognitive load and keeps your digital workspace tidy without manual effort.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/file-organizer",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "form-strategy",
+      "name": "Form Strategy",
+      "description": "Design forms that convert, validate well, resist spam, and integrate cleanly with downstream systems. Use this skill when designing or auditing any form (contact, signup, checkout, multi-step, embedded), planning validation logic, fighting spam, choosing form tooling, or improving form conversion. Triggers on form design, form validation, form conversion, multi-step form, form spam, captcha, honeypot, form abandonment, signup form, contact form. Also triggers when form completion rates are low or spam is overwhelming.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/form-strategy",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "frontend-component-build",
+      "name": "Frontend Component Build",
+      "description": "Build production-ready frontend components with accessible markup, sensible props, defined states, and tested behavior. Use this skill whenever the user wants to build a component from scratch, refactor an existing one, design a component API, or implement a UI element with proper states and accessibility. Triggers on build a component, create a button, create a modal, create a form input, component API, props design, component states, refactor component, accessible component. Also triggers when implementing UI from a design that needs to be reusable.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/frontend-component-build",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "funnel-flow-architecture",
+      "name": "Funnel Flow Architecture",
+      "description": "Architecting cross-tool conversion flows that match audience and stage. Landing page to lead magnet to nurture sequence to offer to advanced funnels. Honest about silo-funnels (every tool standalone), kitchen-sink-funnels (every audience squeezed through one path), and matched-funnels (architecture matched to audience-and-stage) patterns. Triggers on funnel design, conversion architecture, marketing funnel, growth funnel, lifecycle architecture, nurture sequence design, multi-tool funnel orchestration. Also triggers when the team's growth tools are working individually but not together, when audience segments share one nurture path, or when a funnel is being architected from scratch.",
+      "category": "Business & Marketing",
+      "subpath": "skills/funnel-flow-architecture",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "image-enhancer",
+      "name": "Image Enhancer",
+      "description": "Improves the quality of images, especially screenshots, by enhancing resolution, sharpness, and clarity. Perfect for preparing images for presentations, documentation, or social media posts.",
+      "category": "Creative & Media",
+      "subpath": "skills/image-enhancer",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": [
+        "Python 3"
+      ]
+    },
+    {
+      "id": "imagen",
+      "name": "Imagen",
+      "description": "Generate images using Google Gemini's image generation capabilities. Use this skill when the user needs to create, generate, or produce images for any purpose including UI mockups, icons, illustrations, diagrams, concept art, placeholder images, or visual representations.",
+      "category": "Creative & Media",
+      "subpath": "skills/imagen",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": true,
+      "requirements": [
+        "Google Gemini API key",
+        "Python 3"
+      ]
+    },
+    {
+      "id": "incident-response",
+      "name": "Incident Response",
+      "description": "Manage active production incidents through detection, triage, mitigation, communication, and resolution with structured roles and decision-making. Use this skill whenever the user has an active incident, a production issue, a service outage, a security incident, or needs to plan incident response procedures. Triggers on incident response, production incident, outage, service down, site down, P0, P1, severity, downtime, on-call, incident commander, status page, postmortem prep. Also triggers when something is actively broken in production and the user is figuring out what to do.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/incident-response",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "information-architecture",
+      "name": "Information Architecture",
+      "description": "Design the structure of a website or product including sitemap, navigation, URL structure, content types, taxonomy, and labeling. Use this skill whenever the user asks to plan a sitemap, design navigation, structure URLs, define content types, build taxonomies, design site search, or organize content at the system level. Triggers on sitemap, site structure, navigation, IA, information architecture, URL structure, content types, taxonomy, categorization, breadcrumbs, hub pages, faceted navigation, site search, labeling. Also triggers when content is being created without a structural plan, or when an existing site's structure is being audited or restructured.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/information-architecture",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "integration-orchestrator",
+      "name": "Integration Orchestrator",
+      "description": "Generate a phased delivery orchestration plan for creative-direction-driven work: which skills run when, what locks at which gate, how handoffs occur, and how the cadence implements in the team's tools (Jira, Linear, Notion, Figma, GitHub) with AI agents via MCP and CLI. A temporal map of phases, lock points, handoff specs, gate definitions, and QA verification gates. Distinct from `creative-brief` (static project brief) and `creative-direction` (aesthetic direction). Triggers on integration orchestrator, delivery cadence, project orchestration, when does the brief lock, how to phase creative direction, design-development handoff, QA gate, agent-driven QA, and when a creative-direction project is starting, mid-flight with broken cadence, or integrating AI agents into PM workflow. Does NOT fire for project scoping (use `creative-brief`), aesthetic direction (use `creative-direction`), or general project management without a creative-direction throughline.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/integration-orchestrator",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "interactive-product-tour",
+      "name": "Interactive Product Tour",
+      "description": "Designing in-product tours, tooltips, and contextual help that teach product capabilities without becoming friction. Trigger logic, tour architecture, contextual placement, completion tracking. Honest about tooltip-spam (visual noise that users develop blindness to), one-and-done (help invisible at the moment of need), and contextual-when-needed (surfaces help at the moment friction occurs) patterns. Triggers on product tour, in-product tooltip, contextual help, walkthrough, feature tour, hint system, in-app guidance, tour platform. Also triggers when feature adoption is low, when users miss key product capabilities, or when an in-product help system is being scoped for the first time.",
+      "category": "Business & Marketing",
+      "subpath": "skills/interactive-product-tour",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "internal-comms",
+      "name": "Internal Comms",
+      "description": "A set of resources to help me write all kinds of internal communications, using the formats that my company likes to use. Claude should use this skill whenever asked to write some sort of internal communications (status reports, leadership updates, 3P updates, company newsletters, FAQs, incident reports, project updates, etc.).",
+      "category": "Communication & Writing",
+      "subpath": "skills/internal-comms",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "internationalization",
+      "name": "Internationalization",
+      "description": "Plan and run a multi-language or multi-region site. Use this skill when adding new locales, choosing URL structure for languages (subfolders vs subdomains vs ccTLDs), implementing hreflang, planning translation workflow, handling currency and date formats, designing for RTL languages, or auditing a stalled internationalization rollout. Triggers on internationalization, i18n, localization, l10n, hreflang, multi-language, translation workflow, RTL, locale, ccTLD, subfolder vs subdomain, language switcher. Also triggers when international audiences underperform or translations are stale.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/internationalization",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "invoice-organizer",
+      "name": "Invoice Organizer",
+      "description": "Automatically organizes invoices and receipts for tax preparation by reading messy files, extracting key information, renaming them consistently, and sorting them into logical folders. Turns hours of manual bookkeeping into minutes of automated organization.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/invoice-organizer",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": [
+        "Python 3"
+      ]
+    },
+    {
+      "id": "journey-mapping",
+      "name": "Journey Mapping",
+      "description": "Build customer journey maps and service blueprints that visualize the end-to-end user experience including touchpoints, emotions, friction, and underlying systems. Use this skill whenever the user wants to map a customer journey, build a service blueprint, identify friction across an experience, align teams on the user experience, or visualize touchpoints and pain points. Triggers on customer journey, journey map, service blueprint, user journey, experience map, touchpoint analysis, friction map, journey audit, end-to-end experience, customer experience map. Also triggers when the team has departmental views of users but no shared map of what the experience actually feels like.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/journey-mapping",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "jtbd-framing",
+      "name": "JTBD Framing",
+      "description": "The Jobs-to-be-Done framework as applied product methodology. Job statements, struggling moments, hire and fire criteria, the difference between feature-thinking and job-thinking. Honest about where JTBD adds clarity (discovery, prioritization, positioning) and where it becomes performative ritual (job-statement workshops that do not drive decisions, persona-theater disguised as JTBD). Triggers on jobs-to-be-done, JTBD, job statements, struggling moments, hire criteria, fire criteria, switch triggers, functional emotional social jobs, outcome-driven innovation. Also triggers when a team is over-relying on feature-request lists or persona archetypes that do not drive product decisions, when a positioning conversation needs the framing JTBD provides, or when discovery is producing outputs that do not connect to product strategy.",
+      "category": "Business & Marketing",
+      "subpath": "skills/jtbd-framing",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "kaizen",
+      "name": "Kaizen",
+      "description": "Use when Code implementation and refactoring, architecturing or designing systems, process and workflow improvements, error handling and validation. Provide tehniquest to avoid over-engineering and apply iterative improvements.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/kaizen",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "landing-page-copy",
+      "name": "Landing Page Copy",
+      "description": "Write landing page copy with attention to the hero, value proposition, social proof, objection handling, and conversion-focused CTAs. Use this skill whenever the user wants to write a landing page, sales page, hero section, or any conversion-focused web copy. Triggers on landing page, sales page, hero copy, value proposition, headline, subheadline, hero section, CTA copy, conversion copy, opt-in page, squeeze page. Also triggers when the user has a marketing campaign or product launch needing dedicated conversion copy.",
+      "category": "Communication & Writing",
+      "subpath": "skills/landing-page-copy",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "launch-runbook",
+      "name": "Launch Runbook",
+      "description": "Plan and execute a launch runbook covering pre-launch verification, go-live procedures, DNS cutover, post-launch monitoring, and rollback procedures. Use this skill whenever the user is preparing to launch a website or product, planning a DNS cutover, building a go-live checklist, or executing a launch day. Triggers on launch runbook, go-live, launch day, DNS cutover, deploy to production, site launch, product launch, cutover plan, launch checklist, deployment procedure. Also triggers when a launch is approaching and the team needs structured coordination, even if 'runbook' is not explicitly stated.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/launch-runbook",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "launch-tweet",
+      "name": "Launch Tweet",
+      "description": "Draft a launch tweet or short thread for a solo product launch on X / Twitter. Use when the user is shipping something (new product, major feature, side project) and asks for a launch post, \"help me announce X\", or mentions Product Hunt / Show HN / X launch.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/launch-tweet",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "lead-magnet-design",
+      "name": "Lead Magnet Design",
+      "description": "Designing lead magnets that earn the email. The discipline of building gated content (ebooks, templates, checklists, swipe files, mini-courses, free tools) that delivers genuine standalone value while qualifying the lead and warming them for what comes next. Honest about thin-bait (overpromises, underdelivers), kitchen-sink-resource (everything, helps with nothing), and earned-value-magnet (delivers standalone value while qualifying the lead). Triggers on lead magnet, gated content, opt-in offer, ebook, checklist, template, swipe file, mini-course, free tool, content upgrade, freebie, opt-in, list-building offer. Also triggers when an audience is being asked for an email and the offer attached to that ask needs design discipline, when previous lead magnets converted but did not produce qualified leads, or when a lead magnet is being scoped for the first time.",
+      "category": "Business & Marketing",
+      "subpath": "skills/lead-magnet-design",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "lead-research-assistant",
+      "name": "Lead Research Assistant",
+      "description": "Identifies high-quality leads for your product or service by analyzing your business, searching for target companies, and providing actionable contact strategies. Perfect for sales, business development, and marketing professionals.",
+      "category": "Business & Marketing",
+      "subpath": "skills/lead-research-assistant",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "logo-design",
+      "name": "Logo Design",
+      "description": "Generate logo variants for a brand, producing multiple production-grade marks across different architectures (wordmark, lockup, symbol-only, letterform-as-symbol, monogram) with rationale, application specs, and decision-ready presentation. Distinct from `brand-identity`, which produces the complete system (logo plus color, type, voice, applications). Goes deep on the logo specifically: typographic register, symbol approach, application-context discipline (16px favicon, embroidery, signage, motion), and production specs (SVG-ready, single-color, reverse). Triggers on logo design, design a logo, wordmark, monogram, lockup, mark variants, logo iterations, redesign or refine the logo, logo refresh, letterform-as-symbol, and exploring mark variants for an established brand. Does NOT fire for full brand identity (use `brand-identity`), positioning or strategy (use `brand-discovery`), project-wide creative direction (use `creative-direction`), or one-off illustration.",
+      "category": "Creative & Media",
+      "subpath": "skills/logo-design",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "long-form-content-frameworks",
+      "name": "Long Form Content Frameworks",
+      "description": "Patterns for individual long-form content pieces. Case studies, whitepapers, research reports, definitive guides, manifestos, ebooks, long-form tutorials. The structural disciplines that distinguish publication-quality long-form from bloggy-long padding or academic bloat. Different from pillar-content-architecture (which covers hub structure); this skill covers individual deep-dive pieces. Triggers on long-form content, case study writing, whitepaper, research report, definitive guide, ebook, manifesto, long-form tutorial, deep-dive article, anchor piece, foundational article, structural archetypes. Also triggers when a piece is over 3,000 words and the team is unsure how to structure it, when a long-form draft feels padded or saggy, or when a flagship asset needs the depth to actually earn the length.",
+      "category": "Communication & Writing",
+      "subpath": "skills/long-form-content-frameworks",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "markdown-to-epub-converter",
+      "name": "Markdown To EPUB Converter",
+      "description": "Convert markdown documents and chat summaries into formatted EPUB ebook files that can be read on any device or uploaded to Kindle.",
+      "category": "Document Processing",
+      "subpath": "skills/markdown-to-epub-converter",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": true,
+      "requirements": [
+        "Python 3.9+",
+        "ebooklib 0.18.0",
+        "markdown2 2.4.12",
+        "Pygments 2.17.2"
+      ]
+    },
+    {
+      "id": "master-claude-for-legal",
+      "name": "Master Claude For Legal",
+      "description": "Master skill for legal teams using Claude. Loads the right reference for the user's question (privilege configuration, MCP hardening, MCP connector catalog, practice-area plugins, Microsoft 365 surfaces, managed agents, cold-start interview, verification, long documents, practice-area patterns, skill authoring) and routes to specialized starter skills (NDA triage, version diff, tabular review, meeting brief, citation verification, status synthesis). Auto-invokes when the user mentions legal work, contracts, redlines, NDAs, deal-room diligence, privilege, attorney-client, court filings, depositions, regulatory compliance, M&A diligence, Claude in Word/Excel/PowerPoint/Outlook, managed legal agents, or asks how to set up Claude for a law firm or in-house legal team.",
+      "category": "Document Processing",
+      "subpath": "skills/master-claude-for-legal",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "media-asset-management",
+      "name": "Media Asset Management",
+      "description": "Plan and run a media pipeline for images, video, and downloadable assets. Use this skill when designing image storage and delivery, choosing formats (WebP, AVIF), setting up responsive images, picking a video host, organizing a brand asset library, or auditing a slow image pipeline. Triggers on image pipeline, asset library, DAM, image optimization, WebP, AVIF, responsive images, video hosting, image CDN, asset workflow, media management. Also triggers when images are slow, broken, or scattered across systems.",
+      "category": "Creative & Media",
+      "subpath": "skills/media-asset-management",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "meeting-insights-analyzer",
+      "name": "Meeting Insights Analyzer",
+      "description": "Analyzes meeting transcripts and recordings to uncover behavioral patterns, communication insights, and actionable feedback. Identifies when you avoid conflict, use filler words, dominate conversations, or miss opportunities to listen. Perfect for professionals seeking to improve their communication and leadership skills.",
+      "category": "Communication & Writing",
+      "subpath": "skills/meeting-insights-analyzer",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "monitoring-and-alerting",
+      "name": "Monitoring And Alerting",
+      "description": "Design and run a monitoring system for a website or web app. Use this skill when setting up uptime checks, defining SLOs, configuring error tracking, choosing what to alert on, designing on-call rotations, or fixing alert fatigue. Triggers on monitoring, alerts, uptime, SLO, SLA, error rate, on-call, pager, alert fatigue, observability, dashboards, what should we monitor. Also triggers when an incident reveals a gap in monitoring.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/monitoring-and-alerting",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "multi-step-form-design",
+      "name": "Multi Step Form Design",
+      "description": "Designing forms with multiple steps, progress indicators, conditional logic, and save-and-resume mechanics. The discipline of breaking complex data collection into stages that respect cognitive load while maintaining completion intent. Honest about kitchen-sink-single-page (overwhelms before the user starts), progress-theater (steps without genuine staging), and genuinely-staged (each step earns its own page) patterns. Triggers on multi-step form, multi-page form, form wizard, signup wizard, lead form, application form, intake form, configurator, onboarding form. Also triggers when a long form is converting poorly, when an audience is dropping off mid-form, or when a multi-step form is being scoped for the first time.",
+      "category": "Business & Marketing",
+      "subpath": "skills/multi-step-form-design",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "n8n-skills",
+      "name": "n8n Skills",
+      "description": "Use when building or troubleshooting n8n workflows. Covers node discovery, configuration details, connection compatibility, and workflow patterns. Keywords: n8n, workflow, automation, node, trigger, webhook, http request, database, ai agent.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/n8n-skills",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": [
+        "n8n 2.31.6 or compatible"
+      ]
+    },
+    {
+      "id": "notebooklm",
+      "name": "NotebookLM",
+      "description": "Use this skill to query your Google NotebookLM notebooks directly from Claude Code for source-grounded, citation-backed answers from Gemini. Browser automation, library management, persistent auth. Drastically reduced hallucinations through document-only responses.",
+      "category": "Communication & Writing",
+      "subpath": "skills/notebooklm",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": true,
+      "requirements": [
+        "Google account with NotebookLM",
+        "Python 3",
+        "Playwright browser"
+      ]
+    },
+    {
+      "id": "okr-design",
+      "name": "OKR Design",
+      "description": "OKR design as actually shipped, not as conference-talk theory. Outcome statements that drive decisions, key results that measure the right thing, scoring discipline, mid-quarter recalibration, and the difference between sandbagged OKRs (always 100%) and aspirational OKRs (always 30%) and stretch OKRs (genuine ambition with quarterly accountability). Triggers on OKR design, OKR setting, key result design, OKR scoring, mid-quarter recalibration, OKR cascading, outcomes vs outputs, quarterly planning, goal setting. Also triggers when a team's OKRs are always hit and producing no learning, when OKRs are demoralizing because they were set as fantasy, or when the team uses OKR vocabulary but the practice has decayed.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/okr-design",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "onboarding-wizard-design",
+      "name": "Onboarding Wizard Design",
+      "description": "Designing first-run product onboarding wizards that get users to the ah-ha moment without overwhelming them. Step architecture, progressive disclosure, escape hatches, completion incentives, drop-off measurement. Honest about tutorial-overload (dump everything upfront), skip-friendly-empty (skipped onboarding leads to abandoned product), and earned-progressive-disclosure (right things at the right moments) patterns. Triggers on onboarding wizard, product onboarding, first-run experience, signup flow, activation flow, FRX, time-to-value, ah-ha moment design. Also triggers when activation rates are low, when users skip onboarding and never return, when onboarding flows are being scoped for the first time, or when audience research shows users not finding key features.",
+      "category": "Business & Marketing",
+      "subpath": "skills/onboarding-wizard-design",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "paid-media-strategy",
+      "name": "Paid Media Strategy",
+      "description": "A discipline for running paid media that does not light money on fire. Hypothesis writing for paid spend, channel selection, budget allocation, audience targeting, bid strategy, campaign types, what NOT to spend on, attribution reality, and the failure modes that produce expensive lessons. Triggers on paid media strategy, ad budget allocation, channel selection, paid media plan, audit my Google Ads, audit my Meta Ads, scale paid media, kill underperforming campaign, paid media hypothesis, ad spend strategy, attribution reality, performance marketing strategy. Also triggers when a team is asking how to scale paid media, or whether to add a new channel, or how to reallocate spend across channels.",
+      "category": "Business & Marketing",
+      "subpath": "skills/paid-media-strategy",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "performance-optimization",
+      "name": "Performance Optimization",
+      "description": "Diagnose and fix web performance issues including Core Web Vitals (LCP, INP, CLS), bundle size, asset optimization, render performance, and runtime efficiency. Use this skill whenever the user wants to improve page speed, fix Core Web Vitals, optimize assets, reduce bundle size, debug slow renders, or systematically improve a site's performance. Triggers on performance, page speed, Core Web Vitals, LCP, INP, CLS, FID, TTFB, bundle size, code splitting, image optimization, lazy loading, render blocking, slow page, performance audit, Lighthouse score. Also triggers when traffic or conversion is dropping due to perceived slowness.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/performance-optimization",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "pillar-content-architecture",
+      "name": "Pillar Content Architecture",
+      "description": "How to design a content hub that earns topical authority. Pillar topic selection, cluster planning, internal linking architecture, URL structure, pillar and cluster page anatomy, topical authority signals for SEO and AEO/GEO, and the maintenance discipline that distinguishes intentional hubs from accidental orphans. Triggers on pillar content, content hub, topic cluster, topical authority, content architecture, hub and spoke, pillar page, cluster page, content silo, internal linking strategy. Also triggers when a content set is not ranking despite individual piece quality, when a pillar was launched without a cluster, or when content has accumulated without an architecture.",
+      "category": "Communication & Writing",
+      "subpath": "skills/pillar-content-architecture",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "pixelbin",
+      "name": "PixelBin",
+      "description": "Use when the user wants to generate AI images or videos, transform/edit existing media, build production media pipelines, get CDN URLs for images/videos, do bulk image processing (background removal, watermark removal, upscaling, resizing), generate SEO content for pages, or build landing pages with AI-generated visuals. Powered by PixelBin's 85+ AI APIs and 60+ URL-based transformations.",
+      "category": "Creative & Media",
+      "subpath": "skills/pixelbin",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": [
+        "PixelBin account and API key"
+      ]
+    },
+    {
+      "id": "pm-spec-writing",
+      "name": "PM Spec Writing",
+      "description": "Translate ideas, feature requests, or vague concepts into specific, actionable dev briefs. Use this skill whenever the user has an idea they want to build, a feature to spec out, a bug to file, a project to scope, or needs to convert a half-formed idea into a clear implementation brief. Triggers on I want to add, we should build, can we make, what is the plan for, how do we implement, dev brief, feature spec, PRD, user story, acceptance criteria, scope this, prioritize. Also triggers when the user has a list of things they want to build and needs help converting them into well-formed tasks.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/pm-spec-writing",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "postgres",
+      "name": "PostgreSQL",
+      "description": "Execute read-only SQL queries against multiple PostgreSQL databases. Use when: (1) querying PostgreSQL databases, (2) exploring database schemas/tables, (3) running SELECT queries for data analysis, (4) checking database contents. Supports multiple database connections with descriptions for intelligent auto-selection. Blocks all write operations (INSERT, UPDATE, DELETE, DROP, etc.) for safety.",
+      "category": "Data & Analysis",
+      "subpath": "skills/postgres",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": true,
+      "requirements": [
+        "PostgreSQL connection",
+        "Python 3"
+      ]
+    },
+    {
+      "id": "postmortem-solo",
+      "name": "Postmortem Solo",
+      "description": "Run a lightweight, blame-free postmortem after an incident, failed launch, or missed deadline — for one person. Use when the user says \"that didn't go well\", \"the launch flopped\", \"we had an outage\", \"I missed my deadline\", or wants to learn from a recent failure.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/postmortem-solo",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "product-analytics-setup",
+      "name": "Product Analytics Setup",
+      "description": "How to actually instrument product analytics correctly. Event taxonomy, property design, naming conventions, schema versioning, identity stitching, funnel design, retention cohorts, North Star metric selection, dashboard hygiene, instrumentation debt, and the failure modes that produce data nobody trusts. Triggers on product analytics setup, event taxonomy, tracking plan, instrumentation, schema versioning, North Star metric, retention cohorts, funnel design, naming conventions, instrument new feature, audit existing analytics, dashboard reconciliation, instrumentation debt, Mixpanel setup, Amplitude setup, PostHog setup, warehouse-native analytics. Also triggers when the team has data but cannot trust it, or when designing instrumentation for a new feature, or when auditing an existing setup that has drifted.",
+      "category": "Data & Analysis",
+      "subpath": "skills/product-analytics-setup",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "product-configurator-design",
+      "name": "Product Configurator Design",
+      "description": "Designing build-your-own product configurators (Tesla-style, custom-pricing, plan-builders) with constraint logic, real-time pricing, validation, and save-and-share mechanics. Honest about infinite-options (decision paralysis), canned-bundles-only (no real customization), and guided-configuration (smart defaults plus meaningful constraints plus escape hatches) patterns. Triggers on configurator design, build-your-own, custom configuration, plan builder, product customizer, configuration tool. Also triggers when users abandon mid-configuration, when configurator conversion is poor, or when a configurator is being scoped for the first time.",
+      "category": "Business & Marketing",
+      "subpath": "skills/product-configurator-design",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "programmatic-seo",
+      "name": "Programmatic SEO",
+      "description": "How to design and run a programmatic SEO program that produces durable traffic instead of penalty-bait. Data source identification, template design, schema patterns, quality control at scale, internal linking architecture, crawl budget management, AEO/GEO for programmatic pages, refresh discipline, and the make-or-break question of whether pSEO is the right answer for your program at all. Triggers on programmatic SEO, pSEO, scaled content, page generation, template SEO, location pages, comparison pages, directory site, listing site, scaled landing pages, programmatic content. Also triggers when a content set is not ranking, has been hit by an algorithm update, or when a team is considering pSEO as a growth lever.",
+      "category": "Business & Marketing",
+      "subpath": "skills/programmatic-seo",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "qa-testing",
+      "name": "QA Testing",
+      "description": "Run QA testing on a page, feature, or full site at one of three depth tiers (smoke, standard, full). Use this skill whenever the user asks to test a page, audit a site, check for bugs, verify a deploy, run a QA sweep, or review accessibility, performance, or SEO basics. Triggers on test, QA, audit, verify, check, is it working, does it look right, broken, 404, image not loading, post-deploy check, regression test. Also triggers proactively after any significant code change or new page launch where verification matters.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/qa-testing",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "quiz-and-assessment-design",
+      "name": "Quiz And Assessment Design",
+      "description": "Designing quizzes, personality assessments, and recommendation tools that segment users into actionable categories rather than generating clicks for clicks' sake. Question architecture, scoring algorithms, result categorization, recommendation mapping, lead capture integration. Honest about clickbait-quiz (engagement only), vanity-result (entertaining, not useful), and actionable-segmentation (genuine categorization that drives next-step recommendations) patterns. Triggers on quiz, assessment, personality test, recommendation tool, scorecard, diagnostic, fit evaluator, what-type-of-X-are-you, persona quiz. Also triggers when an audience needs a categorization-driven lead magnet, when a vanity quiz is producing engagement but no qualified leads, or when an assessment is being scoped for the first time.",
+      "category": "Business & Marketing",
+      "subpath": "skills/quiz-and-assessment-design",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "raffle-winner-picker",
+      "name": "Raffle Winner Picker",
+      "description": "Picks random winners from lists, spreadsheets, or Google Sheets for giveaways, raffles, and contests. Ensures fair, unbiased selection with transparency.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/raffle-winner-picker",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": [
+        "Python 3"
+      ]
+    },
+    {
+      "id": "recursive-research",
+      "name": "Recursive Research",
+      "description": "Investigación recursiva profunda con loop auto-regulado hasta nivel PhD. Aplicable a cualquier dominio (ciencia, tecnología, negocio, arte, humanidades). Usa WDM + Inversión Munger para decisiones autónomas, tiering de fuentes confiables, y checkpointing a disco para sobrevivir límites de contexto.",
+      "category": "Data & Analysis",
+      "subpath": "skills/recursive-research",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
       "providers": [
         "claude",
         "codex"
@@ -79,16 +1550,558 @@
     {
       "id": "roadmap-planning",
       "name": "Roadmap Planning",
-      "description": "Prioritize, sequence, and communicate multi-quarter work from a backlog and real capacity constraints.",
+      "description": "Build a multi-quarter roadmap from a backlog of ideas, requests, and ongoing initiatives. Use this skill when planning the next quarter, sequencing dependent work, balancing build vs improve vs maintain, or making the case for what NOT to do. Triggers on roadmap, quarterly planning, what should we build next, sequencing, prioritization, OKR planning, capacity planning, what's on the roadmap, plan the year, what to ship next quarter. Also triggers when stakeholders are pulling in different directions and the team needs a defensible plan.",
       "category": "Productivity & Organization",
       "subpath": "skills/roadmap-planning",
-      "ref": "165964c64dbfb51d138f1d91167df1846a87d0c7",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
       "providers": [
         "claude",
         "codex"
       ],
       "hasScripts": false,
       "requirements": []
+    },
+    {
+      "id": "root-cause-tracing",
+      "name": "Root Cause Tracing",
+      "description": "Use when errors occur deep in execution and you need to trace back to find the original trigger - systematically traces bugs backward through call stack, adding instrumentation when needed, to identify source of invalid data or incorrect behavior",
+      "category": "Data & Analysis",
+      "subpath": "skills/root-cause-tracing",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "scheduler-and-booking-design",
+      "name": "Scheduler And Booking Design",
+      "description": "Designing meeting schedulers and booking experiences that qualify leads, set up calls well, and convert at higher rates than a generic Calendly link. Availability logic, qualification gating, prep automation, follow-up sequencing. Honest about any-time-friction (no qualification, just a booking link), interrogation-gate (so much qualification it scares users off), and qualified-fast-path (just enough qualification to set up the call well) patterns. Triggers on scheduler design, meeting booking, demo scheduling, sales call scheduling, calendar tool, booking page, qualification flow. Also triggers when sales team complains about cold demos, when booking conversion is poor, or when scheduler is being scoped for the first time.",
+      "category": "Business & Marketing",
+      "subpath": "skills/scheduler-and-booking-design",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "security-baseline",
+      "name": "Security Baseline",
+      "description": "Establish a security baseline for a website or web app. Use this skill when configuring HTTPS and TLS, setting security headers, planning secrets management, evaluating CSP policies, doing a basic security audit, or hardening a site before launch. Triggers on security headers, HTTPS, TLS, CSP, content security policy, HSTS, secrets management, vulnerability scan, security audit, harden, OWASP, security baseline. Also triggers when a security review is required for compliance or before going live.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/security-baseline",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "seo-aeo-geo",
+      "name": "SEO AEO GEO",
+      "description": "Optimize content and site structure for AI-driven search experiences including AI overviews, large language model citations, generative answer engines, and AI assistants. Use this skill whenever the user wants to optimize for AI search, get cited by language models, appear in AI overviews, build llms.txt, structure content for AI extraction, or future-proof their SEO for the shift from blue links to AI answers. Triggers on AEO, GEO, AI search, AI SEO, AI overview, generative search, LLM optimization, llms.txt, AI citation, ChatGPT search, Perplexity, Gemini, Claude search, AI assistant optimization, answer engine. Also triggers when the user expresses concern about AI eating their organic traffic or wants to understand how to remain visible as search shifts.",
+      "category": "Business & Marketing",
+      "subpath": "skills/seo-aeo-geo",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "seo-audit-orchestration",
+      "name": "SEO Audit Orchestration",
+      "description": "Master orchestrator for a full SEO audit suite powered by the Ahrefs MCP. Use this skill when running a comprehensive SEO audit, scoping a quarterly health check, doing pre-acquisition SEO due diligence, or post-migration verification. Triggers on full SEO audit, comprehensive SEO review, SEO health check, audit my site, SEO due diligence, audit suite, comprehensive audit, end-to-end SEO. Also triggers when a stakeholder wants the complete picture rather than a single-dimension audit.",
+      "category": "Business & Marketing",
+      "subpath": "skills/seo-audit-orchestration",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "seo-backlink-audit",
+      "name": "SEO Backlink Audit",
+      "description": "Audit a backlink profile using Ahrefs MCP data: profile health, anchor text distribution, toxic link identification, lost link reclamation, and gap analysis against competitors. Use this skill when reviewing backlink health, scoping a disavow project, recovering from a manual action, planning link building, or doing M&A due diligence on a property's link equity. Triggers on backlink audit, link profile, toxic links, disavow, anchor text analysis, lost links, link reclamation, referring domains, link gap. Also triggers when traffic decline correlates with link loss or when an unnatural link warning appears in Search Console.",
+      "category": "Business & Marketing",
+      "subpath": "skills/seo-backlink-audit",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": [
+        "Ahrefs MCP"
+      ]
+    },
+    {
+      "id": "seo-competitor",
+      "name": "SEO Competitor",
+      "description": "Run a competitive SEO analysis comparing the user's site to chosen competitors across SERP overlap, content depth, backlink profiles, technical posture, and brand presence. Use this skill whenever the user wants to analyze competitors, find content gaps, identify backlink opportunities, understand why competitors outrank them, or benchmark against the rest of their category. Triggers on competitor analysis, competitive analysis, SERP analysis, content gap, backlink gap, why is X ranking, who is winning the SERP, beat my competitor, benchmark, market positioning. Also triggers when planning a content strategy and the question 'what are competitors doing' is implicit.",
+      "category": "Business & Marketing",
+      "subpath": "skills/seo-competitor",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "seo-content-audit",
+      "name": "SEO Content Audit",
+      "description": "Audit existing content across a site to decide what to keep, update, merge, redirect, or delete. Use this skill whenever the user wants to audit existing content, fix content decay, resolve keyword cannibalization, prune underperforming pages, prioritize content updates, or apply a keep/update/merge/redirect/delete framework to a content library. Triggers on content audit, content decay, content refresh, cannibalization, keyword cannibalization, prune content, delete pages, redirect old pages, content inventory, what to keep, what to update, content scorecard, evergreen refresh. Also triggers when traffic is dropping site-wide and the cause might be content quality, even if 'audit' is not said explicitly.",
+      "category": "Business & Marketing",
+      "subpath": "skills/seo-content-audit",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": [
+        "Ahrefs MCP"
+      ]
+    },
+    {
+      "id": "seo-content-gap-audit",
+      "name": "SEO Content Gap Audit",
+      "description": "Audit content gaps and decay using Ahrefs MCP data: missing topics, thin coverage, outdated content, and decaying pages. Use this skill when planning a content roadmap, refreshing a stale catalog, building topical authority, or identifying which existing pages need update versus replacement. Triggers on content gap, content audit, content refresh, content roadmap, decaying content, content decay, topical authority, what topics should we cover, where is competitor content stronger. Also triggers when organic traffic is flat despite consistent publishing.",
+      "category": "Business & Marketing",
+      "subpath": "skills/seo-content-gap-audit",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": [
+        "Ahrefs MCP"
+      ]
+    },
+    {
+      "id": "seo-keyword",
+      "name": "SEO Keyword",
+      "description": "Run keyword research, classify by search intent, cluster into topical groups, and prioritize for content production. Use this skill whenever the user asks to do keyword research, find target keywords, identify ranking opportunities, classify search intent, build a topical map, or plan a content strategy around what people search for. Triggers on keyword research, keyword strategy, search intent, keyword clustering, topic clusters, keyword difficulty, search volume, ranking opportunity, content gap, what should I write about, target keyword, primary keyword, secondary keyword, long-tail. Also triggers when planning a content calendar or new site without keywords yet defined.",
+      "category": "Business & Marketing",
+      "subpath": "skills/seo-keyword",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "seo-keyword-gap-audit",
+      "name": "SEO Keyword Gap Audit",
+      "description": "Find keywords competitors rank for that the target property does not, and prioritize them by opportunity. Uses Ahrefs MCP for keyword and competitor data. Use this skill when planning content investment, identifying quick wins, building a content calendar against a competitor set, or scoping a market entry. Triggers on keyword gap, content gap, competitor keywords, opportunity keywords, what should we target, where are competitors winning, keyword opportunity. Also triggers when planning content for a new market or after losing organic share to a specific competitor.",
+      "category": "Business & Marketing",
+      "subpath": "skills/seo-keyword-gap-audit",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": [
+        "Ahrefs MCP"
+      ]
+    },
+    {
+      "id": "seo-offpage",
+      "name": "SEO Offpage",
+      "description": "Plan and execute off-page SEO including link building, digital PR, brand mentions, citation building, and external authority signals. Use this skill whenever the user wants to build backlinks, plan a digital PR campaign, list local citations, run guest post outreach, develop linkable assets, recover lost links, or audit a backlink profile for risk. Triggers on link building, backlinks, digital PR, brand mentions, citation building, guest post, outreach, linkable asset, broken link building, HARO, podcast outreach, off-page SEO, anchor text, link velocity, toxic backlinks, disavow. Also triggers when the user is trying to grow domain authority or earn coverage.",
+      "category": "Business & Marketing",
+      "subpath": "skills/seo-offpage",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "seo-onpage",
+      "name": "SEO Onpage",
+      "description": "Run a comprehensive on-page SEO audit or optimization pass covering title tags, meta descriptions, header structure, content quality, internal links, image optimization, URL hygiene, and on-page schema. Use this skill whenever the user asks to optimize a page, audit on-page SEO, fix titles or meta tags, review header structure, check internal linking, improve a single URL's search performance, or write SEO-friendly copy. Triggers on on-page SEO, page audit, title tag, meta description, H1, header structure, internal links, image alt, URL slug, page optimization, optimize this page, SEO this page. Also triggers for any single-page review where ranking, click-through, or relevance signal quality is the goal, even if the user does not say 'SEO' explicitly.",
+      "category": "Business & Marketing",
+      "subpath": "skills/seo-onpage",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "seo-rank-tracking",
+      "name": "SEO Rank Tracking",
+      "description": "Set up and run rank tracking using Ahrefs MCP: pick the right keywords to track, segment them by purpose, set baselines, and define alert thresholds. Use this skill when starting a new tracking project, baselining for a campaign, choosing what to monitor, or building a rank reporting cadence. Triggers on rank tracking, keyword tracking, monitor rankings, track positions, what should we track, ranking dashboard, baseline rankings, alert thresholds. Also triggers when a stakeholder wants weekly or monthly ranking visibility.",
+      "category": "Business & Marketing",
+      "subpath": "skills/seo-rank-tracking",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "seo-site-health-audit",
+      "name": "SEO Site Health Audit",
+      "description": "Triage technical SEO findings from Ahrefs Site Audit (and similar crawlers) by SEO impact, not just severity. Use this skill when reviewing crawl results, prioritizing technical fixes, scoping a technical SEO sprint, or after running any site-wide crawl. Triggers on site audit results, technical fix list, crawl errors, technical SEO triage, prioritize technical issues, what should we fix first, broken links, redirect chains. Also triggers when a long list of crawler issues is creating decision paralysis.",
+      "category": "Business & Marketing",
+      "subpath": "skills/seo-site-health-audit",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": [
+        "Ahrefs MCP"
+      ]
+    },
+    {
+      "id": "seo-technical",
+      "name": "SEO Technical",
+      "description": "Run a comprehensive technical SEO audit covering crawlability, indexability, rendering, site architecture, structured data, page experience, security, and internationalization. Use this skill whenever the user asks about technical SEO, crawl issues, indexing problems, sitemaps, robots.txt, canonical tags, schema markup, page speed, Core Web Vitals, hreflang, redirects, or site-wide search performance. Triggers on technical SEO, site audit, crawlability, indexability, sitemap, robots.txt, canonical, redirect chain, schema, JSON-LD, Core Web Vitals, page speed, hreflang, mobile usability, HTTPS, security headers, render-blocking, JavaScript SEO. Also triggers when a site has indexing problems, traffic drops, or migration concerns, even if 'technical SEO' is not said explicitly.",
+      "category": "Business & Marketing",
+      "subpath": "skills/seo-technical",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "seo-traffic-diagnosis",
+      "name": "SEO Traffic Diagnosis",
+      "description": "Diagnose organic traffic changes (drops, stalls, or unexpected wins) using Ahrefs MCP plus Search Console data. Use this skill when traffic suddenly dropped, has been flat despite investment, after an algorithm update, after a migration or deploy, or when a competitor seems to be taking share. Triggers on traffic dropped, traffic decline, traffic stalled, organic decline, lost rankings, why is traffic down, algorithm update, post-migration traffic loss, traffic diagnosis. Also triggers when stakeholders are panicking about analytics.",
+      "category": "Business & Marketing",
+      "subpath": "skills/seo-traffic-diagnosis",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "ship-decision",
+      "name": "Ship Decision",
+      "description": "Force a fast, regret-minimizing product decision when a solo founder is stuck choosing between options. Use when the user is paralyzed by a binary or tri-way choice (build A vs B, ship now vs polish, free vs paid, etc.), says \"I can't decide\", \"should I\", or asks for a sanity check on a roadmap call.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/ship-decision",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "ship-learn-next",
+      "name": "Ship Learn Next",
+      "description": "Transform learning content (like YouTube transcripts, articles, tutorials) into actionable implementation plans using the Ship-Learn-Next framework. Use when user wants to turn advice, lessons, or educational content into concrete action steps, reps, or a learning quest.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/ship-learn-next",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "skill-creation-walkthrough",
+      "name": "Skill Creation Walkthrough",
+      "description": "Step-by-step guide for creating your own Claude Skills, from deciding whether a skill is the right tool to writing the SKILL.md file, structuring reference material, and making it trigger reliably. Use when you want to package a workflow, framework, or repeated task into a reusable Skill, when an existing skill is not triggering or not loading the right context, when you are auditing a skill that is underperforming, or when you want to publish a skill for others. Also triggers when someone asks \"how do I make a skill\" or \"what makes a good skill\". Useful for individuals, teams, and anyone publishing skills publicly.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/skill-creation-walkthrough",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "slack-gif-creator",
+      "name": "Slack GIF Creator",
+      "description": "Toolkit for creating animated GIFs optimized for Slack, with validators for size constraints and composable animation primitives. This skill applies when users request animated GIFs or emoji animations for Slack from descriptions like \"make me a GIF for Slack of X doing Y\".",
+      "category": "Creative & Media",
+      "subpath": "skills/slack-gif-creator",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": [
+        "Python 3",
+        "Pillow"
+      ]
+    },
+    {
+      "id": "stakeholder-communication",
+      "name": "Stakeholder Communication",
+      "description": "Communicate effectively with stakeholders across functions and seniority levels. Use this skill when writing status updates, preparing executive reviews, sharing technical decisions with non-technical audiences, managing up, communicating bad news, or designing the communication cadence for a project. Triggers on stakeholder update, status report, executive summary, exec review, manage up, communicate bad news, project comms, status meeting, weekly update. Also triggers when a project is going off track and the team needs to communicate it.",
+      "category": "Communication & Writing",
+      "subpath": "skills/stakeholder-communication",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "standup-solo",
+      "name": "Standup Solo",
+      "description": "Run a 5-minute personal standup for a solo dev — what shipped yesterday, what's blocked, what's next today. Use when the user asks for a daily check-in, says \"what should I work on today\", \"what did I do yesterday\", or wants to break out of a productivity slump.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/standup-solo",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "swiftui-design-skill",
+      "name": "SwiftUI Design Skill",
+      "description": "SwiftUI frontend visual design skill. Creates beautiful, distinctive iOS/macOS interfaces that avoid generic AI slop patterns. Covers design direction, layout systems, typography, color, spacing, brand integration, and design review. Use when designing new SwiftUI views, reviewing UI quality, creating iOS prototypes, choosing visual styles, improving app aesthetics, or when the UI looks generic or AI-generated.",
+      "category": "Creative & Media",
+      "subpath": "skills/swiftui-design-skill",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": [
+        "SwiftUI project"
+      ]
+    },
+    {
+      "id": "tailored-resume-generator",
+      "name": "Tailored Resume Generator",
+      "description": "Analyzes job descriptions and generates tailored resumes that highlight relevant experience, skills, and achievements to maximize interview chances",
+      "category": "Productivity & Organization",
+      "subpath": "skills/tailored-resume-generator",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "tapestry",
+      "name": "Tapestry",
+      "description": "Unified content extraction and action planning. Use when user says \"tapestry <URL>\", \"weave <URL>\", \"help me plan <URL>\", \"extract and plan <URL>\", \"make this actionable <URL>\", or similar phrases indicating they want to extract content and create an action plan. Automatically detects content type (YouTube video, article, PDF) and processes accordingly.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/tapestry",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": [
+        "Python 3",
+        "reader CLI or trafilatura",
+        "yt-dlp"
+      ]
+    },
+    {
+      "id": "team-onboarding-playbook",
+      "name": "Team Onboarding Playbook",
+      "description": "Design a structured onboarding experience that gets new team members productive in 30, 60, and 90 days. Use when a new hire is joining, when contractors or agency partners need to ramp up, when an existing team is restructuring and members are switching focus, or when current onboarding feels chaotic and slow. Also triggers when one person owns all the tribal knowledge and you need to capture it, when you keep losing people in their first 90 days, or when a new project has many fresh members joining at once. Useful for engineering, design, product, marketing, and operations roles.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/team-onboarding-playbook",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "theme-factory",
+      "name": "Theme Factory",
+      "description": "Toolkit for styling artifacts with a theme. These artifacts can be slides, docs, reportings, HTML landing pages, etc. There are 10 pre-set themes with colors/fonts that you can apply to any artifact that has been creating, or can generate a new theme on-the-fly.",
+      "category": "Creative & Media",
+      "subpath": "skills/theme-factory",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "twitter-algorithm-optimizer",
+      "name": "Twitter Algorithm Optimizer",
+      "description": "Analyze and optimize tweets for maximum reach using Twitter's open-source algorithm insights. Rewrite and edit user tweets to improve engagement and visibility based on how the recommendation system ranks content.",
+      "category": "Communication & Writing",
+      "subpath": "skills/twitter-algorithm-optimizer",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "upgrade-flow-design",
+      "name": "Upgrade Flow Design",
+      "description": "Designing free-to-paid conversion flows for SaaS products. Trigger moments, paywall design, value demonstration, upsell vs downsell, win-back flows, churn prevention. Honest about paywall-everywhere (gates everything aggressively), free-forever-trap (no upgrade path surfaces), and value-triggered-upgrade (paywall surfaces at moments of demonstrated value) patterns. Triggers on upgrade flow, paywall, free-to-paid, freemium conversion, trial conversion, plan upgrade, subscription upgrade, win-back flow, churn prevention. Also triggers when free-to-paid conversion is low, when paywalls are blocking the wrong moments, or when upgrade flows are being scoped for the first time.",
+      "category": "Business & Marketing",
+      "subpath": "skills/upgrade-flow-design",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "usability-testing",
+      "name": "Usability Testing",
+      "description": "Plan and run usability tests on existing or prototype designs including test design, task scripts, moderation, observation, and findings synthesis. Use this skill whenever the user wants to test usability, run a moderated test, run an unmoderated test, validate a design, find usability issues, or improve task completion. Triggers on usability test, usability testing, moderated test, unmoderated test, task script, think aloud, prototype testing, user testing, design validation, task completion. Also triggers when the user has built something and wants to know if real users can use it before shipping.",
+      "category": "Data & Analysis",
+      "subpath": "skills/usability-testing",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "user-feedback-aggregation",
+      "name": "User Feedback Aggregation",
+      "description": "Collecting and synthesizing user feedback across channels (support tickets, NPS, in-app feedback, sales calls, social mentions, customer councils) into a continuous signal that informs product decisions. The triage discipline that distinguishes loudest-voice (whoever complains most wins) from averaged-noise (every signal weighted equally) from triaged-synthesis (signal weighted by source quality, frequency, and decision relevance). Triggers on user feedback, customer feedback aggregation, NPS, support ticket analysis, customer councils, feedback synthesis, voice of customer, feedback triage, in-app feedback. Also triggers when feedback channels overflow with volume that does not produce decisions, when the loudest-voice problem is steering roadmap, or when continuous feedback streams need synthesis discipline.",
+      "category": "Data & Analysis",
+      "subpath": "skills/user-feedback-aggregation",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "ux-research",
+      "name": "UX Research",
+      "description": "Plan and execute user research including research planning, recruiting, interview design, qualitative synthesis, and translating findings into product decisions. Use this skill whenever the user wants to plan user research, design interviews, recruit participants, conduct discovery, run formative research, or synthesize qualitative findings. Triggers on user research, UX research, user interviews, discovery research, generative research, formative research, qualitative research, user insights, research synthesis, recruitment, interview guide, jobs to be done. Also triggers when product decisions are being made without user input and the user wants to fix that.",
+      "category": "Data & Analysis",
+      "subpath": "skills/ux-research",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "vendor-evaluation",
+      "name": "Vendor Evaluation",
+      "description": "Evaluate, select, and contract with vendors and SaaS tools. Use this skill when comparing alternatives, running an RFP, scoring vendors against criteria, negotiating contracts, planning a switch, or assessing a vendor's risk. Triggers on vendor evaluation, RFP, vendor selection, build vs buy, SaaS evaluation, vendor scorecard, vendor comparison, contract negotiation, vendor switch, procurement. Also triggers when a renewal is coming up or when a tool isn't meeting expectations.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/vendor-evaluation",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "vertical-site-conventions",
+      "name": "Vertical Site Conventions",
+      "description": "Compose pages and sites that read as their vertical: ecommerce-catalog storefronts that look like storefronts, hospitality-food sites that look like restaurants, b2b-manufacturer sites that look industrial. Use this skill whenever the user wants to build a site that looks like the vertical it serves, fix a build that reads as generic or off-vertical, build to an experience bar produced by competitor-experience-audit, or compose pages with the merchandising, density, and layout conventions a credible site in the category is expected to carry. Triggers on vertical conventions, storefront layout, ecommerce layout, retail conventions, merchandising layout, category page composition, site composition, build to the experience bar, make it look like the vertical, off-vertical, looks generic, build conventions for a vertical, site grammar. Also triggers when a build that is technically clean reads wrong for its category, and the cause is composition, not visual taste.",
+      "category": "Creative & Media",
+      "subpath": "skills/vertical-site-conventions",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "youtube-downloader",
+      "name": "YouTube Downloader",
+      "description": "Download YouTube videos with customizable quality and format options. Use this skill when the user asks to download, save, or grab YouTube videos. Supports various quality settings (best, 1080p, 720p, 480p, 360p), multiple formats (mp4, webm, mkv), and audio-only downloads as MP3.",
+      "category": "Creative & Media",
+      "subpath": "skills/youtube-downloader",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": true,
+      "requirements": [
+        "Python 3",
+        "yt-dlp"
+      ]
+    },
+    {
+      "id": "youtube-transcript",
+      "name": "YouTube Transcript",
+      "description": "Download YouTube video transcripts when user provides a YouTube URL or asks to download/get/fetch a transcript from YouTube. Also use when user wants to transcribe or get captions/subtitles from a YouTube video.",
+      "category": "Creative & Media",
+      "subpath": "skills/youtube-transcript",
+      "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": [
+        "yt-dlp"
+      ]
     }
   ]
 }
