@@ -72,6 +72,23 @@
       "requirements": []
     },
     {
+      "id": "airtable",
+      "name": "Airtable — Bases, Tables & Records",
+      "description": "Airtable REST API via curl. Records CRUD, filters, upserts.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/airtable",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": [
+        "AIRTABLE_API_KEY",
+        "curl"
+      ]
+    },
+    {
       "id": "analytics-strategy",
       "name": "Analytics Strategy",
       "description": "Design measurement frameworks including event taxonomy, KPI hierarchy, dashboard architecture, attribution models, and analytics implementation strategy. Use this skill whenever the user wants to plan analytics, design dashboards, build event taxonomies, define KPIs, set up tracking, or audit existing measurement. Triggers on analytics strategy, measurement plan, event taxonomy, tracking plan, KPI framework, dashboard design, north star metric, attribution model, conversion tracking, GA4 setup, Mixpanel setup, analytics audit. Also triggers when the user has data but no clear way to use it, or wants to make decisions but doesn't know what to track.",
@@ -97,6 +114,54 @@
         "codex"
       ],
       "hasScripts": true,
+      "requirements": []
+    },
+    {
+      "id": "apple-notes",
+      "name": "Apple Notes",
+      "description": "Manage Apple Notes via memo CLI: create, search, edit.",
+      "category": "Apple & Personal Devices",
+      "subpath": "skills/apple-notes",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": [
+        "memo",
+        "macOS"
+      ]
+    },
+    {
+      "id": "apple-reminders",
+      "name": "Apple Reminders",
+      "description": "Apple Reminders via remindctl: add, list, complete.",
+      "category": "Apple & Personal Devices",
+      "subpath": "skills/apple-reminders",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": [
+        "remindctl",
+        "macOS"
+      ]
+    },
+    {
+      "id": "architecture-diagram",
+      "name": "Architecture Diagram Skill",
+      "description": "Dark-themed SVG architecture/cloud/infra diagrams as HTML.",
+      "category": "Creative & Media",
+      "subpath": "skills/architecture-diagram",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
       "requirements": []
     },
     {
@@ -130,12 +195,68 @@
       ]
     },
     {
+      "id": "arxiv",
+      "name": "arXiv Research",
+      "description": "Search arXiv papers by keyword, author, category, or ID.",
+      "category": "Research",
+      "subpath": "skills/arxiv",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": true,
+      "requirements": []
+    },
+    {
+      "id": "ascii-art",
+      "name": "ASCII Art Skill",
+      "description": "ASCII art: pyfiglet, cowsay, boxes, image-to-ascii.",
+      "category": "Creative & Media",
+      "subpath": "skills/ascii-art",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "ascii-video",
+      "name": "ASCII Video Production Pipeline",
+      "description": "ASCII video: convert video/audio to colored ASCII MP4/GIF.",
+      "category": "Creative & Media",
+      "subpath": "skills/ascii-video",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
       "id": "backup-and-disaster-recovery",
       "name": "Backup And Disaster Recovery",
       "description": "Plan and run backups, set recovery objectives, and run disaster recovery drills. Use this skill when defining RPO/RTO targets, designing backup architecture, deciding what to back up and how often, planning for full-region or platform outages, or running a restoration drill. Triggers on backup, restore, RPO, RTO, disaster recovery, DR, business continuity, what if the database is gone, what if our hosting goes down, recovery drill, ransomware planning. Also triggers when an incident reveals a gap in restoration capability.",
       "category": "Productivity & Organization",
       "subpath": "skills/backup-and-disaster-recovery",
       "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "baoyu-infographic",
+      "name": "Infographic Generator",
+      "description": "Infographics: 21 layouts x 21 styles (信息图, 可视化).",
+      "category": "Creative & Media",
+      "subpath": "skills/baoyu-infographic",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
       "providers": [
         "claude",
         "codex"
@@ -156,6 +277,22 @@
       ],
       "hasScripts": false,
       "requirements": []
+    },
+    {
+      "id": "blogwatcher",
+      "name": "Blogwatcher",
+      "description": "Monitor blogs and RSS/Atom feeds via blogwatcher-cli tool.",
+      "category": "Research",
+      "subpath": "skills/blogwatcher",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": [
+        "blogwatcher-cli"
+      ]
     },
     {
       "id": "brainstorming",
@@ -342,6 +479,34 @@
       "requirements": []
     },
     {
+      "id": "claude-code",
+      "name": "Claude Code — Hermes Orchestration Guide",
+      "description": "Delegate coding to Claude Code CLI (features, PRs).",
+      "category": "Autonomous AI Agents",
+      "subpath": "skills/claude-code",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "claude-design",
+      "name": "Claude Design for CLI/API Agents",
+      "description": "Design one-off HTML artifacts (landing, deck, prototype).",
+      "category": "Creative & Media",
+      "subpath": "skills/claude-design",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
       "id": "code-review-web",
       "name": "Code Review Web",
       "description": "Review web application code for bugs, security issues, performance problems, and stack-specific anti-patterns. Use this skill whenever the user wants to review code, debug a production issue, investigate a build failure, audit security, or check a PR before merging. Triggers on code review, review my code, debug, build error, broken, not working, why is X failing, check this code, security check, PR review, audit code, refactor. Also triggers when investigating 4xx or 5xx errors, deploy failures, environment variable issues, and CMS integration problems.",
@@ -354,6 +519,52 @@
       ],
       "hasScripts": false,
       "requirements": []
+    },
+    {
+      "id": "codebase-inspection",
+      "name": "Codebase Inspection with pygount",
+      "description": "Inspect codebases w/ pygount: LOC, languages, ratios.",
+      "category": "Software Development",
+      "subpath": "skills/codebase-inspection",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": [
+        "pygount"
+      ]
+    },
+    {
+      "id": "codex",
+      "name": "Codex CLI",
+      "description": "Delegate coding to OpenAI Codex CLI (features, PRs).",
+      "category": "Autonomous AI Agents",
+      "subpath": "skills/codex",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "comfyui",
+      "name": "ComfyUI",
+      "description": "Generate images, video, and audio via diffusion workflows.",
+      "category": "Creative & Media",
+      "subpath": "skills/comfyui",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": true,
+      "requirements": [
+        "python3"
+      ]
     },
     {
       "id": "comparison-tool-design",
@@ -390,6 +601,20 @@
       "category": "Business & Marketing",
       "subpath": "skills/competitor-experience-audit",
       "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "computer-use",
+      "name": "Computer Use (universal, any-model, cross-platform)",
+      "description": "Drive the user's desktop in the background — clicking, typing, scrolling, dragging — without stealing the cursor, keyboard focus, or switching virtual desktops / Spaces. Cross-platform: macOS, Windows, Linux. Works with any tool-capable model. Load this skill whenever the `computer_use` tool is available.",
+      "category": "Autonomous AI Agents",
+      "subpath": "skills/computer-use",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
       "providers": [
         "claude",
         "codex"
@@ -625,6 +850,20 @@
       "requirements": []
     },
     {
+      "id": "design-md",
+      "name": "DESIGN.md Skill",
+      "description": "Author/validate/export Google's DESIGN.md token spec files.",
+      "category": "Creative & Media",
+      "subpath": "skills/design-md",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
       "id": "design-standards",
       "name": "Design Standards",
       "description": "Apply production-grade design standards when building or reviewing pages, components, or UI. Use this skill whenever the user asks to build a page, design a component, lay out a section, review the UI, fix the layout, or check design quality. Triggers on build a page, create a component, design a section, hero, card, CTA, layout, review the UI, fix the design, design system, design tokens, spacing, typography scale, button standards, mobile design. Also triggers for any production design decision where contrast, accessibility, spacing, or visual hierarchy matters.",
@@ -673,6 +912,34 @@
       "category": "Document Processing",
       "subpath": "skills/documentation-strategy",
       "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "docx",
+      "name": "DOCX Skill",
+      "description": "Create, read, edit Word .docx documents and templates.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/docx",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": true,
+      "requirements": []
+    },
+    {
+      "id": "dogfood",
+      "name": "Dogfood: Systematic Web Application QA Testing",
+      "description": "Exploratory QA of web apps: find bugs, evidence, reports.",
+      "category": "Software Development",
+      "subpath": "skills/dogfood",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
       "providers": [
         "claude",
         "codex"
@@ -767,6 +1034,24 @@
       "requirements": []
     },
     {
+      "id": "evaluating-llms-harness",
+      "name": "lm-evaluation-harness - LLM Benchmarking",
+      "description": "lm-eval-harness: benchmark LLMs (MMLU, GSM8K, etc.).",
+      "category": "MLOps",
+      "subpath": "skills/evaluating-llms-harness",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": [
+        "lm-eval",
+        "transformers",
+        "vllm"
+      ]
+    },
+    {
       "id": "evidence-based-reviews",
       "name": "Evidence Based Reviews",
       "description": "Produce honest product reviews and buying guides without fabricated first-hand experience, using disclosed evidence tiers: verified specs, owner-experience synthesis at scale, expert triangulation, and hands-on only when true. Use this skill whenever the user wants to write product reviews or buying guides without hands-on access, set up a review methodology, add evidence disclosure to review content, align reviews with Google's reviews system or FTC affiliate disclosure expectations, or decide when Review and Product schema are honest to use. Triggers on product review, buying guide, best-of list, review methodology, evidence basis, hands-on testing, we tested, affiliate review site, review disclosure, methodology block, original research, reviews system. Also triggers when review content claims testing that did not happen, or when an affiliate site needs a trust mechanism that survives scrutiny.",
@@ -778,6 +1063,20 @@
         "codex"
       ],
       "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "excalidraw",
+      "name": "Excalidraw Diagram Skill",
+      "description": "Hand-drawn Excalidraw JSON diagrams (arch, flow, seq).",
+      "category": "Creative & Media",
+      "subpath": "skills/excalidraw",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": true,
       "requirements": []
     },
     {
@@ -879,6 +1178,22 @@
       "requirements": []
     },
     {
+      "id": "findmy",
+      "name": "Find My (Apple)",
+      "description": "Track Apple devices/AirTags via FindMy.app on macOS.",
+      "category": "Apple & Personal Devices",
+      "subpath": "skills/findmy",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": [
+        "macOS"
+      ]
+    },
+    {
       "id": "form-strategy",
       "name": "Form Strategy",
       "description": "Design forms that convert, validate well, resist spam, and integrate cleanly with downstream systems. Use this skill when designing or auditing any form (contact, signup, checkout, multi-step, embedded), planning validation logic, fighting spam, choosing form tooling, or improving form conversion. Triggers on form design, form validation, form conversion, multi-step form, form spam, captcha, honeypot, form abandonment, signup form, contact form. Also triggers when form completion rates are low or spam is overwhelming.",
@@ -921,6 +1236,180 @@
       "requirements": []
     },
     {
+      "id": "gif-search",
+      "name": "GIF Search (Tenor API)",
+      "description": "Search/download GIFs from Tenor via curl + jq.",
+      "category": "Creative & Media",
+      "subpath": "skills/gif-search",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": [
+        "TENOR_API_KEY",
+        "curl",
+        "jq"
+      ]
+    },
+    {
+      "id": "github-auth",
+      "name": "GitHub Authentication Setup",
+      "description": "GitHub auth setup: HTTPS tokens, SSH keys, gh CLI login.",
+      "category": "Software Development",
+      "subpath": "skills/github-auth",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": true,
+      "requirements": []
+    },
+    {
+      "id": "github-code-review",
+      "name": "GitHub Code Review",
+      "description": "Review PRs: diffs, inline comments via gh or REST.",
+      "category": "Software Development",
+      "subpath": "skills/github-code-review",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "github-issues",
+      "name": "GitHub Issues Management",
+      "description": "Create, triage, label, assign GitHub issues via gh or REST.",
+      "category": "Software Development",
+      "subpath": "skills/github-issues",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "github-pr-workflow",
+      "name": "GitHub Pull Request Workflow",
+      "description": "GitHub PR lifecycle: branch, commit, open, CI, merge.",
+      "category": "Software Development",
+      "subpath": "skills/github-pr-workflow",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "github-repo-management",
+      "name": "GitHub Repository Management",
+      "description": "Clone/create/fork repos; manage remotes, releases.",
+      "category": "Software Development",
+      "subpath": "skills/github-repo-management",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "google-workspace",
+      "name": "Google Workspace",
+      "description": "Gmail, Calendar, Drive, Docs, Sheets via gws CLI or Python.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/google-workspace",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": true,
+      "requirements": []
+    },
+    {
+      "id": "hermes-agent",
+      "name": "Hermes Agent",
+      "description": "Use, configure, theme, extend, and orchestrate Hermes Agent.",
+      "category": "Autonomous AI Agents",
+      "subpath": "skills/hermes-agent",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "hermes-agent-skill-authoring",
+      "name": "Authoring Hermes-Agent Skills (in-repo)",
+      "description": "Author in-repo SKILL.md files: frontmatter and structure.",
+      "category": "Software Development",
+      "subpath": "skills/hermes-agent-skill-authoring",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "himalaya",
+      "name": "Himalaya Email CLI",
+      "description": "Himalaya CLI: IMAP/SMTP email from terminal.",
+      "category": "Communication & Writing",
+      "subpath": "skills/himalaya",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": [
+        "himalaya"
+      ]
+    },
+    {
+      "id": "huggingface-hub",
+      "name": "Hugging Face CLI (`hf`) Reference Guide",
+      "description": "HuggingFace hf CLI: search/download/upload models, datasets.",
+      "category": "MLOps",
+      "subpath": "skills/huggingface-hub",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "humanizer",
+      "name": "Humanizer: Remove AI Writing Patterns",
+      "description": "Humanize text: strip AI-isms and add real voice.",
+      "category": "Creative & Media",
+      "subpath": "skills/humanizer",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
       "id": "image-enhancer",
       "name": "Image Enhancer",
       "description": "Improves the quality of images, especially screenshots, by enhancing resolution, sharpness, and clarity. Perfect for preparing images for presentations, documentation, or social media posts.",
@@ -954,6 +1443,23 @@
       ]
     },
     {
+      "id": "imessage",
+      "name": "iMessage",
+      "description": "Send and receive iMessages/SMS via the imsg CLI on macOS.",
+      "category": "Apple & Personal Devices",
+      "subpath": "skills/imessage",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": [
+        "imsg",
+        "macOS"
+      ]
+    },
+    {
       "id": "incident-response",
       "name": "Incident Response",
       "description": "Manage active production incidents through detection, triage, mitigation, communication, and resolution with structured roles and decision-making. Use this skill whenever the user has an active incident, a production issue, a service outage, a security incident, or needs to plan incident response procedures. Triggers on incident response, production incident, outage, service down, site down, P0, P1, severity, downtime, on-call, incident commander, status page, postmortem prep. Also triggers when something is actively broken in production and the user is figuring out what to do.",
@@ -974,6 +1480,20 @@
       "category": "Productivity & Organization",
       "subpath": "skills/information-architecture",
       "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "inspecting-hermes-desktop-dom",
+      "name": "Inspecting the live Hermes desktop DOM",
+      "description": "Read the live Hermes desktop DOM/CSS over CDP.",
+      "category": "Software Development",
+      "subpath": "skills/inspecting-hermes-desktop-dom",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
       "providers": [
         "claude",
         "codex"
@@ -1166,6 +1686,36 @@
       "requirements": []
     },
     {
+      "id": "llama-cpp",
+      "name": "llama.cpp + GGUF",
+      "description": "llama.cpp local GGUF inference + HF Hub model discovery.",
+      "category": "MLOps",
+      "subpath": "skills/llama-cpp",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": [
+        "llama-cpp-python>=0.2.0"
+      ]
+    },
+    {
+      "id": "llm-wiki",
+      "name": "Karpathy's LLM Wiki",
+      "description": "Karpathy's LLM Wiki: build/query interlinked markdown KB.",
+      "category": "Research",
+      "subpath": "skills/llm-wiki",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
       "id": "logo-design",
       "name": "Logo Design",
       "description": "Generate logo variants for a brand, producing multiple production-grade marks across different architectures (wordmark, lockup, symbol-only, letterform-as-symbol, monogram) with rationale, application specs, and decision-ready presentation. Distinct from `brand-identity`, which produces the complete system (logo plus color, type, voice, applications). Goes deep on the logo specifically: typographic register, symbol approach, application-context discipline (16px favicon, embroidery, signage, motion), and production specs (SVG-ready, single-color, reverse). Triggers on logo design, design a logo, wordmark, monogram, lockup, mark variants, logo iterations, redesign or refine the logo, logo refresh, letterform-as-symbol, and exploring mark variants for an established brand. Does NOT fire for full brand identity (use `brand-identity`), positioning or strategy (use `brand-discovery`), project-wide creative direction (use `creative-direction`), or one-off illustration.",
@@ -1191,6 +1741,34 @@
         "codex"
       ],
       "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "manim-video",
+      "name": "Manim Video Production Pipeline",
+      "description": "Manim CE animations: 3Blue1Brown math/algo videos.",
+      "category": "Creative & Media",
+      "subpath": "skills/manim-video",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": true,
+      "requirements": []
+    },
+    {
+      "id": "maps",
+      "name": "Maps Skill",
+      "description": "Geocode, POIs, routes, timezones via OpenStreetMap/OSRM.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/maps",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": true,
       "requirements": []
     },
     {
@@ -1299,6 +1877,34 @@
       ]
     },
     {
+      "id": "nano-pdf",
+      "name": "nano-pdf",
+      "description": "Edit text in existing PDFs via natural-language prompts.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/nano-pdf",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "node-inspect-debugger",
+      "name": "Node.js Inspect Debugger",
+      "description": "Debug Node.js via --inspect + Chrome DevTools Protocol CLI.",
+      "category": "Software Development",
+      "subpath": "skills/node-inspect-debugger",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
       "id": "notebooklm",
       "name": "NotebookLM",
       "description": "Use this skill to query your Google NotebookLM notebooks directly from Claude Code for source-grounded, citation-backed answers from Gemini. Browser automation, library management, persistent auth. Drastically reduced hallucinations through document-only responses.",
@@ -1315,6 +1921,50 @@
         "Python 3",
         "Playwright browser"
       ]
+    },
+    {
+      "id": "notion",
+      "name": "Notion",
+      "description": "Notion API + ntn CLI: pages, databases, markdown, Workers.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/notion",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": [
+        "NOTION_API_KEY"
+      ]
+    },
+    {
+      "id": "obsidian",
+      "name": "Obsidian Vault",
+      "description": "Read, search, create, and edit notes in the Obsidian vault.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/obsidian",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "ocr-and-documents",
+      "name": "PDF & Document Extraction",
+      "description": "Extract text from PDFs/scans (pymupdf, marker-pdf).",
+      "category": "Productivity & Organization",
+      "subpath": "skills/ocr-and-documents",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": true,
+      "requirements": []
     },
     {
       "id": "okr-design",
@@ -1345,6 +1995,50 @@
       "requirements": []
     },
     {
+      "id": "opencode",
+      "name": "OpenCode CLI",
+      "description": "Delegate coding to OpenCode CLI (features, PR review).",
+      "category": "Autonomous AI Agents",
+      "subpath": "skills/opencode",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "openhue",
+      "name": "OpenHue CLI",
+      "description": "Control Philips Hue lights, scenes, rooms via OpenHue CLI.",
+      "category": "Smart Home",
+      "subpath": "skills/openhue",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": [
+        "openhue"
+      ]
+    },
+    {
+      "id": "p5js",
+      "name": "p5.js Production Pipeline",
+      "description": "p5.js sketches: gen art, shaders, interactive, 3D.",
+      "category": "Creative & Media",
+      "subpath": "skills/p5js",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": true,
+      "requirements": []
+    },
+    {
       "id": "paid-media-strategy",
       "name": "Paid Media Strategy",
       "description": "A discipline for running paid media that does not light money on fire. Hypothesis writing for paid spend, channel selection, budget allocation, audience targeting, bid strategy, campaign types, what NOT to spend on, attribution reality, and the failure modes that produce expensive lessons. Triggers on paid media strategy, ad budget allocation, channel selection, paid media plan, audit my Google Ads, audit my Meta Ads, scale paid media, kill underperforming campaign, paid media hypothesis, ad spend strategy, attribution reality, performance marketing strategy. Also triggers when a team is asking how to scale paid media, or whether to add a new channel, or how to reallocate spend across channels.",
@@ -1356,6 +2050,20 @@
         "codex"
       ],
       "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "pdf",
+      "name": "PDF Skill",
+      "description": "Create, merge, split, fill, and secure PDF files.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/pdf",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": true,
       "requirements": []
     },
     {
@@ -1403,12 +2111,54 @@
       ]
     },
     {
+      "id": "plan",
+      "name": "Plan Mode",
+      "description": "Write a markdown plan to .hermes/plans/; no execution.",
+      "category": "Software Development",
+      "subpath": "skills/plan",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
       "id": "pm-spec-writing",
       "name": "PM Spec Writing",
       "description": "Translate ideas, feature requests, or vague concepts into specific, actionable dev briefs. Use this skill whenever the user has an idea they want to build, a feature to spec out, a bug to file, a project to scope, or needs to convert a half-formed idea into a clear implementation brief. Triggers on I want to add, we should build, can we make, what is the plan for, how do we implement, dev brief, feature spec, PRD, user story, acceptance criteria, scope this, prioritize. Also triggers when the user has a list of things they want to build and needs help converting them into well-formed tasks.",
       "category": "Productivity & Organization",
       "subpath": "skills/pm-spec-writing",
       "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "polymarket",
+      "name": "Polymarket — Prediction Market Data",
+      "description": "Query Polymarket: markets, prices, orderbooks, history.",
+      "category": "Research",
+      "subpath": "skills/polymarket",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": true,
+      "requirements": []
+    },
+    {
+      "id": "popular-web-designs",
+      "name": "Popular Web Designs",
+      "description": "54 real design systems (Stripe, Linear, Vercel) as HTML/CSS.",
+      "category": "Creative & Media",
+      "subpath": "skills/popular-web-designs",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
       "providers": [
         "claude",
         "codex"
@@ -1440,6 +2190,34 @@
       "category": "Productivity & Organization",
       "subpath": "skills/postmortem-solo",
       "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "powerpoint",
+      "name": "Powerpoint Skill",
+      "description": "Create, read, edit .pptx decks, slides, notes, templates.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/powerpoint",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": true,
+      "requirements": []
+    },
+    {
+      "id": "pretext",
+      "name": "Pretext Creative Demos",
+      "description": "Build creative browser demos with DOM-free text layout.",
+      "category": "Creative & Media",
+      "subpath": "skills/pretext",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
       "providers": [
         "claude",
         "codex"
@@ -1482,6 +2260,20 @@
       "category": "Business & Marketing",
       "subpath": "skills/programmatic-seo",
       "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "python-debugpy",
+      "name": "Python Debugger (pdb + debugpy)",
+      "description": "Debug Python: pdb REPL + debugpy remote (DAP).",
+      "category": "Software Development",
+      "subpath": "skills/python-debugpy",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
       "providers": [
         "claude",
         "codex"
@@ -1546,6 +2338,43 @@
       ],
       "hasScripts": false,
       "requirements": []
+    },
+    {
+      "id": "requesting-code-review",
+      "name": "Pre-Commit Code Verification",
+      "description": "Pre-commit review: security scan, quality gates, auto-fix.",
+      "category": "Software Development",
+      "subpath": "skills/requesting-code-review",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "research-paper-writing",
+      "name": "Research Paper Writing Pipeline",
+      "description": "Write ML papers for NeurIPS/ICML/ICLR: design→submit.",
+      "category": "Research",
+      "subpath": "skills/research-paper-writing",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": [
+        "semanticscholar",
+        "arxiv",
+        "habanero",
+        "requests",
+        "scipy",
+        "numpy",
+        "matplotlib",
+        "SciencePlots"
+      ]
     },
     {
       "id": "roadmap-planning",
@@ -1810,6 +2639,24 @@
       "requirements": []
     },
     {
+      "id": "serving-llms-vllm",
+      "name": "vLLM - High-Performance LLM Serving",
+      "description": "vLLM: high-throughput LLM serving, OpenAI API, quantization.",
+      "category": "MLOps",
+      "subpath": "skills/serving-llms-vllm",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": [
+        "vllm",
+        "torch",
+        "transformers"
+      ]
+    },
+    {
       "id": "ship-decision",
       "name": "Ship Decision",
       "description": "Force a fast, regret-minimizing product decision when a solo founder is stuck choosing between options. Use when the user is paralyzed by a binary or tri-way choice (build A vs B, ship now vs polish, free vs paid, etc.), says \"I can't decide\", \"should I\", or asks for a sanity check on a roadmap call.",
@@ -1830,6 +2677,34 @@
       "category": "Productivity & Organization",
       "subpath": "skills/ship-learn-next",
       "ref": "53f826bc4b8ae688028253276312eeb2c1559242",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "simplify-code",
+      "name": "Simplify Code — Parallel Review & Cleanup",
+      "description": "Parallel 4-agent cleanup of recent code changes.",
+      "category": "Software Development",
+      "subpath": "skills/simplify-code",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "sketch",
+      "name": "Sketch",
+      "description": "Throwaway HTML mockups: 2-3 design variants to compare.",
+      "category": "Creative & Media",
+      "subpath": "skills/sketch",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
       "providers": [
         "claude",
         "codex"
@@ -1867,6 +2742,50 @@
         "Python 3",
         "Pillow"
       ]
+    },
+    {
+      "id": "songsee",
+      "name": "songsee",
+      "description": "Audio spectrograms/features (mel, chroma, MFCC) via CLI.",
+      "category": "Creative & Media",
+      "subpath": "skills/songsee",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": [
+        "songsee"
+      ]
+    },
+    {
+      "id": "songwriting-and-ai-music",
+      "name": "Songwriting & AI Music Generation",
+      "description": "Songwriting craft and Suno AI music prompts.",
+      "category": "Creative & Media",
+      "subpath": "skills/songwriting-and-ai-music",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "spike",
+      "name": "Spike",
+      "description": "Throwaway experiments to validate an idea before build.",
+      "category": "Software Development",
+      "subpath": "skills/spike",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
     },
     {
       "id": "stakeholder-communication",
@@ -1911,6 +2830,20 @@
       "requirements": [
         "SwiftUI project"
       ]
+    },
+    {
+      "id": "systematic-debugging",
+      "name": "Systematic Debugging",
+      "description": "4-phase root cause debugging: understand bugs before fixing.",
+      "category": "Software Development",
+      "subpath": "skills/systematic-debugging",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
     },
     {
       "id": "tailored-resume-generator",
@@ -1959,6 +2892,39 @@
       "requirements": []
     },
     {
+      "id": "teams-meeting-pipeline",
+      "name": "Teams Meeting Pipeline",
+      "description": "Teams meeting summaries, job replay, Graph subscriptions.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/teams-meeting-pipeline",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": [
+        "MSGRAPH_TENANT_ID",
+        "MSGRAPH_CLIENT_ID",
+        "MSGRAPH_CLIENT_SECRET",
+        "hermes"
+      ]
+    },
+    {
+      "id": "test-driven-development",
+      "name": "Test-Driven Development (TDD)",
+      "description": "TDD: enforce RED-GREEN-REFACTOR, tests before code.",
+      "category": "Software Development",
+      "subpath": "skills/test-driven-development",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
       "id": "theme-factory",
       "name": "Theme Factory",
       "description": "Toolkit for styling artifacts with a theme. These artifacts can be slides, docs, reportings, HTML landing pages, etc. There are 10 pre-set themes with colors/fonts that you can apply to any artifact that has been creating, or can generate a new theme on-the-fly.",
@@ -1970,6 +2936,20 @@
         "codex"
       ],
       "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "touchdesigner-mcp",
+      "name": "TouchDesigner Integration (twozero MCP)",
+      "description": "Control TouchDesigner via twozero MCP.",
+      "category": "Creative & Media",
+      "subpath": "skills/touchdesigner-mcp",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": true,
       "requirements": []
     },
     {
@@ -2068,6 +3048,66 @@
         "codex"
       ],
       "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "weights-and-biases",
+      "name": "Weights & Biases: ML Experiment Tracking & MLOps",
+      "description": "W&B: log ML experiments, sweeps, model registry, dashboards.",
+      "category": "MLOps",
+      "subpath": "skills/weights-and-biases",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": [
+        "wandb"
+      ]
+    },
+    {
+      "id": "xlsx",
+      "name": "XLSX Skill",
+      "description": "Create, read, edit Excel .xlsx spreadsheets and CSVs.",
+      "category": "Productivity & Organization",
+      "subpath": "skills/xlsx",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": true,
+      "requirements": []
+    },
+    {
+      "id": "xurl",
+      "name": "xurl — X (Twitter) API via the Official CLI",
+      "description": "X/Twitter via xurl CLI: raw post search, posting, DM, media.",
+      "category": "Social Media",
+      "subpath": "skills/xurl",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": [
+        "xurl"
+      ]
+    },
+    {
+      "id": "youtube-content",
+      "name": "YouTube Content Tool",
+      "description": "YouTube transcripts to summaries, threads, blogs.",
+      "category": "Creative & Media",
+      "subpath": "skills/youtube-content",
+      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": true,
       "requirements": []
     },
     {
