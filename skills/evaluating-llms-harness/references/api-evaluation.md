@@ -352,10 +352,7 @@ python scripts/compare_results.py \
 Respect API rate limits:
 ```bash
 lm_eval --model openai-chat-completions \
-  --model_args \
-    model=gpt-4-turbo,\
-    num_concurrent=3,\  # Lower concurrency
-    timeout=120 \  # Longer timeout
+  --model_args "model=gpt-4-turbo,num_concurrent=3,timeout=120" \
   --tasks mmlu
 ```
 

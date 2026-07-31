@@ -1,14 +1,6 @@
 ---
 name: sketch
 description: "Throwaway HTML mockups: 2-3 design variants to compare."
-version: 1.0.1
-author: Hermes Agent (adapted from gsd-build/get-shit-done)
-license: MIT
-platforms: [linux, macos, windows]
-metadata:
-  hermes:
-    tags: [sketch, mockup, design, ui, prototype, html, variants, exploration, wireframe, comparison]
-    related_skills: [spike, claude-design, popular-web-designs, excalidraw]
 ---
 
 # Sketch
@@ -26,9 +18,13 @@ Load this when the user says things like "sketch this screen", "show me what X c
 
 ## If the user has the full GSD system installed
 
-If `gsd-sketch` shows up as a sibling skill (installed via `npx get-shit-done-cc --hermes`), you can use **`gsd-sketch`** for the fuller workflow: persistent `.planning/sketches/` with MANIFEST, frontier mode analysis, consistency audits across past sketches, and integration with the rest of GSD. This skill is the lightweight standalone version — one-off sketching without the state machinery.
+If `gsd-sketch` is already available as a sibling skill, you can use it for the
+fuller workflow: persistent `.planning/sketches/` with MANIFEST, frontier mode
+analysis, consistency audits across past sketches, and integration with the
+rest of GSD. Do not invoke a provider-specific installer. This skill is the
+lightweight standalone version.
 
-> **Note:** The upstream GSD project ([gsd-build/get-shit-done](https://github.com/gsd-build/get-shit-done)) is **archived / no longer maintained** on GitHub. The npm package (`get-shit-done-cc`) still installs, but treat it as an archived community project — this standalone `sketch` skill is the maintained path and needs nothing extra.
+> **Note:** The upstream GSD project ([gsd-build/get-shit-done](https://github.com/gsd-build/get-shit-done)) is **archived / no longer maintained** on GitHub. Treat it as an archived community project; this standalone `sketch` skill is the maintained path and needs nothing extra.
 
 ## Core method
 
@@ -87,14 +83,20 @@ Each variant is a **single self-contained HTML file**:
 
 Open it in a browser. If it looks broken, fix it before showing the user.
 
-**Verify variants visually — use Hermes' browser tools.** Don't just write HTML and hope it renders; load each variant and look at it:
+**Verify variants visually with an available browser-testing capability.** Don't
+just write HTML and hope it renders; load each variant and inspect both the
+screenshot and console. Tool names differ by runtime; the equivalent operations
+are:
 
 ```
-browser_navigate(url="file:///absolute/path/to/sketches/001-calm-editorial/index.html")
-browser_vision(question="Does this layout look clean and readable? Any visible bugs (overlapping text, unstyled elements, broken images)?")
+1. Navigate to `file:///absolute/path/to/sketches/001-calm-editorial/index.html`.
+2. Capture and inspect the rendered page.
+3. Check for overlapping text, unstyled elements, broken images, and console errors.
 ```
 
-`browser_vision` returns an AI description of what's actually on the page plus a screenshot path — catches layout bugs that pure source inspection misses (e.g. a font import that silently failed, a flex container that collapsed). Fix and re-navigate until each variant looks right.
+Rendered-page inspection catches layout bugs that pure source inspection misses
+(for example, a font import that silently failed or a collapsed flex container).
+Fix and re-check until each variant looks right.
 
 **Default CSS reset + system font stack** for fast starts:
 
@@ -209,12 +211,12 @@ Propose 2-4 named candidates. Let the user pick.
 terminal("mkdir -p sketches/001-calm-editorial")
 write_file("sketches/001-calm-editorial/index.html", "<!doctype html>...")
 write_file("sketches/001-calm-editorial/README.md", "## Variant: Calm editorial\n...")
-browser_navigate(url="file://$(pwd)/sketches/001-calm-editorial/index.html")
-browser_vision(question="How does this look? Any obvious layout issues?")
+# Open the absolute file URL with the runtime's browser-testing capability,
+# capture the rendered page, and inspect it for layout issues.
 ```
 
 Repeat for each variant, then present the comparison table.
 
 ## Attribution
 
-Adapted from the GSD (Get Shit Done) project's `/gsd-sketch` workflow — MIT © 2025 Lex Christopherson ([gsd-build/get-shit-done](https://github.com/gsd-build/get-shit-done)). The upstream GSD repo is now **archived/unmaintained** on GitHub; the `get-shit-done-cc` npm package still installs (`npx get-shit-done-cc --hermes --global`) and ships persistent sketch state, theme/variant pattern references, and consistency-audit workflows, but treat it as an archived community project.
+Adapted from the GSD (Get Shit Done) project's `/gsd-sketch` workflow — MIT © 2025 Lex Christopherson ([gsd-build/get-shit-done](https://github.com/gsd-build/get-shit-done)). The upstream GSD repo is now **archived/unmaintained** on GitHub; treat it as historical provenance rather than an installation recommendation.

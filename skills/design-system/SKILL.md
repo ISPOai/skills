@@ -1,9 +1,6 @@
 ---
 name: design-system
 description: "Build or audit a design system including component library, design tokens, naming conventions, contribution model, and documentation. Use this skill whenever the user wants to build a design system, audit an existing system, define design tokens at the system level, structure a component library, or set up design system governance. Triggers on design system, component library, design tokens, atomic design, atoms, molecules, organisms, design system documentation, Storybook, Figma library, system governance, design contribution model. Also triggers when teams are inconsistent across products and a system is the answer."
-category: design
-catalog_summary: "Component library, design tokens, design system documentation"
-display_order: 1
 ---
 
 # Design System
@@ -58,7 +55,10 @@ The atomic decisions. Color, type, spacing, radius, shadow, motion, breakpoints.
 - Without tokens, the system has no foundation
 
 **Output:**
-- A documented token set (see `design-standards/references/design-tokens-template.md`)
+- A documented token set covering the foundations listed above. If the
+  separately installed `design-standards` skill is available, its bundled token
+  template is a useful starting point; do not assume another skill's files are
+  installed.
 - Token implementation in code (CSS variables, JS objects, Style Dictionary, etc.)
 - Token implementation in Figma (variables and styles)
 - A primer doc explaining what tokens to use when

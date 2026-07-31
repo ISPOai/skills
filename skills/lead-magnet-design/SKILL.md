@@ -1,9 +1,6 @@
 ---
 name: lead-magnet-design
 description: "Designing lead magnets that earn the email. The discipline of building gated content (ebooks, templates, checklists, swipe files, mini-courses, free tools) that delivers genuine standalone value while qualifying the lead and warming them for what comes next. Honest about thin-bait (overpromises, underdelivers), kitchen-sink-resource (everything, helps with nothing), and earned-value-magnet (delivers standalone value while qualifying the lead). Triggers on lead magnet, gated content, opt-in offer, ebook, checklist, template, swipe file, mini-course, free tool, content upgrade, freebie, opt-in, list-building offer. Also triggers when an audience is being asked for an email and the offer attached to that ask needs design discipline, when previous lead magnets converted but did not produce qualified leads, or when a lead magnet is being scoped for the first time."
-category: growth-tooling
-catalog_summary: "Designing gated content that earns the email. Distinguishes thin-bait (overpromises, underdelivers) from kitchen-sink-resource (everything, helps with nothing) from earned-value-magnet (delivers standalone value while qualifying the lead)"
-display_order: 1
 ---
 
 # Lead Magnet Design

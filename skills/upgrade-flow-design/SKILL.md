@@ -1,9 +1,6 @@
 ---
 name: upgrade-flow-design
 description: "Designing free-to-paid conversion flows for SaaS products. Trigger moments, paywall design, value demonstration, upsell vs downsell, win-back flows, churn prevention. Honest about paywall-everywhere (gates everything aggressively), free-forever-trap (no upgrade path surfaces), and value-triggered-upgrade (paywall surfaces at moments of demonstrated value) patterns. Triggers on upgrade flow, paywall, free-to-paid, freemium conversion, trial conversion, plan upgrade, subscription upgrade, win-back flow, churn prevention. Also triggers when free-to-paid conversion is low, when paywalls are blocking the wrong moments, or when upgrade flows are being scoped for the first time."
-category: growth-tooling
-catalog_summary: "Designing free-to-paid conversion flows. Distinguishes paywall-everywhere (gates everything aggressively) from free-forever-trap (no upgrade path surfaces) from value-triggered-upgrade (paywall surfaces at moments of demonstrated value)"
-display_order: 9
 ---
 
 # Upgrade Flow Design

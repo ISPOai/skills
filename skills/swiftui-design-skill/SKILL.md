@@ -1,10 +1,6 @@
 ---
 name: swiftui-design-skill
 description: SwiftUI frontend visual design skill. Creates beautiful, distinctive iOS/macOS interfaces that avoid generic AI slop patterns. Covers design direction, layout systems, typography, color, spacing, brand integration, and design review. Use when designing new SwiftUI views, reviewing UI quality, creating iOS prototypes, choosing visual styles, improving app aesthetics, or when the UI looks generic or AI-generated.
-license: MIT
-metadata:
-  author: wholiver
-  version: "1.0.0"
 ---
 
 # SwiftUI Design Skill

@@ -9,25 +9,13 @@ import sys
 import subprocess
 from pathlib import Path
 
-
-def get_venv_python():
-    """Get the virtual environment Python executable"""
-    skill_dir = Path(__file__).parent.parent
-    venv_dir = skill_dir / ".venv"
-
-    if os.name == 'nt':  # Windows
-        venv_python = venv_dir / "Scripts" / "python.exe"
-    else:  # Unix/Linux/Mac
-        venv_python = venv_dir / "bin" / "python"
-
-    return venv_python
+from _runtime import SKILL_DIR, get_venv_dir, get_venv_python
 
 
 def ensure_venv():
     """Ensure virtual environment exists"""
-    skill_dir = Path(__file__).parent.parent
-    venv_dir = skill_dir / ".venv"
-    setup_script = skill_dir / "scripts" / "setup_environment.py"
+    venv_dir = get_venv_dir()
+    setup_script = SKILL_DIR / "scripts" / "setup_environment.py"
 
     # Check if venv exists
     if not venv_dir.exists():
@@ -70,13 +58,12 @@ def main():
         script_name += '.py'
 
     # Get script path
-    skill_dir = Path(__file__).parent.parent
-    script_path = skill_dir / "scripts" / script_name
+    script_path = SKILL_DIR / "scripts" / script_name
 
     if not script_path.exists():
         print(f"❌ Script not found: {script_name}")
         print(f"   Working directory: {Path.cwd()}")
-        print(f"   Skill directory: {skill_dir}")
+        print(f"   Skill directory: {SKILL_DIR}")
         print(f"   Looked for: {script_path}")
         sys.exit(1)
 

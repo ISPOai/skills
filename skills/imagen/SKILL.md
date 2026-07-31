@@ -5,17 +5,15 @@ description: |
   Use this skill when the user needs to create, generate, or produce images
   for any purpose including UI mockups, icons, illustrations, diagrams,
   concept art, placeholder images, or visual representations.
-license: Apache-2.0
-metadata:
-  author: sanjay3290
-  version: "1.0"
 ---
 
 # Imagen - AI Image Generation Skill
 
 ## Overview
 
-This skill generates images using Google Gemini's image generation model (`gemini-3-pro-image-preview`). It enables seamless image creation during any Claude Code session - whether you're building frontend UIs, creating documentation, or need visual representations of concepts.
+This skill generates images using Google Gemini's image generation model
+(`gemini-3-pro-image-preview`) from any local agent session, whether you're
+building frontend UIs, creating documentation, or need visual representations.
 
 **Cross-Platform**: Works on Windows, macOS, and Linux.
 

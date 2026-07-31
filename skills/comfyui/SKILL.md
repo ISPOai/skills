@@ -1,30 +1,6 @@
 ---
 name: comfyui
 description: Generate images, video, and audio via diffusion workflows.
-version: 5.1.0
-author: [kshitijk4poor, alt-glitch, purzbeats]
-license: MIT
-platforms: [macos, linux, windows]
-compatibility: "Requires ComfyUI (local, Comfy Desktop, or Comfy Cloud) and comfy-cli (auto-installed via pipx/uvx by the setup script)."
-prerequisites:
-  commands: ["python3"]
-setup:
-  help: "Run scripts/hardware_check.py FIRST to decide local vs Comfy Cloud; then scripts/comfyui_setup.sh auto-installs locally (or use Cloud API key for platform.comfy.org)."
-metadata:
-  hermes:
-    tags:
-      - comfyui
-      - image-generation
-      - stable-diffusion
-      - flux
-      - sd3
-      - wan-video
-      - hunyuan-video
-      - creative
-      - generative-ai
-      - video-generation
-    related_skills: [stable-diffusion-image-generation]
-    category: creative
 ---
 
 # ComfyUI
@@ -376,9 +352,10 @@ The official CLI is the best path for headless/automated setups.
 pipx install comfy-cli
 # Or use uvx without installing:
 uvx --from comfy-cli comfy --help
-# Or (if pipx/uvx unavailable):
-pip install --user comfy-cli
 ```
+
+If neither pipx nor uvx is available, stop and ask the user to install one;
+do not modify an ambient or externally managed Python environment.
 
 Disable analytics non-interactively:
 ```bash

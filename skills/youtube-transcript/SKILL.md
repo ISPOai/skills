@@ -1,7 +1,6 @@
 ---
 name: youtube-transcript
 description: Download YouTube video transcripts when user provides a YouTube URL or asks to download/get/fetch a transcript from YouTube. Also use when user wants to transcribe or get captions/subtitles from a YouTube video.
-allowed-tools: Bash,Read,Write
 ---
 
 # YouTube Transcript Downloader
@@ -20,7 +19,7 @@ Activate this skill when the user:
 ## How It Works
 
 ### Priority Order:
-1. **Check if yt-dlp is installed** - install if needed
+1. **Check if yt-dlp is installed** - report the declared prerequisite if missing
 2. **List available subtitles** - see what's actually available
 3. **Try manual subtitles first** (`--write-sub`) - highest quality
 4. **Fallback to auto-generated** (`--write-auto-sub`) - usually available
@@ -38,7 +37,9 @@ which yt-dlp || command -v yt-dlp
 
 ### If Not Installed
 
-Attempt automatic installation based on the system:
+Stop and report the missing declared prerequisite. Do not mutate the user's
+Homebrew, apt, or Python environment automatically. If the user asks for setup
+help, offer the appropriate command for them to review and run:
 
 **macOS (Homebrew)**:
 ```bash
@@ -50,14 +51,12 @@ brew install yt-dlp
 sudo apt update && sudo apt install -y yt-dlp
 ```
 
-**Alternative (pip - works on all systems)**:
+**Alternative (isolated pipx environment)**:
 ```bash
-pip3 install yt-dlp
-# or
-python3 -m pip install yt-dlp
+pipx install yt-dlp
 ```
 
-**If installation fails**: Inform the user they need to install yt-dlp manually and provide them with installation instructions from https://github.com/yt-dlp/yt-dlp#installation
+After user-managed installation, verify `yt-dlp --version` before proceeding.
 
 ## Check Available Subtitles
 
@@ -116,14 +115,11 @@ yt-dlp --print "%(duration)s %(title)s" "YOUTUBE_URL"
 command -v whisper
 ```
 
-If not installed, ask user: "Whisper is not installed. Install it with `pip install openai-whisper` (requires ~1-3GB for models)? This is a one-time installation."
-
-**Wait for user confirmation before installing.**
-
-Install if approved:
-```bash
-pip3 install openai-whisper
-```
+If it is not installed, stop and report the optional prerequisite. Explain that
+`openai-whisper` plus its model download may require several gigabytes. Do not
+install it into the ambient Python environment. Continue only after the user
+has installed Whisper in a user-managed isolated environment and
+`command -v whisper` succeeds.
 
 ### Step 3: Download Audio Only
 
@@ -248,14 +244,8 @@ OUTPUT_NAME="transcript_temp"
 # STEP 1: Check if yt-dlp is installed
 # ============================================
 if ! command -v yt-dlp &> /dev/null; then
-    echo "yt-dlp not found, attempting to install..."
-    if command -v brew &> /dev/null; then
-        brew install yt-dlp
-    elif command -v apt &> /dev/null; then
-        sudo apt update && sudo apt install -y yt-dlp
-    else
-        pip3 install yt-dlp
-    fi
+    echo "yt-dlp is required but not installed; install it in a user-managed environment and retry." >&2
+    exit 1
 fi
 
 # ============================================
@@ -300,14 +290,9 @@ else
         if [[ "$RESPONSE" =~ ^[Yy]$ ]]; then
             # Check for Whisper
             if ! command -v whisper &> /dev/null; then
-                echo "Whisper not installed. Install now? (requires ~1-3GB) (y/n)"
-                read -r INSTALL_RESPONSE
-                if [[ "$INSTALL_RESPONSE" =~ ^[Yy]$ ]]; then
-                    pip3 install openai-whisper
-                else
-                    echo "Cannot proceed without Whisper. Exiting."
-                    exit 1
-                fi
+                echo "Whisper is an optional prerequisite and is not installed." >&2
+                echo "Install openai-whisper in a user-managed isolated environment, then rerun." >&2
+                exit 1
             fi
 
             # Download audio
@@ -368,15 +353,15 @@ fi
 echo "✓ Complete!"
 ```
 
-**Note**: This complete workflow handles all scenarios with proper error checking and user prompts at each decision point.
+**Note**: This complete workflow requires the catalog's `yt-dlp` prerequisite
+to be installed before it starts.
 
 ## Error Handling
 
 ### Common Issues and Solutions:
 
 **1. yt-dlp not installed**
-- Attempt automatic installation based on system (Homebrew/apt/pip)
-- If installation fails, provide manual installation link
+- Report the missing declared prerequisite and provide a manual installation link
 - Verify installation before proceeding
 
 **2. No subtitles available**
@@ -392,7 +377,7 @@ echo "✓ Complete!"
 
 **4. Whisper installation fails**
 - May require system dependencies (ffmpeg, rust)
-- Provide fallback: "Install manually with: `pip3 install openai-whisper`"
+- Require installation in a user-managed isolated environment; do not mutate ambient Python
 - Check available disk space (models require 1-10GB depending on size)
 
 **5. Download interrupted or failed**

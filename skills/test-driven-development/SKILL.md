@@ -1,14 +1,6 @@
 ---
 name: test-driven-development
 description: "TDD: enforce RED-GREEN-REFACTOR, tests before code."
-version: 1.1.0
-author: Hermes Agent (adapted from obra/superpowers)
-license: MIT
-platforms: [linux, macos, windows]
-metadata:
-  hermes:
-    tags: [testing, tdd, development, quality, red-green-refactor]
-    related_skills: [systematic-debugging, plan, subagent-driven-development]
 ---
 
 # Test-Driven Development (TDD)
@@ -299,7 +291,7 @@ Can't check all boxes? You skipped TDD. Start over.
 | Must mock everything | Code too coupled. Use dependency injection. |
 | Test setup huge | Extract helpers. Still complex? Simplify the design. |
 
-## Hermes Agent Integration
+## Agent Integration
 
 ### Running Tests
 
@@ -316,27 +308,18 @@ terminal("pytest tests/test_feature.py::test_name -v")
 terminal("pytest tests/ -q")
 ```
 
-### With delegate_task
+### With isolated subagents
 
 When dispatching subagents for implementation, enforce TDD in the goal:
 
-```python
-delegate_task(
-    goal="Implement [feature] using strict TDD",
-    context="""
-    Follow test-driven-development skill:
-    1. Write failing test FIRST
-    2. Run test to verify it fails
-    3. Write minimal code to pass
-    4. Run test to verify it passes
-    5. Refactor if needed
-    6. Commit
-
-    Project test command: pytest tests/ -q
-    Project structure: [describe relevant files]
-    """,
-    toolsets=['terminal', 'file']
-)
+```text
+Goal: Implement [feature] using strict TDD.
+1. Write the failing test first and run it to verify RED.
+2. Write the minimum implementation and run it to verify GREEN.
+3. Refactor without changing behavior, then rerun relevant tests.
+Project test command: pytest tests/ -q
+Project structure: [describe relevant files]
+Needed capabilities: terminal and project files.
 ```
 
 ### With systematic-debugging

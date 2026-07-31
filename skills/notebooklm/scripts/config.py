@@ -1,13 +1,17 @@
-"""
-Configuration for NotebookLM Skill
-Centralizes constants, selectors, and paths
-"""
+"""Configuration for the provider-neutral NotebookLM skill."""
 
+import os
 from pathlib import Path
 
 # Paths
 SKILL_DIR = Path(__file__).parent.parent
-DATA_DIR = SKILL_DIR / "data"
+_data_override = os.environ.get("NOTEBOOKLM_SKILL_DATA_DIR", "").strip()
+_xdg_data = os.environ.get("XDG_DATA_HOME", "").strip()
+if _data_override:
+    DATA_DIR = Path(_data_override).expanduser()
+else:
+    _data_root = Path(_xdg_data).expanduser() if _xdg_data else Path.home() / ".local" / "share"
+    DATA_DIR = _data_root / "ispo" / "notebooklm"
 BROWSER_STATE_DIR = DATA_DIR / "browser_state"
 BROWSER_PROFILE_DIR = BROWSER_STATE_DIR / "browser_profile"
 STATE_FILE = BROWSER_STATE_DIR / "state.json"
@@ -31,7 +35,6 @@ RESPONSE_SELECTORS = [
 BROWSER_ARGS = [
     '--disable-blink-features=AutomationControlled',  # Patches navigator.webdriver
     '--disable-dev-shm-usage',
-    '--no-sandbox',
     '--no-first-run',
     '--no-default-browser-check'
 ]

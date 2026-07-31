@@ -15,7 +15,7 @@ description: Generate a user-facing CHANGELOG entry from raw git log output. Use
 
 - The repo has **no user-facing surface** (internal libraries, scripts) — a commit log is fine.
 - The range covers **months of work**. Break it into smaller releases first.
-- The user wants a **marketing post** — that's [launch-tweet](../launch-tweet/SKILL.md), not a changelog.
+- The user wants a **marketing post** — use the separately installed `launch-tweet` skill, not this changelog workflow.
 
 ## Approach
 

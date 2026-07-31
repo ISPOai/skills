@@ -1,17 +1,6 @@
 ---
 name: airtable
 description: Airtable REST API via curl. Records CRUD, filters, upserts.
-version: 1.1.0
-author: community
-license: MIT
-platforms: [linux, macos, windows]
-prerequisites:
-  env_vars: [AIRTABLE_API_KEY]
-  commands: [curl]
-metadata:
-  hermes:
-    tags: [Airtable, Productivity, Database, API]
-    homepage: https://airtable.com/developers/web/api/introduction
 ---
 
 # Airtable — Bases, Tables & Records
@@ -26,7 +15,9 @@ Work with Airtable's REST API directly via `curl` using the `terminal` tool. No 
    - `data.records:write` — create / update / delete rows
    - `schema.bases:read` — list bases and tables
 3. **Important:** in the same token UI, add each base you want to access to the token's **Access** list. PATs are scoped per-base — a valid token on the wrong base returns `403`.
-4. Store the token in `${HERMES_HOME:-~/.hermes}/.env` (or via `hermes setup`):
+4. Configure the token as an `AIRTABLE_API_KEY` secret or environment
+   variable in the current project/agent host. Do not write it into source
+   control, command history, or chat output:
    ```
    AIRTABLE_API_KEY=pat_your_token_here
    ```
@@ -47,7 +38,9 @@ curl -s "https://api.airtable.com/v0/$BASE_ID/$TABLE?maxRecords=5" \
   -H "Authorization: Bearer $AIRTABLE_API_KEY" | python3 -m json.tool
 ```
 
-`-s` suppresses curl's progress bar — keep it set for every call so the tool output stays clean for Hermes. Pipe through `python3 -m json.tool` (always present) or `jq` (if installed) for readable JSON.
+`-s` suppresses curl's progress bar — keep it set for every call so the agent
+output stays clean. Pipe through `python3 -m json.tool` (when Python is
+available) or `jq` (if installed) for readable JSON.
 
 ## Field Types (request body shapes)
 
@@ -201,7 +194,7 @@ while :; do
 done
 ```
 
-## Typical Hermes Workflow
+## Typical Workflow
 
 1. **Confirm auth.** `curl -s -o /dev/null -w "%{http_code}\n" https://api.airtable.com/v0/meta/bases -H "Authorization: Bearer $AIRTABLE_API_KEY"` — expect `200`.
 2. **Find the base.** List bases (step above) OR ask the user for the `app...` ID directly if the token lacks `schema.bases:read`.
@@ -219,10 +212,14 @@ done
 - **Per-base token scoping.** A `403` on one base while another works means the token's Access list doesn't include that base — not a scope or auth issue. Send the user to https://airtable.com/create/tokens to grant it.
 - **Rate limits are per base, not per token.** 5 req/sec on `baseA` and 5 req/sec on `baseB` is fine; 6 req/sec on `baseA` alone will throttle. Monitor the `Retry-After` header on `429`.
 
-## Important Notes for Hermes
+## Runtime Notes
 
-- **Always use the `terminal` tool with `curl`.** Do NOT use `web_extract` (it can't send auth headers) or `browser_navigate` (needs UI auth and is slow).
-- **`AIRTABLE_API_KEY` flows from `${HERMES_HOME:-~/.hermes}/.env` into the subprocess automatically** when this skill is loaded — no need to re-export it before each `curl` call.
+- **Use an available shell-command tool with `curl`.** Generic web-fetch and
+  browser tools may not support private authentication headers.
+- **Verify `AIRTABLE_API_KEY` is available to the command subprocess** before
+  making a request. If it is absent, ask the user to configure it through the
+  project's secret/environment controls; never ask them to paste the token
+  into chat or commit it to a file.
 - **Escape curly braces in formulas carefully.** In a heredoc body, `{Status}` is literal. In a shell argument, `{Status}` is safe outside `{...}` brace-expansion context — but pass dynamic strings through `python3 urllib.parse.quote` before splicing into a URL.
 - **Pretty-print with `python3 -m json.tool`** (always present) rather than `jq` (optional). Only reach for `jq` when you need filtering/projection.
 - **Pagination is per-page, not global.** Airtable's 100-record cap is a hard limit; there is no way to bump it. Loop with `offset` until the field is absent.

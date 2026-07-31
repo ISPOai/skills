@@ -168,40 +168,9 @@ elif command -v pipx >/dev/null 2>&1; then
         fi
     fi
 else
-    log "Neither pipx nor uvx found. Falling back to pip install --user…"
-    log "  (Recommend installing pipx: https://pipx.pypa.io)"
-    if ! pip install --user comfy-cli >>"$LOG_FILE" 2>&1; then
-        # macOS: PEP 668 externally-managed-environment may block --user
-        log "pip install --user failed. Retrying with --break-system-packages…"
-        pip install --user --break-system-packages comfy-cli >>"$LOG_FILE" 2>&1 || {
-            err "Could not install comfy-cli. Install pipx or uv first."
-            exit 1
-        }
-    fi
-    # Resolve the actual `comfy` script — pip --user puts it in:
-    #   Linux: ~/.local/bin/comfy
-    #   macOS: ~/Library/Python/<ver>/bin/comfy  OR  ~/.local/bin/comfy
-    COMFY_BIN=""
-    for candidate in "$HOME/.local/bin/comfy" \
-                     "$HOME/Library/Python/3.13/bin/comfy" \
-                     "$HOME/Library/Python/3.12/bin/comfy" \
-                     "$HOME/Library/Python/3.11/bin/comfy" \
-                     "$HOME/Library/Python/3.10/bin/comfy"; do
-        if [ -x "$candidate" ]; then
-            COMFY_BIN="$candidate"
-            export PATH="$(dirname "$candidate"):$PATH"
-            break
-        fi
-    done
-    if [ -z "$COMFY_BIN" ]; then
-        if command -v comfy >/dev/null 2>&1; then
-            COMFY_BIN="comfy"
-        else
-            err "Installed comfy-cli but couldn't find the 'comfy' script."
-            err "Add the right Python user-bin directory to PATH and retry."
-            exit 1
-        fi
-    fi
+    err "Neither pipx nor uvx is available. Install one of them, then rerun setup."
+    err "Refusing to modify the ambient or externally managed Python environment."
+    exit 1
 fi
 
 # --- Step 2: Disable analytics tracking (avoid interactive prompt) ---

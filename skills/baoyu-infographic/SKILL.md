@@ -1,19 +1,11 @@
 ---
 name: baoyu-infographic
 description: "Infographics: 21 layouts x 21 styles (信息图, 可视化)."
-version: 1.56.1
-author: 宝玉 (JimLiu)
-license: MIT
-platforms: [linux, macos, windows]
-metadata:
-  hermes:
-    tags: [infographic, visual-summary, creative, image-generation]
-    homepage: https://github.com/JimLiu/baoyu-skills#baoyu-infographic
 ---
 
 # Infographic Generator
 
-Adapted from [baoyu-infographic](https://github.com/JimLiu/baoyu-skills) for Hermes Agent's tool ecosystem.
+Adapted from [baoyu-infographic](https://github.com/JimLiu/baoyu-skills) for agent environments with file and image-generation capabilities.
 
 Two dimensions: **layout** (information structure) × **style** (visual aesthetics). Freely combine any layout with any style.
 
@@ -146,7 +138,7 @@ Slug: 2-4 words kebab-case from topic. Conflict: append `-YYYYMMDD-HHMMSS`.
 
 **Load references**: Read `references/analysis-framework.md` from this skill.
 
-1. Save source content (file path or paste → `source.md` using `write_file`)
+1. Save source content (file path or paste → `source.md` using an available file-writing capability)
    - **Backup rule**: If `source.md` exists, rename to `source-backup-YYYYMMDD-HHMMSS.md`
 2. Analyze: topic, data type, complexity, tone, audience
 3. Detect source language and user language
@@ -180,7 +172,7 @@ See `references/structured-content-template.md` for detailed format.
 
 ### Step 4: Confirm Options
 
-Use the `clarify` tool to confirm options with the user. Since `clarify` handles one question at a time, ask the most important question first:
+Confirm options with the user. If the environment supports only one question at a time, ask the most important question first:
 
 **Q1 — Combination**: Present 3+ layout×style combos with rationale. Ask user to pick one.
 
@@ -205,13 +197,13 @@ Combine:
 - Named presets → ratio string: landscape→`16:9`, portrait→`9:16`, square→`1:1`
 - Custom W:H ratios → use as-is (e.g., `3:4`, `4:3`, `2.35:1`)
 
-Save the assembled prompt to `prompts/infographic.md` using `write_file`.
+Save the assembled prompt to `prompts/infographic.md` using the environment's file-writing capability.
 
 ### Step 6: Generate Image
 
-Use the `image_generate` tool with the assembled prompt from Step 5.
+Use an available image-generation capability with the assembled prompt from Step 5. If none is available, stop after producing the complete prompt and tell the user how to use it in an image generator.
 
-- Map aspect ratio to image_generate's format: `16:9` → `landscape`, `9:16` → `portrait`, `1:1` → `square`
+- When the generator accepts only named formats, map `16:9` → `landscape`, `9:16` → `portrait`, and `1:1` → `square`
 - For custom ratios, pick the closest named aspect
 - On failure, auto-retry once
 - Save the resulting image URL/path to the output directory
@@ -234,4 +226,4 @@ Report: topic, layout, style, aspect, language, output path, files created.
 2. **Strip secrets** — always scan source content for API keys, tokens, or credentials before including in any output file.
 3. **One message per section** — each infographic section should convey one clear concept. Overloading sections reduces readability.
 4. **Style consistency** — the style definition from the references file must be applied consistently across the entire infographic. Don't mix styles.
-5. **image_generate aspect ratios** — the tool only supports `landscape`, `portrait`, and `square`. Custom ratios like `3:4` should map to the nearest option (portrait in that case).
+5. **Generator aspect ratios** — if the available generator supports only `landscape`, `portrait`, and `square`, map a custom ratio such as `3:4` to the nearest option (`portrait` in that case).

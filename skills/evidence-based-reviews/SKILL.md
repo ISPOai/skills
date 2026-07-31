@@ -1,9 +1,6 @@
 ---
 name: evidence-based-reviews
 description: "Produce honest product reviews and buying guides without fabricated first-hand experience, using disclosed evidence tiers: verified specs, owner-experience synthesis at scale, expert triangulation, and hands-on only when true. Use this skill whenever the user wants to write product reviews or buying guides without hands-on access, set up a review methodology, add evidence disclosure to review content, align reviews with Google's reviews system or FTC affiliate disclosure expectations, or decide when Review and Product schema are honest to use. Triggers on product review, buying guide, best-of list, review methodology, evidence basis, hands-on testing, we tested, affiliate review site, review disclosure, methodology block, original research, reviews system. Also triggers when review content claims testing that did not happen, or when an affiliate site needs a trust mechanism that survives scrutiny."
-category: content
-catalog_summary: "Evidence tiers, methodology disclosure, honest review claims"
-display_order: 13
 ---
 
 # Evidence-Based Reviews

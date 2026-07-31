@@ -112,7 +112,7 @@ components:
 
 - **Source type**: URL
 - **Path / URL**: `https://vercel.com/`
-- **Capture method**: HTML via `WebFetch`, CSS custom properties via
+- **Capture method**: HTML via the runtime web-fetching capability, CSS custom properties via
   `scripts/extract_css_vars.py` (808 vars across 6 stylesheets + 2 inline blocks),
   visual via `scripts/capture_site.py` (desktop screenshot 1440×900)
 - **Detected limitations**: only desktop viewport captured; network-idle never settled

@@ -90,10 +90,16 @@ Would you like to:
 ## Features
 
 ### Fair Selection
-- Uses secure random number generation
+- Uses Python's `secrets.SystemRandom` (not the predictable default PRNG)
 - No bias or patterns
 - Transparent process
-- Repeatable with seed (for verification)
+- Records the normalized entrant-list hash, draw timestamp, population size,
+  exclusions, and selected row numbers for auditability
+
+Do not claim that a seeded deterministic draw is cryptographically unpredictable.
+If a user requires a publicly reproducible draw, agree on a public randomness
+source and entrant-list commitment before the draw; that is a different protocol
+from a private secure random selection.
 
 ### Exclusions
 ```
@@ -156,4 +162,3 @@ Pick 1 winner and 3 runner-ups from the list
 - Beta tester selection
 - Focus group participant selection
 - Random prize distribution at events
-

@@ -10,5 +10,10 @@ python3 -c "import manim" 2>/dev/null && ok "Manim $(manim --version 2>&1 | head
 command -v pdflatex &>/dev/null && ok "LaTeX (pdflatex)" || { fail "LaTeX not found (macOS: brew install --cask mactex-no-gui)"; errors=$((errors+1)); }
 command -v ffmpeg &>/dev/null && ok "ffmpeg" || { fail "ffmpeg not found"; errors=$((errors+1)); }
 echo ""
-[ $errors -eq 0 ] && echo -e "${G}All prerequisites satisfied.${N}" || echo -e "${R}$errors prerequisite(s) missing.${N}"
+if [ "$errors" -eq 0 ]; then
+  echo -e "${G}All prerequisites satisfied.${N}"
+else
+  echo -e "${R}$errors prerequisite(s) missing.${N}"
+  exit 1
+fi
 echo ""

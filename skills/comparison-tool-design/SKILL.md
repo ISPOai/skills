@@ -1,9 +1,6 @@
 ---
 name: comparison-tool-design
 description: "Designing side-by-side comparison tools (plan-compare, product-compare, alternative-compare) that help users decide rather than just listing features. Axis selection, default-comparison logic, recommendation discipline. Honest about feature-list-dump (every feature in a row, no decision support), hidden-recommendation (biased comparison pretending to be neutral), and honest-comparison-with-guidance (genuine comparison plus opinionated recommendation) patterns. Triggers on comparison tool, plan compare, product compare, alternative compare, vs page, decision support tool. Also triggers when conversion through comparison stages is poor, when users are abandoning at the comparison step, or when a comparison tool is being scoped for the first time."
-category: growth-tooling
-catalog_summary: "Designing comparison tools that help users decide. Distinguishes feature-list-dump (every feature in a row, no decision support) from hidden-recommendation (biased comparison pretending to be neutral) from honest-comparison-with-guidance (genuine comparison plus opinionated recommendation)"
-display_order: 11
 ---
 
 # Comparison Tool Design

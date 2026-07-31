@@ -98,7 +98,7 @@ components:
 
 - **Source type**: [local image | URL | Figma | combination]
 - **Path / URL**: `<the concrete source>`
-- **Capture method**: [direct vision | HTML via WebFetch + CSS vars extraction | Playwright multi-viewport screenshot | Figma MCP]
+- **Capture method**: [direct vision | HTML via runtime web fetch + CSS vars extraction | Playwright multi-viewport screenshot | Figma MCP]
 - **Detected limitations**: [if any, e.g., "only desktop material visible, no responsive"]
 
 ---

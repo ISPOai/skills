@@ -93,14 +93,12 @@ python scripts/run.py auth_manager.py reauth
 #### Browser not found error
 **Solution:**
 ```bash
-# Install Chromium via run.py (automatic)
+# Install Chrome via run.py after first-run approval
 python scripts/run.py auth_manager.py status
-# run.py will install Chromium automatically
+# run.py will install Chrome automatically
 
-# Or manual install if needed
-cd ~/.claude/skills/notebooklm
-source .venv/bin/activate
-python -m patchright install chromium
+# Or use the external environment setup directly
+python scripts/setup_environment.py
 ```
 
 ### Rate Limiting
@@ -179,7 +177,7 @@ ModuleNotFoundError: No module named 'patchright'
 python scripts/run.py [any_script].py
 
 # run.py will:
-# 1. Create .venv if missing
+# 1. Create a versioned external virtual environment if missing
 # 2. Install dependencies
 # 3. Run the script
 ```
@@ -220,10 +218,11 @@ JSON decode error when listing notebooks
 **Solution:**
 ```bash
 # Backup current library
-cp ~/.claude/skills/notebooklm/data/library.json library.backup.json
+NOTEBOOKLM_DATA="${NOTEBOOKLM_SKILL_DATA_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/ispo/notebooklm}"
+cp "$NOTEBOOKLM_DATA/library.json" library.backup.json
 
 # Reset library
-rm ~/.claude/skills/notebooklm/data/library.json
+rm "$NOTEBOOKLM_DATA/library.json"
 
 # Re-add notebooks
 python scripts/run.py notebook_manager.py add --url ... --name ...
@@ -233,7 +232,7 @@ python scripts/run.py notebook_manager.py add --url ... --name ...
 **Solution:**
 ```bash
 # Check disk usage
-df -h ~/.claude/skills/notebooklm/data/
+df -h "$NOTEBOOKLM_DATA"
 
 # Clean up
 python scripts/run.py cleanup_manager.py --confirm --preserve-library
@@ -279,34 +278,30 @@ except Exception as e:
 pkill -f chromium
 
 # Backup library if exists
-if [ -f ~/.claude/skills/notebooklm/data/library.json ]; then
-    cp ~/.claude/skills/notebooklm/data/library.json ~/library.backup.json
+NOTEBOOKLM_DATA="${NOTEBOOKLM_SKILL_DATA_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/ispo/notebooklm}"
+if [ -f "$NOTEBOOKLM_DATA/library.json" ]; then
+    cp "$NOTEBOOKLM_DATA/library.json" ~/library.backup.json
 fi
 
 # Clean everything
-cd ~/.claude/skills/notebooklm
+cd <skill-directory>
 python scripts/run.py cleanup_manager.py --confirm --force
 
-# Remove venv
-rm -rf .venv
-
-# Reinstall (run.py will handle this)
+# Select a fresh external runtime cache and reinstall
+export NOTEBOOKLM_SKILL_RUNTIME_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/ispo/notebooklm/recovery"
 python scripts/run.py auth_manager.py setup
 
 # Restore library if backup exists
 if [ -f ~/library.backup.json ]; then
-    mkdir -p ~/.claude/skills/notebooklm/data/
-    cp ~/library.backup.json ~/.claude/skills/notebooklm/data/library.json
+    mkdir -p "$NOTEBOOKLM_DATA"
+    cp ~/library.backup.json "$NOTEBOOKLM_DATA/library.json"
 fi
 ```
 
 ### Partial recovery (keep data)
 ```bash
-# Keep auth and library, fix execution
-cd ~/.claude/skills/notebooklm
-rm -rf .venv
-
-# run.py will recreate venv automatically
+# Keep auth and library, use a fresh external runtime cache
+export NOTEBOOKLM_SKILL_RUNTIME_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/ispo/notebooklm/recovery"
 python scripts/run.py auth_manager.py status
 ```
 
@@ -323,7 +318,7 @@ python scripts/run.py auth_manager.py status
 ### Browser Errors
 | Error | Cause | Solution |
 |-------|-------|----------|
-| Browser not found | Chromium missing | Use run.py (auto-installs) |
+| Browser not found | Chrome missing | Use run.py after approving first-run setup |
 | Connection refused | Browser crashed | Kill processes, restart |
 | Timeout waiting | Page slow | Increase timeout |
 | Context closed | Browser terminated | Check logs for crashes |
@@ -350,7 +345,7 @@ python scripts/run.py auth_manager.py status
 ```bash
 # System info
 python --version
-cd ~/.claude/skills/notebooklm
+cd <skill-directory>
 ls -la
 
 # Skill status
@@ -358,13 +353,15 @@ python scripts/run.py auth_manager.py status
 python scripts/run.py notebook_manager.py list | head -5
 
 # Check data directory
-ls -la ~/.claude/skills/notebooklm/data/
+NOTEBOOKLM_DATA="${NOTEBOOKLM_SKILL_DATA_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/ispo/notebooklm}"
+ls -la "$NOTEBOOKLM_DATA"
 ```
 
 ### Common questions
 
-**Q: Why doesn't this work in Claude web UI?**
-A: Web UI has no network access. Use local Claude Code.
+**Q: Why doesn't this work in a hosted/web agent session?**
+A: It requires local network, browser automation, and a visible login flow. Use
+a local agent session with those capabilities.
 
 **Q: Can I use multiple Google accounts?**
 A: Yes, use `run.py auth_manager.py reauth` to switch.

@@ -1,12 +1,9 @@
 ---
 name: skill-creation-walkthrough
-description: Step-by-step guide for creating your own Claude Skills, from deciding whether a skill is the right tool to writing the SKILL.md file, structuring reference material, and making it trigger reliably. Use when you want to package a workflow, framework, or repeated task into a reusable Skill, when an existing skill is not triggering or not loading the right context, when you are auditing a skill that is underperforming, or when you want to publish a skill for others. Also triggers when someone asks "how do I make a skill" or "what makes a good skill". Useful for individuals, teams, and anyone publishing skills publicly.
-category: process-and-team
-catalog_summary: "The meta-skill: how to write your own custom skills"
-display_order: 5
+description: Step-by-step guide for creating portable agent skills, from deciding whether a skill is the right tool to writing the SKILL.md file, structuring reference material, and making it trigger reliably. Use when you want to package a workflow, framework, or repeated task into a reusable Skill, when an existing skill is not triggering or not loading the right context, when you are auditing a skill that is underperforming, or when you want to publish a skill for others. Also triggers when someone asks "how do I make a skill" or "what makes a good skill". Useful for individuals, teams, and anyone publishing skills publicly.
 ---
 
-A walkthrough for designing, writing, and maintaining your own Claude Skills. Covers when a skill is the right shape for your problem, how to write a description that actually triggers, how to structure SKILL.md and references, and how to test and iterate.
+A walkthrough for designing, writing, and maintaining portable agent skills. Covers when a skill is the right shape for your problem, how to write a description that actually triggers, how to structure SKILL.md and references, and how to test and iterate.
 
 ## When to use
 
@@ -14,14 +11,14 @@ A walkthrough for designing, writing, and maintaining your own Claude Skills. Co
 - You want to package a workflow or framework for reuse.
 - An existing skill of yours is not triggering when it should.
 - You are publishing skills for others to use.
-- You want to teach Claude a domain-specific way of working.
+- You want to teach an agent a domain-specific way of working.
 - You are reviewing a skill someone wrote and need a quality bar.
 
 ## When NOT to use
 
 - For one-off prompts (just write the prompt).
 - For information that should live in system context, not progressive disclosure.
-- For changing Claude's general behavior across all conversations (use Claude.ai settings or system prompts, not skills).
+- For changing an agent's general behavior across all conversations (use the runtime's system instructions, not skills).
 - For replacing tool calls (skills are instructions, not tools).
 
 ## Required inputs
@@ -34,7 +31,7 @@ A walkthrough for designing, writing, and maintaining your own Claude Skills. Co
 
 A Skill is a folder with a `SKILL.md` file. The SKILL.md has YAML frontmatter (name and description) and a body with instructions. It can also include reference files, scripts, or templates that get loaded when needed.
 
-The key property: **progressive disclosure**. Claude does not read every skill on every turn. The skill description lives in the system prompt. The SKILL.md body and references load only when the skill is triggered. This is what lets a user have hundreds of skills without polluting context.
+The key property: **progressive disclosure**. A compatible agent does not read every skill on every turn. The skill description is indexed for discovery; the SKILL.md body and references load only when the skill is triggered. This is what lets a user have hundreds of skills without polluting context.
 
 What this means for you:
 
@@ -74,7 +71,7 @@ The trigger is your description's job. If you cannot articulate the trigger cris
 
 ### Phase 3: Write the description
 
-This is the most important sentence (or two) in your skill. The description is what Claude sees in the system prompt to decide whether to load the skill.
+This is the most important sentence (or two) in your skill. The description is what a compatible runtime indexes to decide whether to load the skill.
 
 Good descriptions have 4 parts:
 
@@ -114,13 +111,13 @@ description: [your description]
 [Bulleted list, ideally redirecting to sibling skills]
 
 ## Required inputs
-[What Claude needs from the user to run this skill]
+[What the agent needs from the user to run this skill]
 
 ## The framework
 [The durable IP: the model, the steps, the dimensions, the layers]
 
 ## Workflow
-[Numbered steps Claude follows]
+[Numbered steps the agent follows]
 
 ## Failure patterns
 [Common mistakes to avoid or push back on]
@@ -136,7 +133,7 @@ Not every skill needs every section. Some skills are pure how-to and skip "frame
 
 ### Phase 5: Add references for what does not belong in SKILL.md
 
-References are the second tier of progressive disclosure. They load when Claude reads them, not by default.
+References are the second tier of progressive disclosure. They load when the agent reads them, not by default.
 
 Use references for:
 
@@ -146,7 +143,7 @@ Use references for:
 - Reference material like spec links, glossaries, decision tables.
 - Anything over 100 lines that not every invocation needs.
 
-Each reference should be standalone. A reader (or Claude) should be able to use it without reading the SKILL.md first, given the context the skill provides.
+Each reference should be standalone. A reader or agent should be able to use it without reading the SKILL.md first, given the context the skill provides.
 
 Naming patterns that work:
 

@@ -98,11 +98,8 @@ async function main() {
   const browser = await puppeteer.launch({
     headless: 'new',
     args: [
-      '--no-sandbox',
-      '--disable-setuid-sandbox',
       '--disable-gpu',
       '--disable-dev-shm-usage',
-      '--disable-web-security',
       '--allow-file-access-from-files',
     ],
   });

@@ -1,9 +1,6 @@
 ---
 name: chatbot-flow-design
 description: "Designing conversational flows for website chatbots and AI agents. Intent recognition architecture, branching logic, fallback handling, escalation to human, conversation analytics. Honest about scripted-bot (rigid trees, fail edge cases), hallucinating-bot (LLM without structure, makes things up), and structured-guided-conversation (LLM-powered with intent architecture and fallback discipline) patterns. Distinguishes chatbot DESIGN (this skill) from chatbot IMPLEMENTATION (engineering and platform work). Triggers on chatbot, conversational AI, AI agent, chat widget, intent design, conversational flow, bot escalation, LLM grounding. Also triggers when a chatbot is hallucinating, when a scripted bot is failing edge cases, or when a chatbot is being scoped for the first time."
-category: growth-tooling
-catalog_summary: "Designing conversational flows for chatbots and AI agents on websites. Distinguishes scripted-bot (rigid trees, fail edge cases) from hallucinating-bot (LLM without structure, makes things up) from structured-guided-conversation (LLM-powered with intent architecture and fallback discipline)"
-display_order: 5
 ---
 
 # Chatbot Flow Design

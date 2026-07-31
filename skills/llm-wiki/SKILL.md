@@ -1,15 +1,6 @@
 ---
 name: llm-wiki
 description: "Karpathy's LLM Wiki: build/query interlinked markdown KB."
-version: 2.1.0
-author: Hermes Agent
-license: MIT
-platforms: [linux, macos, windows]
-metadata:
-  hermes:
-    tags: [wiki, knowledge-base, research, notes, markdown, rag-alternative]
-    category: research
-    related_skills: [obsidian, arxiv]
 ---
 
 # Karpathy's LLM Wiki
@@ -35,7 +26,8 @@ Use this skill when the user:
 
 ## Wiki Location
 
-**Location:** Set via `WIKI_PATH` environment variable (e.g. in `${HERMES_HOME:-~/.hermes}/.env`).
+**Location:** Set via the `WIKI_PATH` environment variable in the user's normal
+shell or agent environment.
 
 If unset, defaults to `~/wiki`.
 
@@ -45,6 +37,11 @@ WIKI="${WIKI_PATH:-$HOME/wiki}"
 
 The wiki is just a directory of markdown files — open it in Obsidian, VS Code, or
 any editor. No database, no special tooling required.
+
+Tool names in examples such as `read_file`, `search_files`, `web_extract`, and
+`execute_code` are capability descriptions inherited from the upstream skill.
+Use the current runtime's equivalent file-read, search, web/PDF, and shell tools;
+do not assume those literal tool names exist.
 
 ## Architecture: Three Layers
 

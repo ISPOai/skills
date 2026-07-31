@@ -85,7 +85,7 @@ components:
 
 - **Source type**: URL
 - **Path / URL**: `https://lumen.example/` *(fictional, for documentation purposes)*
-- **Capture method**: HTML via `WebFetch` + CSS custom properties via
+- **Capture method**: HTML via the runtime web-fetching capability + CSS custom properties via
   `scripts/extract_css_vars.py`
 - **Detected limitations**: only desktop layout observed; no dark mode toggle visible in
   the captured HTML; mobile breakpoints not exercised

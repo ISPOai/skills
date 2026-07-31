@@ -1,9 +1,6 @@
 ---
 name: paid-media-strategy
 description: "A discipline for running paid media that does not light money on fire. Hypothesis writing for paid spend, channel selection, budget allocation, audience targeting, bid strategy, campaign types, what NOT to spend on, attribution reality, and the failure modes that produce expensive lessons. Triggers on paid media strategy, ad budget allocation, channel selection, paid media plan, audit my Google Ads, audit my Meta Ads, scale paid media, kill underperforming campaign, paid media hypothesis, ad spend strategy, attribution reality, performance marketing strategy. Also triggers when a team is asking how to scale paid media, or whether to add a new channel, or how to reallocate spend across channels."
-category: marketing
-catalog_summary: "Hypothesis to spend: channel selection, budget allocation, audience targeting, bid strategy, attribution reality, and the failure modes that burn agency-scale budgets"
-display_order: 1
 ---
 
 # Paid Media Strategy

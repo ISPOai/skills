@@ -44,7 +44,7 @@ targeting available:
 |---|---|
 | **URL** | CSS selector given by user → selector you infer from the fetched HTML → description + cropped Playwright capture |
 | **Local image** | The whole image IS the element → or the user describes a region ("the illustration on the right") and you analyze that region |
-| **Figma** | `node-id` in the URL → node you locate via `get_metadata` |
+| **Figma** | `node-id` in the URL → node you locate through the connected MCP's metadata operation |
 
 If the description is ambiguous ("the card" on a page with 12 cards), ask **one** clarifying
 question — element mode is precision work; guessing the wrong target wastes the whole run.
@@ -68,7 +68,7 @@ question — element mode is precision work; guessing the wrong target wastes th
   `python scripts/extract_colors.py <crop>` — the dominant hexes feed the PALETTE block
   of the image prompt (this is what makes the prompt token-grounded, not impressionistic).
 
-- **Figma**: `get_metadata` → `get_design_context` on the node, `get_screenshot` for
+- **Figma**: retrieve metadata → design context on the node → screenshot for
   visual reference. Exported fills/images inside the node usually signal `asset` or
   `hybrid`.
 

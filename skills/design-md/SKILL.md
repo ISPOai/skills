@@ -1,14 +1,6 @@
 ---
 name: design-md
 description: Author/validate/export Google's DESIGN.md token spec files.
-version: 1.1.0
-author: Hermes Agent
-license: MIT
-platforms: [linux, macos, windows]
-metadata:
-  hermes:
-    tags: [design, design-system, tokens, ui, accessibility, wcag, tailwind, dtcg, google]
-    related_skills: [popular-web-designs, claude-design, excalidraw, architecture-diagram]
 ---
 
 # DESIGN.md Skill
@@ -132,7 +124,7 @@ if the value type is valid. Unknown component properties produce a warning.
 1. **Ask the user** (or infer) the brand tone, accent color, and typography
    direction. If they provided a site, image, or vibe, translate it to the
    token shape above.
-2. **Write `DESIGN.md`** in their project root using `write_file`. Always
+2. **Write `DESIGN.md`** in their project root using an available file-writing capability. Always
    include `name:` and `colors:`; other sections optional but encouraged.
 3. **Use token references** (`{colors.primary}`) in the `components:` section
    instead of re-typing hex values. Keeps the palette single-source.

@@ -1,16 +1,6 @@
 ---
 name: songsee
 description: "Audio spectrograms/features (mel, chroma, MFCC) via CLI."
-version: 1.0.0
-author: community
-license: MIT
-platforms: [linux, macos, windows]
-metadata:
-  hermes:
-    tags: [Audio, Visualization, Spectrogram, Music, Analysis]
-    homepage: https://github.com/steipete/songsee
-prerequisites:
-  commands: [songsee]
 ---
 
 # songsee
@@ -79,5 +69,5 @@ Multiple `--viz` types render as a grid in a single image.
 ## Notes
 
 - WAV and MP3 are decoded natively; other formats require `ffmpeg`
-- Output images can be inspected with `vision_analyze` for automated audio analysis
+- Inspect output images with the runtime's available image-viewing capability
 - Useful for comparing audio outputs, debugging synthesis, or documenting audio processing pipelines

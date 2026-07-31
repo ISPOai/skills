@@ -10,14 +10,16 @@ import subprocess
 import venv
 from pathlib import Path
 
+from _runtime import SKILL_DIR, get_venv_dir
+
 
 class SkillEnvironment:
     """Manages skill-specific virtual environment"""
 
     def __init__(self):
         # Skill directory paths
-        self.skill_dir = Path(__file__).parent.parent
-        self.venv_dir = self.skill_dir / ".venv"
+        self.skill_dir = SKILL_DIR
+        self.venv_dir = get_venv_dir()
         self.requirements_file = self.skill_dir / "requirements.txt"
 
         # Python executable in venv
@@ -38,6 +40,11 @@ class SkillEnvironment:
 
         # Create venv if it doesn't exist
         if not self.venv_dir.exists():
+            self.venv_dir.parent.mkdir(parents=True, exist_ok=True)
+            try:
+                self.venv_dir.parent.chmod(0o700)
+            except OSError:
+                pass
             print(f"🔧 Creating virtual environment in {self.venv_dir.name}/")
             try:
                 venv.create(self.venv_dir, with_pip=True)

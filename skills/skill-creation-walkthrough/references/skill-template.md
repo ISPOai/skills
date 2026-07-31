@@ -35,8 +35,8 @@ description: [2-4 sentences. What the skill does. When to use it. "Also triggers
 
 ## Required inputs
 
-- [Information Claude needs from the user before it can do good work]
-- [Or context Claude needs to gather]
+- [Information the agent needs from the user before it can do good work]
+- [Or context the agent needs to gather]
 - [Or files, links, or examples needed]
 
 ## The framework
@@ -47,7 +47,7 @@ description: [2-4 sentences. What the skill does. When to use it. "Also triggers
 
 ## Workflow
 
-1. [First step Claude takes]
+1. [First step the agent takes]
 2. [Second step]
 3. [Third step]
 4. [...]
@@ -79,7 +79,7 @@ Deliverables from this skill:
 
 ### YAML frontmatter
 
-The `name` should match the folder name and use lowercase hyphens. The `description` is the most important field in the entire skill. It is what Claude sees in the system prompt to decide whether to load the skill body. Be specific about triggers.
+The `name` should match the folder name and use lowercase hyphens. The `description` is the most important field in the entire skill. It is what a compatible runtime indexes to decide whether to load the skill body. Be specific about triggers.
 
 ### Purpose statement (one sentence)
 
@@ -91,11 +91,11 @@ Be concrete. List the actual situations where the skill should fire. These map t
 
 ### When NOT to use
 
-Just as important as "when to use". This is where you redirect to sibling skills and prevent overlap. Without this section, related skills compete and Claude makes ambiguous choices.
+Just as important as "when to use". This is where you redirect to sibling skills and prevent overlap. Without this section, related skills compete and the agent makes ambiguous choices.
 
 ### Required inputs
 
-What does Claude need before it can do good work with this skill? Sometimes this is information ("the URL to audit"). Sometimes it is context ("the user's audience"). Listing it explicitly helps Claude ask the right question if it is missing.
+What does the agent need before it can do good work with this skill? Sometimes this is information ("the URL to audit"). Sometimes it is context ("the user's audience"). Listing it explicitly helps the agent ask the right question if it is missing.
 
 ### The framework
 
@@ -105,7 +105,7 @@ If you cannot articulate the framework, the skill may be more about output struc
 
 ### Workflow
 
-The numbered steps Claude follows when running the skill. Should be repeatable across different invocations. If the steps differ wildly per use case, you may need multiple skills or a more abstract framework.
+The numbered steps the agent follows when running the skill. Should be repeatable across different invocations. If the steps differ wildly per use case, you may need multiple skills or a more abstract framework.
 
 ### Failure patterns
 
@@ -113,7 +113,7 @@ What goes wrong in practice. This section is what makes a skill feel earned. It 
 
 ### Output format
 
-What the deliverable looks like. Not "good output" - actually structured and named. This is what Claude produces at the end.
+What the deliverable looks like. Not "good output" - actually structured and named. This is what the agent produces at the end.
 
 ### Reference files
 

@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# GitHub environment detection helper for Hermes Agent skills.
+# Provider-neutral GitHub environment detection helper.
 #
-# Usage (via terminal tool):
-#   source skills/github/github-auth/scripts/gh-env.sh
+# Usage (resolve this path relative to the installed github-auth skill):
+#   source <github-auth-skill-directory>/scripts/gh-env.sh
 #
 # After sourcing, these variables are set:
 #   GH_AUTH_METHOD  - "gh", "curl", or "none"
@@ -23,16 +23,6 @@ if command -v gh &>/dev/null && gh auth status &>/dev/null 2>&1; then
     GH_USER=$(gh api user --jq '.login' 2>/dev/null)
 elif [ -n "$GITHUB_TOKEN" ]; then
     GH_AUTH_METHOD="curl"
-elif _hermes_env="${HERMES_HOME:-$HOME/.hermes}/.env"; [ -f "$_hermes_env" ] && grep -q "^GITHUB_TOKEN=" "$_hermes_env" 2>/dev/null; then
-    GITHUB_TOKEN=$(grep "^GITHUB_TOKEN=" "$_hermes_env" | head -1 | cut -d= -f2 | tr -d '\n\r')
-    if [ -n "$GITHUB_TOKEN" ]; then
-        GH_AUTH_METHOD="curl"
-    fi
-elif [ -f "$HOME/.git-credentials" ]; then
-    GITHUB_TOKEN=$(uv run python3 "${HERMES_HOME:-$HOME/.hermes}/skills/github/github-auth/scripts/git-credential-token.py")
-    if [ -n "$GITHUB_TOKEN" ]; then
-        GH_AUTH_METHOD="curl"
-    fi
 fi
 
 # Resolve username for curl method

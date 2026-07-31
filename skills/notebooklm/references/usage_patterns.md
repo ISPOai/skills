@@ -30,7 +30,7 @@ python scripts/run.py auth_manager.py setup
 python scripts/run.py notebook_manager.py add \
   --url "https://notebooklm.google.com/notebook/..." \
   --name "User provided name" \
-  --description "User provided description" \  # NEVER GUESS!
+  --description "User provided description" \
   --topics "user,provided,topics"  # NEVER GUESS!
 ```
 
@@ -257,7 +257,7 @@ def check_api_usage(api_endpoint):
 - Regularly refresh auth
 - Track all access
 
-## Common Workflows for Claude
+## Common Workflows for Local Agents
 
 ### Workflow 1: User Sends NotebookLM URL
 

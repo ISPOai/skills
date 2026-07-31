@@ -1,9 +1,6 @@
 ---
 name: content-refresh-system
 description: "Systematic content refresh discipline. Quarterly audits, refresh prioritization (which pieces, when, how deep), refresh-vs-merge-vs-delete decisions, the lifecycle that distinguishes intentional refresh from set-and-forget decay. Builds on the refresh sections of pillar-content-architecture and editorial-qa with a program-level discipline. Triggers on content refresh, content decay, content audit, refresh prioritization, content lifecycle, refresh strategy, traffic decay, ranking drop, content freshness, evergreen content, content maintenance. Also triggers when traffic is eroding silently across an aging content library, when teams cannot decide which pieces to refresh, or when refresh work is happening but the impact is unclear."
-category: content
-catalog_summary: "Systematic content refresh: quarterly audits, refresh prioritization, refresh-vs-merge-vs-delete decisions, the lifecycle discipline that distinguishes intentional programs from set-and-forget decay"
-display_order: 10
 ---
 
 # Content Refresh System

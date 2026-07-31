@@ -1,19 +1,12 @@
 ---
 name: codex
 description: "Delegate coding to OpenAI Codex CLI (features, PRs)."
-version: 1.0.1
-author: Hermes Agent
-license: MIT
-platforms: [linux, macos, windows]
-metadata:
-  hermes:
-    tags: [Coding-Agent, Codex, OpenAI, Code-Review, Refactoring]
-    related_skills: [claude-code, hermes-agent]
 ---
 
 # Codex CLI
 
-Delegate coding tasks to [Codex](https://github.com/openai/codex) via the Hermes terminal. Codex is OpenAI's autonomous coding agent CLI.
+Delegate coding tasks to [Codex](https://github.com/openai/codex) through an
+available shell-command tool. Codex is OpenAI's autonomous coding agent CLI.
 
 ## When to use
 
@@ -30,41 +23,40 @@ Requires the codex CLI and a git repository.
 - OpenAI auth configured: either `OPENAI_API_KEY` or Codex OAuth credentials
   from the Codex CLI login flow
 - **Must run inside a git repository** — Codex refuses to run outside one
-- Use `pty=true` in terminal calls — Codex is an interactive terminal app
+- A PTY-capable terminal is required only for the interactive Codex TUI;
+  non-interactive `codex exec` normally runs without one
 
-For Hermes itself, `model.provider: openai-codex` uses Hermes-managed Codex
-OAuth from `~/.hermes/auth.json` after `hermes auth add openai-codex`. For the
-standalone Codex CLI, a valid CLI OAuth session may live under
-`~/.codex/auth.json`; do not treat a missing `OPENAI_API_KEY` alone as proof
-that Codex auth is missing.
+The standalone Codex CLI may use either `OPENAI_API_KEY` or an existing CLI
+OAuth session. Do not treat a missing `OPENAI_API_KEY` alone as proof that
+Codex authentication is missing; verify with the CLI's own login/status flow.
 
 ## One-Shot Tasks
 
 ```
-terminal(command="codex exec 'Add dark mode toggle to settings'", workdir="~/project", pty=true)
+cd ~/project && codex exec 'Add dark mode toggle to settings'
 ```
 
 For scratch work (Codex needs a git repo):
 ```
-terminal(command="cd $(mktemp -d) && git init && codex exec 'Build a snake game in Python'", pty=true)
+cd $(mktemp -d) && git init && codex exec 'Build a snake game in Python'
 ```
 
 ## Background Mode (Long Tasks)
 
 ```
 # Start in background with PTY
-terminal(command="codex exec --sandbox workspace-write 'Refactor the auth module'", workdir="~/project", background=true, pty=true)
+cd ~/project && codex exec --sandbox workspace-write 'Refactor the auth module'
 # Returns session_id
 
 # Monitor progress
-process(action="poll", session_id="<id>")
-process(action="log", session_id="<id>")
+# Use the agent host's background-process controls to poll session <id>.
+# Use the agent host's background-process controls to log session <id>.
 
 # Send input if Codex asks a question
-process(action="submit", session_id="<id>", data="yes")
+# Use the agent host's background-process controls to submit session <id>.
 
 # Kill if needed
-process(action="kill", session_id="<id>")
+# Use the agent host's background-process controls to kill session <id>.
 ```
 
 ## Key Flags
@@ -78,10 +70,10 @@ process(action="kill", session_id="<id>")
 
 > **Deprecated:** `--full-auto` still works but the live CLI warns to use `--sandbox workspace-write` instead.
 
-## Hermes Gateway Caveat
+## Constrained Service-Host Caveat
 
-When invoking the Codex CLI from a Hermes gateway/service context (for example,
-Telegram-driven agent sessions), Codex `workspace-write` sandboxing may fail even
+When invoking the Codex CLI from an already-containerized gateway or service host,
+Codex `workspace-write` sandboxing may fail even
 when the same command works in the user's interactive shell. A typical symptom is
 bubblewrap/user-namespace errors such as `setting up uid map: Permission denied`
 or `loopback: Failed RTM_NEWADDR: Operation not permitted`.
@@ -101,48 +93,48 @@ human/agent confirmation before committing broad changes.
 Clone to a temp directory for safe review:
 
 ```
-terminal(command="REVIEW=$(mktemp -d) && git clone https://github.com/user/repo.git $REVIEW && cd $REVIEW && gh pr checkout 42 && codex review --base origin/main", pty=true)
+REVIEW=$(mktemp -d) && git clone https://github.com/user/repo.git $REVIEW && cd $REVIEW && gh pr checkout 42 && codex review --base origin/main
 ```
 
 ## Parallel Issue Fixing with Worktrees
 
 ```
 # Create worktrees
-terminal(command="git worktree add -b fix/issue-78 /tmp/issue-78 main", workdir="~/project")
-terminal(command="git worktree add -b fix/issue-99 /tmp/issue-99 main", workdir="~/project")
+cd ~/project && git worktree add -b fix/issue-78 /tmp/issue-78 main
+cd ~/project && git worktree add -b fix/issue-99 /tmp/issue-99 main
 
 # Launch Codex in each
-terminal(command="codex --sandbox workspace-write exec 'Fix issue #78: <description>. Commit when done.'", workdir="/tmp/issue-78", background=true, pty=true)
-terminal(command="codex --sandbox workspace-write exec 'Fix issue #99: <description>. Commit when done.'", workdir="/tmp/issue-99", background=true, pty=true)
+cd /tmp/issue-78 && codex --sandbox workspace-write exec 'Fix issue #78: <description>. Commit when done.'
+cd /tmp/issue-99 && codex --sandbox workspace-write exec 'Fix issue #99: <description>. Commit when done.'
 
 # Monitor
-process(action="list")
+# Use the agent host's background-process controls to list.
 
 # After completion, push and create PRs
-terminal(command="cd /tmp/issue-78 && git push -u origin fix/issue-78")
-terminal(command="gh pr create --repo user/repo --head fix/issue-78 --title 'fix: ...' --body '...'")
+cd /tmp/issue-78 && git push -u origin fix/issue-78
+gh pr create --repo user/repo --head fix/issue-78 --title 'fix: ...' --body '...'
 
 # Cleanup
-terminal(command="git worktree remove /tmp/issue-78", workdir="~/project")
+cd ~/project && git worktree remove /tmp/issue-78
 ```
 
 ## Batch PR Reviews
 
 ```
 # Fetch all PR refs
-terminal(command="git fetch origin '+refs/pull/*/head:refs/remotes/origin/pr/*'", workdir="~/project")
+cd ~/project && git fetch origin '+refs/pull/*/head:refs/remotes/origin/pr/*'
 
 # Review multiple PRs in parallel
-terminal(command="codex exec 'Review PR #86. git diff origin/main...origin/pr/86'", workdir="~/project", background=true, pty=true)
-terminal(command="codex exec 'Review PR #87. git diff origin/main...origin/pr/87'", workdir="~/project", background=true, pty=true)
+cd ~/project && codex exec 'Review PR #86. git diff origin/main...origin/pr/86'
+cd ~/project && codex exec 'Review PR #87. git diff origin/main...origin/pr/87'
 
 # Post results
-terminal(command="gh pr comment 86 --body '<review>'", workdir="~/project")
+cd ~/project && gh pr comment 86 --body '<review>'
 ```
 
 ## Rules
 
-1. **Always use `pty=true`** — Codex is an interactive terminal app and hangs without a PTY
+1. **Use a PTY only for the interactive TUI** — `codex exec` is non-interactive and should use an ordinary subprocess unless the host or command specifically requires a PTY
 2. **Git repo required** — Codex won't run outside a git directory. Use `mktemp -d && git init` for scratch
 3. **Use `exec` for one-shots** — `codex exec "prompt"` runs and exits cleanly
 4. **`--sandbox workspace-write` for building** — auto-approves changes within the sandbox (`--full-auto` is deprecated for this)

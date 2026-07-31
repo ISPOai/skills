@@ -1,6 +1,6 @@
 # Imagen - AI Image Generation Skill
 
-A Claude Code skill that generates images using Google Gemini's image generation model. Simply ask Claude to create an image during any coding session, and it will generate and save it for you.
+An agent skill that generates images using Google Gemini's image generation model. Simply ask the agent to create an image during any coding session, and it will generate and save it for you.
 
 **Cross-Platform**: Works on Windows, macOS, and Linux.
 
@@ -40,7 +40,7 @@ echo 'export GEMINI_API_KEY="your-api-key-here"' >> ~/.zshrc
 
 ### 3. Use It!
 
-Just ask Claude to generate an image during any conversation:
+Just ask the agent to generate an image during any conversation:
 
 ```
 "Generate an image of a sunset over mountains"
@@ -50,7 +50,7 @@ Just ask Claude to generate an image during any conversation:
 
 ## How It Works
 
-When you mention needing an image, Claude will automatically:
+When you mention needing an image, The agent will automatically:
 1. Recognize the request and activate this skill
 2. Call the Google Gemini API with your prompt
 3. Save the generated image to your project
@@ -59,7 +59,7 @@ When you mention needing an image, Claude will automatically:
 ## Features
 
 - **Cross-Platform**: Python script works on Windows, macOS, and Linux
-- **Automatic Activation**: Claude detects when you need an image
+- **Automatic Activation**: The agent detects when you need an image
 - **Multiple Sizes**: 512px, 1K (default), or 2K resolution
 - **Custom Output Paths**: Save images wherever you need them
 - **Frontend Ready**: Perfect for UI development, placeholders, icons
@@ -70,19 +70,19 @@ When you mention needing an image, Claude will automatically:
 ### During Frontend Development
 ```
 You: "I'm building a dashboard. Generate a placeholder chart image."
-Claude: *generates and saves image* "Created the image at ./assets/chart-placeholder.png"
+Agent: *generates and saves image* "Created the image at ./assets/chart-placeholder.png"
 ```
 
 ### For Documentation
 ```
 You: "Create an architecture diagram for our microservices"
-Claude: *generates image* "Saved to ./docs/architecture.png"
+Agent: *generates image* "Saved to ./docs/architecture.png"
 ```
 
 ### Custom Size & Location
 ```
 You: "Generate a high-res hero image and save it to ./public/hero.png"
-Claude: *generates 2K image at specified path*
+Agent: *generates 2K image at specified path*
 ```
 
 ## Configuration
@@ -123,7 +123,7 @@ python scripts/generate_image.py --model gemini-3-pro-image-preview "A logo" "./
 
 ```
 imagen/
-├── SKILL.md               # Skill definition (Claude reads this)
+├── SKILL.md               # Skill definition (The agent reads this)
 ├── README.md              # This file
 ├── reference.md           # Detailed API reference
 ├── examples.md            # Usage examples
@@ -167,4 +167,4 @@ source ~/.zshrc       # Reload if you just added it
 
 ## License
 
-Apache-2.0 License - See [LICENSE](../../LICENSE) for details.
+Apache-2.0 License - See [LICENSE.txt](LICENSE.txt) for details.

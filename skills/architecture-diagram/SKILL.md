@@ -1,15 +1,6 @@
 ---
 name: architecture-diagram
 description: "Dark-themed SVG architecture/cloud/infra diagrams as HTML."
-version: 1.0.0
-author: Cocoon AI (hello@cocoon-ai.com), ported by Hermes Agent
-license: MIT
-dependencies: []
-platforms: [linux, macos, windows]
-metadata:
-  hermes:
-    tags: [architecture, diagrams, SVG, HTML, visualization, infrastructure, cloud]
-    related_skills: [concept-diagrams, excalidraw]
 ---
 
 # Architecture Diagram Skill
@@ -40,7 +31,8 @@ Based on [Cocoon AI's architecture-diagram-generator](https://github.com/Cocoon-
 
 1. User describes their system architecture (components, connections, technologies)
 2. Generate the HTML file following the design system below
-3. Save with `write_file` to a `.html` file (e.g. `~/architecture-diagram.html`)
+3. Save with the available file-editing tool to a `.html` file in the current
+   project (or a path the user specified)
 4. User opens in any browser — works offline, no dependencies
 
 ### Output Location
@@ -77,7 +69,7 @@ Use specific `rgba` fills and hex strokes to categorize components:
 | **External** | `rgba(30, 41, 59, 0.5)` | `#94a3b8` (slate-400) |
 
 ### Typography & Background
-- **Font:** JetBrains Mono (Monospace), loaded from Google Fonts
+- **Font:** Local monospace stack: `ui-monospace, SFMono-Regular, Menlo, Consolas, monospace`
 - **Sizes:** 12px (Names), 9px (Sublabels), 8px (Annotations), 7px (Tiny labels)
 - **Background:** Slate-950 (`#020617`) with a subtle 40px grid pattern
 
@@ -133,7 +125,7 @@ The generated HTML file follows a four-part layout:
 
 ## Output Requirements
 - **Single File:** One self-contained `.html` file
-- **No External Dependencies:** All CSS and SVG must be inline (except Google Fonts)
+- **No External Dependencies:** All CSS and SVG must be inline; use only local system fonts
 - **No JavaScript:** Use pure CSS for any animations (like pulsing dots)
 - **Compatibility:** Must render correctly in any modern web browser
 
@@ -141,8 +133,7 @@ The generated HTML file follows a four-part layout:
 
 Load the full HTML template for the exact structure, CSS, and SVG component examples:
 
-```
-skill_view(name="architecture-diagram", file_path="templates/template.html")
-```
+Read `templates/template.html` relative to this `SKILL.md` with the available
+file-reading tool.
 
 The template contains working examples of every component type (frontend, backend, database, cloud, security), arrow styles (standard, dashed, curved), security groups, region boundaries, and the legend — use it as your structural reference when generating diagrams.

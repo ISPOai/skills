@@ -16,14 +16,16 @@ from typing import Optional
 try:
     import psycopg2
 except ImportError:
-    print("Error: psycopg2 not installed. Run: pip install psycopg2-binary")
+    print("Error: psycopg2 is not installed. Add psycopg2-binary to a user-managed isolated environment.")
     sys.exit(1)
 
 # Constants
-SCRIPT_DIR = Path(__file__).parent.parent
+_config_override = os.environ.get("POSTGRES_SKILL_CONFIG", "").strip()
+_xdg_config = os.environ.get("XDG_CONFIG_HOME", "").strip()
+_config_root = Path(_xdg_config).expanduser() if _xdg_config else Path.home() / ".config"
 CONFIG_LOCATIONS = [
-    SCRIPT_DIR / "connections.json",
-    Path.home() / ".config" / "claude" / "postgres-connections.json",
+    *([Path(_config_override).expanduser()] if _config_override else []),
+    _config_root / "ispo" / "postgres-connections.json",
 ]
 MAX_ROWS = 10000
 MAX_COLUMN_WIDTH = 100
@@ -79,7 +81,7 @@ def load_config(config_path: Optional[Path] = None) -> dict:
         print("Config not found. Searched:")
         for loc in CONFIG_LOCATIONS:
             print(f"  - {loc}")
-        print("\nCreate connections.json with format:")
+        print("\nCreate the external config file with this format:")
         print(json.dumps({
             "databases": [{
                 "name": "mydb",

@@ -1,9 +1,6 @@
 ---
 name: long-form-content-frameworks
 description: "Patterns for individual long-form content pieces. Case studies, whitepapers, research reports, definitive guides, manifestos, ebooks, long-form tutorials. The structural disciplines that distinguish publication-quality long-form from bloggy-long padding or academic bloat. Different from pillar-content-architecture (which covers hub structure); this skill covers individual deep-dive pieces. Triggers on long-form content, case study writing, whitepaper, research report, definitive guide, ebook, manifesto, long-form tutorial, deep-dive article, anchor piece, foundational article, structural archetypes. Also triggers when a piece is over 3,000 words and the team is unsure how to structure it, when a long-form draft feels padded or saggy, or when a flagship asset needs the depth to actually earn the length."
-category: content
-catalog_summary: "Structural patterns for individual long-form pieces (case studies, whitepapers, research reports, definitive guides, manifestos, ebooks, long-form tutorials) that distinguish publication-quality work from bloggy-long padding or academic bloat"
-display_order: 9
 ---
 
 # Long-Form Content Frameworks

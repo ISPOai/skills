@@ -1,9 +1,6 @@
 ---
 name: multi-step-form-design
 description: "Designing forms with multiple steps, progress indicators, conditional logic, and save-and-resume mechanics. The discipline of breaking complex data collection into stages that respect cognitive load while maintaining completion intent. Honest about kitchen-sink-single-page (overwhelms before the user starts), progress-theater (steps without genuine staging), and genuinely-staged (each step earns its own page) patterns. Triggers on multi-step form, multi-page form, form wizard, signup wizard, lead form, application form, intake form, configurator, onboarding form. Also triggers when a long form is converting poorly, when an audience is dropping off mid-form, or when a multi-step form is being scoped for the first time."
-category: growth-tooling
-catalog_summary: "Designing multi-step forms that respect cognitive load while maintaining completion intent. Distinguishes kitchen-sink-single-page (overwhelms) from progress-theater (steps without genuine staging) from genuinely-staged (each step earns its own page)"
-display_order: 4
 ---
 
 # Multi-Step Form Design

@@ -201,6 +201,6 @@ Plumb is observability that fits a 50-person engineering team, priced for a 50-p
 
 ## Appendix
 
-- [Audience research notes](./audience-research.md)
-- [Competitive teardown](./competitive-analysis.md)
-- [Brand guidelines](./brand-guidelines.md)
+- Audience research notes (project artifact; not bundled with this example)
+- Competitive teardown (project artifact; not bundled with this example)
+- Brand guidelines (project artifact; not bundled with this example)

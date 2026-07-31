@@ -28,8 +28,8 @@ The skill supports three input types. Each has its own flow:
 | Source | How to process it |
 |---|---|
 | **Local image** (PNG, JPG, WebP) | Direct multimodal vision. You "see" it and analyze it. |
-| **Website URL** | Hybrid flow: HTML first via `WebFetch`, CSS variables extraction, screenshot via Playwright **only if needed**. |
-| **Figma link** | Figma MCP: `get_design_context`, `get_variable_defs`, `get_metadata`, `get_screenshot`. |
+| **Website URL** | Hybrid flow: fetch HTML with the runtime's web capability, extract CSS variables, and use Playwright for a screenshot **only if needed**. |
+| **Figma link** | Use an available Figma MCP or API for metadata, variables, design context, and screenshots. |
 
 If the user passes multiple sources at once (e.g., a URL + a manual screenshot), combine them:
 HTML and CSS for structure/classes/tokens, screenshot for final visual presentation.
@@ -83,16 +83,19 @@ Depending on the source, execute the corresponding flow. **Full technical detail
 **Summary by source:**
 
 - **Image**: already available — view it directly. Skip to Step 3.
-- **URL**: first `WebFetch` to retrieve HTML. If the HTML has real content, work with it
+- **URL**: first use the runtime's web-fetching capability to retrieve HTML. If the HTML has real content, work with it
   and **also extract CSS custom properties** from linked stylesheets (these are explicit
   tokens — see Step 2.2.bis in `capture-flows.md`). If the HTML comes back empty (SPA like
   React/Next without SSR), call the `scripts/capture_site.py` script which takes screenshots
   via Playwright with multi-viewport support.
-- **Figma**: use the Figma MCP tools in this order:
-  1. `get_metadata` to understand the structure
-  2. `get_variable_defs` to extract defined tokens
-  3. `get_design_context` for detailed content
-  4. `get_screenshot` if visual reference is needed
+- **Figma**: if a Figma MCP is available, use its equivalent operations in this order:
+  1. retrieve metadata to understand the structure
+  2. retrieve variable definitions to extract tokens
+  3. retrieve detailed design context
+  4. capture a screenshot if visual reference is needed
+
+  Tool names differ between Figma integrations; inspect the connected MCP
+  instead of assuming a fixed set of function names.
 
 If something fails (URL down, no Figma access, broken image), tell the user clearly and propose
 alternatives instead of inventing content.

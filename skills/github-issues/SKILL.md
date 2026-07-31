@@ -1,14 +1,6 @@
 ---
 name: github-issues
 description: "Create, triage, label, assign GitHub issues via gh or REST."
-version: 1.1.0
-author: Hermes Agent
-license: MIT
-platforms: [linux, macos, windows]
-metadata:
-  hermes:
-    tags: [GitHub, Issues, Project-Management, Bug-Tracking, Triage]
-    related_skills: [github-auth, github-pr-workflow]
 ---
 
 # GitHub Issues Management
@@ -20,6 +12,11 @@ Create, search, triage, and manage GitHub issues. Each section shows `gh` first,
 - Authenticated with GitHub (see `github-auth` skill)
 - Inside a git repo with a GitHub remote, or specify the repo explicitly
 
+Listing and searching are read-only. Before creating, editing, closing,
+reopening, labeling, assigning, or commenting on an issue, show the intended
+change and get explicit user approval unless that external action was already
+requested.
+
 ### Setup
 
 ```bash
@@ -27,13 +24,7 @@ if command -v gh &>/dev/null && gh auth status &>/dev/null; then
   AUTH="gh"
 else
   AUTH="git"
-  if [ -z "$GITHUB_TOKEN" ]; then
-    if _hermes_env="${HERMES_HOME:-$HOME/.hermes}/.env"; [ -f "$_hermes_env" ] && grep -q "^GITHUB_TOKEN=" "$_hermes_env"; then
-      GITHUB_TOKEN=$(grep "^GITHUB_TOKEN=" "$_hermes_env" | head -1 | cut -d= -f2 | tr -d '\n\r')
-    elif grep -q "github.com" ~/.git-credentials 2>/dev/null; then
-      GITHUB_TOKEN=$(uv run python3 "${HERMES_HOME:-$HOME/.hermes}/skills/github/github-auth/scripts/git-credential-token.py")
-    fi
-  fi
+  # API operations require GITHUB_TOKEN to be supplied by the environment.
 fi
 
 REMOTE_URL=$(git remote get-url origin)

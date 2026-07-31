@@ -25,6 +25,11 @@ This skill helps you find the perfect domain name for your project by generating
 5. **Provides Alternatives**: Offers variations if top choices are taken
 6. **Branding Insights**: Explains why certain names work well
 
+Availability and pricing are live registrar facts. Before labeling a domain
+available, taken, premium, or priced, query an authoritative current RDAP,
+WHOIS, or registrar source. If live verification is unavailable, present names
+as unverified ideas and do not infer availability or quote a price.
+
 ## How to Use
 
 ### Basic Brainstorming
@@ -64,29 +69,25 @@ Key features: Code sharing, snippets, collaboration
 
 🎯 Domain Name Suggestions
 
-## Available (.com)
-1. ✓ snippetbox.com - Clear, memorable, available!
+## Unverified ideas (live lookup still required)
+1. snippetbox.com - Clear and memorable
    Why: Directly describes the product, easy to remember
 
-2. ✓ codeclip.com - Short and snappy
+2. codeclip.com - Short and snappy
    Why: Implies quick code sharing, only 8 characters
 
-3. ✓ devpaste.com - Developer-focused
+3. devpaste.com - Developer-focused
    Why: Familiar to devs (like pastebin), clear purpose
 
-## Available (Alternative TLDs)
-4. ✓ snippet.dev - Perfect extension for developers
+## Alternative TLD ideas (live lookup still required)
+4. snippet.dev - Relevant extension for developers
    Why: .dev extension signals developer tool
 
-5. ✓ codebox.io - Tech-forward
+5. codebox.io - Tech-forward
    Why: .io popular with tech startups, clean name
 
-6. ✓ sharecode.app - Descriptive
+6. sharecode.app - Descriptive
    Why: .app extension, clearly states the action
-
-## Premium/Taken (.com)
-- codeshare.com (Taken, est. $2,500)
-- snippets.com (Taken, premium domain)
 
 ## Recommendations
 
@@ -94,7 +95,7 @@ Key features: Code sharing, snippets, collaboration
 - Perfect for developer audience
 - Short and memorable  
 - .dev extension adds credibility
-- Available now!
+- Verify with a registrar before recommending purchase
 
 🥈 Runner-up: snippetbox.com
 - .com is universally recognized
@@ -209,4 +210,3 @@ After picking a domain:
 - Verify social media handles
 - Research trademark availability
 - Plan brand identity colors/fonts
-

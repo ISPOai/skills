@@ -1,9 +1,6 @@
 ---
 name: feature-launch-playbook
 description: "The operational playbook for launching a feature well. Positioning, internal alignment, customer comms, sales enablement, support readiness, rollout strategy, monitoring with pre-defined rollback triggers, post-launch measurement against spec hypotheses, and the discipline that distinguishes shipping from releasing from actually launching. Triggers on launch plan, feature launch, launch checklist, ship vs release, rollout strategy, gradual rollout, sales enablement, support readiness, launch announcement, post-launch measurement, launch failure, declared victory too early. Also triggers when planning a launch (any size, any segment), auditing an existing launch process, fixing the we shipped it but the metric did not move problem, or building a launch checklist for the team."
-category: product
-catalog_summary: "The operational discipline of launching a feature well: positioning, internal alignment, customer comms, sales enablement, support readiness, rollout strategy, monitoring, and post-launch measurement"
-display_order: 10
 ---
 
 # Feature Launch Playbook

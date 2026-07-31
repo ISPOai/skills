@@ -1,9 +1,6 @@
 ---
 name: scheduler-and-booking-design
 description: "Designing meeting schedulers and booking experiences that qualify leads, set up calls well, and convert at higher rates than a generic Calendly link. Availability logic, qualification gating, prep automation, follow-up sequencing. Honest about any-time-friction (no qualification, just a booking link), interrogation-gate (so much qualification it scares users off), and qualified-fast-path (just enough qualification to set up the call well) patterns. Triggers on scheduler design, meeting booking, demo scheduling, sales call scheduling, calendar tool, booking page, qualification flow. Also triggers when sales team complains about cold demos, when booking conversion is poor, or when scheduler is being scoped for the first time."
-category: growth-tooling
-catalog_summary: "Designing schedulers and booking flows. Distinguishes any-time-friction (no qualification, just a booking link) from interrogation-gate (so much qualification it scares users off) from qualified-fast-path (just enough qualification to set up the call well)"
-display_order: 10
 ---
 
 # Scheduler and Booking Design

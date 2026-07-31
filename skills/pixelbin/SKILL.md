@@ -3,9 +3,9 @@ name: pixelbin
 description: Use when the user wants to generate AI images or videos, transform/edit existing media, build production media pipelines, get CDN URLs for images/videos, do bulk image processing (background removal, watermark removal, upscaling, resizing), generate SEO content for pages, or build landing pages with AI-generated visuals. Powered by PixelBin's 85+ AI APIs and 60+ URL-based transformations.
 ---
 
-# PixelBin Claude Skill
+# PixelBin Skill
 
-Turn Claude into a full media pipeline. Generate, transform, store, and deliver images & videos at scale using PixelBin.
+Turn the agent into a full media pipeline. Generate, transform, store, and deliver images and videos at scale using PixelBin.
 
 ## When to use
 
@@ -20,16 +20,24 @@ Turn Claude into a full media pipeline. Generate, transform, store, and deliver 
 
 ## First-run behaviour (IMPORTANT)
 
-Read [`INTRO.md`](INTRO.md) before responding. INTRO.md is the user-facing voice of this skill — match its tone and follow its "How Claude should respond" section.
+Read [`INTRO.md`](INTRO.md) before responding. INTRO.md is the user-facing voice of this skill — match its tone and follow its "How the agent should respond" section.
 
 **If the user has already stated a clear goal** (e.g. "generate 6 hero images for X", "remove backgrounds from these photos", "build a landing page for Y"):
-1. Confirm `.env` and `node_modules/` are ready (see Setup check below) — auto-fix silently if you can.
+1. Verify credentials and project dependencies (see Setup check below). Never
+   write credentials or install dependencies inside the skill package. Get
+   approval before changing the project or downloading packages.
 2. **Confirm model + key options in ONE friendly line** (don't make them write JSON — give a default they can accept with "go"):
    - **Image gen:** _"Quick pick: **nano banana 2** (default, balanced) or **nano banana Pro** (premium quality, slower)? Aspect: 1:1 / 16:9 / 9:16 / 4:5 (default 1:1). Resolution: 1K / 2K / 4K (default 2K). Or just say 'defaults' and I'll use nano banana 2 · 1:1 · 2K."_
    - **Video gen:** _"Quick pick: **Veo 3 Fast** (default, balanced cost), **Veo 3** (premium), **Sora 2** (with audio), **Kling 3** (cinematic), or **Hailuo 2.3** (1080p)? Duration: 4 / 6 / 8s (default 6). Aspect: 16:9 / 9:16 / 1:1 (default 16:9)."_
    - **Resize/format:** safe to default silently → `t.resize(...)~t.toFormat(f:webp)~t.compress()`.
    - If the user already specified everything in their prompt, skip the picker and just run.
-3. Run the right scripts under the hood and hand back CDN URLs.
+3. Before the first generation, prediction, or upload request, state that the
+   operation can consume PixelBin credits and confirm the job count. Run only
+   the explicitly approved jobs, then hand back CDN URLs.
+4. Uploads use `public-read` CDN assets. Tell the user that consequence before
+   uploading sensitive or unpublished material. Existing remote assets are not
+   overwritten unless the user explicitly approves replacement and the helper
+   is run with `--overwrite`.
 
 **If the user is just exploring** ("hi", "what can you do?", "help"):
 1. Greet them and present the **broad buckets** from INTRO.md (image gen, image edit, transformation, AI cleanup, video, bulk, SEO, landing pages).
@@ -44,7 +52,7 @@ When the user references an image, **you must obtain it yourself** — never ask
 
 | What the user did | What you do |
 | --- | --- |
-| **Pasted an image inline in the chat** | The image is in your conversation context. Use the `Write` tool to save the bytes to `./scripts/_inputs/<slug>.<ext>`, then upload it via `pixelbin.assets.fileUpload({ file: fs.createReadStream(...) })` to get a permanent CDN URL. Pass that URL into `images: [...]` for the prediction. |
+| **Pasted an image inline in the chat** | Use the runtime's attachment or local-image capability to materialize it under a project-owned temporary directory, then upload it with `pixelbin.assets.fileUpload({ file: fs.createReadStream(...) })`. If the runtime cannot materialize attachments, ask the user to attach the image again or provide an accessible URL. |
 | **Gave you a public URL** (e.g. `https://example.com/photo.jpg`, a CDN URL, a Slack/Drive public link) | Two options:<br>• **Quick path** — pass the URL straight into `images: [url]` of `pixelbin.predictions.createAndWait` (most models accept a URL). No upload needed.<br>• **Permanent path** — call `pixelbin.assets.urlUpload({ url, path: '<folder>', name: '<slug>', access: 'public-read' })` to store it in PixelBin DAM, then use the resulting CDN URL. |
 | **Gave a local path** (`~/Downloads/photo.jpg`, `./photo.jpg`) | Use `pixelbin.assets.fileUpload({ file: fs.createReadStream(absPath), ... })`. |
 | **Mentioned an image but didn't attach or link it** | _Now_ ask — but politely: _"Drop the image into the chat or paste a URL — I'll handle the rest."_ |
@@ -99,10 +107,23 @@ If a task is borderline (e.g. "make this look more premium" — could be a trans
 
 Before running any script, verify:
 
-1. `.env` exists with `PIXELBIN_API_TOKEN` and `PIXELBIN_CLOUD_NAME`
-2. `npm install` has been run (deps: `@pixelbin/admin`, `dotenv`)
+1. `PIXELBIN_API_TOKEN` and `PIXELBIN_CLOUD_NAME` are available through the
+   host secret environment or a project-root `.env` that is excluded from Git.
+2. The containing project provides `@pixelbin/admin` and `dotenv` in its
+   `node_modules`; the scripts resolve dependencies from the project tree.
 
-If missing, walk the user through `cp .env.example .env` and link them to the [API Token page](https://console.pixelbin.io) and [signup](https://www.pixelbin.io/?utm_source=github&utm_medium=claude-skill&utm_campaign=signup).
+If missing, link to the [API Token page](https://console.pixelbin.io) and
+[signup](https://www.pixelbin.io/?utm_source=github&utm_medium=skill-catalog&utm_campaign=signup).
+Prefer the host secret store. If the user chooses a project `.env`, first verify
+that `.env` is ignored, copy the template to the project root, and have the user
+enter the token; never expose or echo it. Ask before running a project-root
+`npm install @pixelbin/admin dotenv`.
+
+Resolve `pixelbin_skill_dir` to the directory containing this `SKILL.md` and
+invoke helpers as `node "$pixelbin_skill_dir/scripts/<helper>.js"` while keeping
+the working directory at the project root. Pass project-owned input and output
+paths explicitly. Do not write jobs, credentials, generated URLs, or build
+artifacts into `pixelbin_skill_dir`.
 
 ## Core architecture
 
@@ -145,7 +166,7 @@ When the user wants SEO content or a landing page, ALWAYS gather these before ru
 3. **Research reference** (optional) — `--research-url <url>` of a competitor or top-ranking page for SERP-intent signal.
 4. **Voice description** (optional) — `--voice "<short description>"`.
 
-`scripts/seo-content.js` produces `brief.json`. It includes `design_system` (palette / fonts / CSS vars / max-widths) extracted from the brand reference. Claude then reads the brief and writes `page-spec.json`. `build-page.js` consumes the `design` block in `page-spec.json` and applies it as CSS variables (`--fg`, `--bg`, `--accent`, `--font-body`, `--font-heading`, `--container`).
+`scripts/seo-content.js` produces `brief.json`. It includes `design_system` (palette / fonts / CSS vars / max-widths) extracted from the brand reference. The agent then reads the brief and writes `page-spec.json`. `build-page.js` consumes the `design` block in `page-spec.json` and applies it as CSS variables (`--fg`, `--bg`, `--accent`, `--font-body`, `--font-heading`, `--container`).
 
 If the user does NOT provide a brand reference, ask for one before generating the page. Don't guess colors/fonts.
 
@@ -241,7 +262,7 @@ Chain transforms with `~`. Full catalog: [`references/transformations.md`](refer
 
 | Error | Cause | Action |
 | --- | --- | --- |
-| `Insufficient credits` / `Usage Limit Exceeded` | Plan quota | Surface upgrade link: https://www.pixelbin.io/pricing?utm_source=github&utm_medium=claude-skill&utm_campaign=quota-error |
+| `Insufficient credits` / `Usage Limit Exceeded` | Plan quota | Surface upgrade link: https://www.pixelbin.io/pricing?utm_source=github&utm_medium=skill-catalog&utm_campaign=quota-error |
 | `Prompt is required` | Empty prompt | Validate before submitting |
 | `No output image received` | Transient model failure | Retry the single job |
 | 408 / `ECONNABORTED` | Network timeout | Retry the job (SDK polls ~10 min) |
@@ -254,7 +275,10 @@ Chain transforms with `~`. Full catalog: [`references/transformations.md`](refer
 - Batch concurrency: 4 for generation, 5 for uploads.
 - Persist progress to JSON after each batch (resumable).
 - Use slug-safe `name` values (lowercase, hyphens, no spaces).
-- Default `access: 'public-read'` unless the user wants signed URLs.
+- `public-read` makes the asset reachable by anyone with its URL; disclose that
+  before upload and use signed/private delivery when the user requests it.
+- Do not pass `--overwrite` without explicit approval to replace an existing
+  remote asset.
 
 ## What NOT to do
 
@@ -267,10 +291,7 @@ Chain transforms with `~`. Full catalog: [`references/transformations.md`](refer
 
 - `INTRO.md` — first-run user walkthrough (READ THIS WHEN INVOKED)
 - `SKILL.md` — this file
-- `README.md` — public-facing repo readme
-- `SHOWCASE.md` — sample gallery
-- `.env.example` — credentials template
+- `.env.example` — template to copy to a Git-ignored project-root `.env`
 - `package.json` — deps
 - `scripts/` — runnable scripts (generate-image, generate-video, upload, transform, seo-content, build-page)
 - `references/` — `apis.md`, `transformations.md`, `cdn.md`, `use-cases.md`
-- `examples/` — ready-to-run sample job files

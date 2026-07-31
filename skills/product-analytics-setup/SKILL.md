@@ -1,9 +1,6 @@
 ---
 name: product-analytics-setup
 description: "How to actually instrument product analytics correctly. Event taxonomy, property design, naming conventions, schema versioning, identity stitching, funnel design, retention cohorts, North Star metric selection, dashboard hygiene, instrumentation debt, and the failure modes that produce data nobody trusts. Triggers on product analytics setup, event taxonomy, tracking plan, instrumentation, schema versioning, North Star metric, retention cohorts, funnel design, naming conventions, instrument new feature, audit existing analytics, dashboard reconciliation, instrumentation debt, Mixpanel setup, Amplitude setup, PostHog setup, warehouse-native analytics. Also triggers when the team has data but cannot trust it, or when designing instrumentation for a new feature, or when auditing an existing setup that has drifted."
-category: product
-catalog_summary: "Instrument product analytics correctly: event taxonomy, properties, naming conventions, schema versioning, funnels, retention cohorts, North Star selection, and the instrumentation debt that compounds without discipline"
-display_order: 8
 ---
 
 # Product Analytics Setup
@@ -181,8 +178,6 @@ Retention curve interpretation.
 - Steep early drop, then plateau. The product has core users; the rest churn fast. Typical for most SaaS products.
 - Gradual decay across weeks with no plateau. No one is sticking. Usually a value-prop or onboarding problem; the product is not delivering recurring value.
 - Flat line at low percentage. A power-user product with a small but engaged base. Not a problem; just a different shape.
-
-Detail in [`references/retention-measurement-patterns.md`](references/retention-measurement-patterns.md).
 
 ---
 

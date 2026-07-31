@@ -1,9 +1,6 @@
 ---
 name: competitor-experience-audit
 description: "Audit the brand, UX, and site design of the leading sites in a vertical as a set of observable cross-site patterns, producing the experience bar a new build must meet or beat. Use this skill whenever the user wants to assess the competitive design field, capture vertical conventions, identify the design and UX bar of a category, or set the experience standard before a build. Triggers on competitor experience audit, UX audit, site design audit, brand audit, design conventions, what makes these sites good, vertical conventions, storefront patterns, merchandising patterns, layout density, primary task, design bar, category conventions, retail vs marketing register, what does the field do. Also triggers when an audit of the competitive field has captured technical signals (SEO, accessibility) but never named the brand, UX, or design conventions, and the build downstream will read as off-vertical without that bar."
-category: research
-catalog_summary: "Cross-site experience patterns and gaps across a vertical"
-display_order: 6
 ---
 
 # Competitor Experience Audit

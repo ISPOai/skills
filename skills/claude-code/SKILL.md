@@ -1,19 +1,11 @@
 ---
 name: claude-code
 description: "Delegate coding to Claude Code CLI (features, PRs)."
-version: 2.2.1
-author: Hermes Agent + Teknium
-license: MIT
-platforms: [linux, macos, windows]
-metadata:
-  hermes:
-    tags: [Coding-Agent, Claude, Anthropic, Code-Review, Refactoring, PTY, Automation]
-    related_skills: [codex, hermes-agent, opencode]
 ---
 
-# Claude Code — Hermes Orchestration Guide
+# Claude Code CLI Orchestration Guide
 
-Delegate coding tasks to [Claude Code](https://code.claude.com/docs/en/cli-reference) (Anthropic's autonomous coding agent CLI) via the Hermes terminal. Claude Code v2.x can read files, write code, run shell commands, spawn subagents, and manage git workflows autonomously.
+Delegate coding tasks to [Claude Code](https://code.claude.com/docs/en/cli-reference) (Anthropic's autonomous coding agent CLI) through an available shell. Claude Code v2.x can read files, write code, run shell commands, spawn subagents, and manage git workflows autonomously.
 
 ## Prerequisites
 
@@ -28,14 +20,14 @@ Delegate coding tasks to [Claude Code](https://code.claude.com/docs/en/cli-refer
 
 ## Two Orchestration Modes
 
-Hermes interacts with Claude Code in two fundamentally different ways. Choose based on the task.
+An agent host can interact with Claude Code in two fundamentally different ways. Choose based on the task.
 
 ### Mode 1: Print Mode (`-p`) — Non-Interactive (PREFERRED for most tasks)
 
 Print mode runs a one-shot task, returns the result, and exits. No PTY needed. No interactive prompts. This is the cleanest integration path.
 
 ```
-terminal(command="claude -p 'Add error handling to all API calls in src/' --allowedTools 'Read,Edit' --max-turns 10", workdir="/path/to/project", timeout=120)
+cd /path/to/project && claude -p 'Add error handling to all API calls in src/' --allowedTools 'Read,Edit' --max-turns 10
 ```
 
 **When to use print mode:**
@@ -53,23 +45,23 @@ Interactive mode gives you a full conversational REPL where you can send follow-
 
 ```
 # Start a tmux session
-terminal(command="tmux new-session -d -s claude-work -x 140 -y 40")
+tmux new-session -d -s claude-work -x 140 -y 40
 
 # Launch Claude Code inside it
-terminal(command="tmux send-keys -t claude-work 'cd /path/to/project && claude' Enter")
+tmux send-keys -t claude-work 'cd /path/to/project && claude' Enter
 
 # Wait for startup, then send your task
 # (after ~3-5 seconds for the welcome screen)
-terminal(command="sleep 5 && tmux send-keys -t claude-work 'Refactor the auth module to use JWT tokens' Enter")
+sleep 5 && tmux send-keys -t claude-work 'Refactor the auth module to use JWT tokens' Enter
 
 # Monitor progress by capturing the pane
-terminal(command="sleep 15 && tmux capture-pane -t claude-work -p -S -50")
+sleep 15 && tmux capture-pane -t claude-work -p -S -50
 
 # Send follow-up tasks
-terminal(command="tmux send-keys -t claude-work 'Now add unit tests for the new JWT code' Enter")
+tmux send-keys -t claude-work 'Now add unit tests for the new JWT code' Enter
 
 # Exit when done
-terminal(command="tmux send-keys -t claude-work '/exit' Enter")
+tmux send-keys -t claude-work '/exit' Enter
 ```
 
 **When to use interactive mode:**
@@ -102,16 +94,16 @@ tmux send-keys -t <session> Down && sleep 0.3 && tmux send-keys -t <session> Ent
 ### Robust Dialog Handling Pattern
 ```
 # Launch with permissions bypass
-terminal(command="tmux send-keys -t claude-work 'claude --dangerously-skip-permissions \"your task\"' Enter")
+tmux send-keys -t claude-work 'claude --dangerously-skip-permissions "your task"' Enter
 
 # Handle trust dialog (Enter for default "Yes")
-terminal(command="sleep 4 && tmux send-keys -t claude-work Enter")
+sleep 4 && tmux send-keys -t claude-work Enter
 
 # Handle permissions dialog (Down then Enter for "Yes, I accept")
-terminal(command="sleep 3 && tmux send-keys -t claude-work Down && sleep 0.3 && tmux send-keys -t claude-work Enter")
+sleep 3 && tmux send-keys -t claude-work Down && sleep 0.3 && tmux send-keys -t claude-work Enter
 
 # Now wait for Claude to work
-terminal(command="sleep 15 && tmux capture-pane -t claude-work -p -S -60")
+sleep 15 && tmux capture-pane -t claude-work -p -S -60
 ```
 
 **Note:** After the first trust acceptance for a directory, the trust dialog won't appear again. Only the permissions dialog recurs each time you use `--dangerously-skip-permissions`.
@@ -144,7 +136,7 @@ terminal(command="sleep 15 && tmux capture-pane -t claude-work -p -S -60")
 
 ### Structured JSON Output
 ```
-terminal(command="claude -p 'Analyze auth.py for security issues' --output-format json --max-turns 5", workdir="/project", timeout=120)
+cd /project && claude -p 'Analyze auth.py for security issues' --output-format json --max-turns 5
 ```
 
 Returns a JSON object with:
@@ -169,7 +161,7 @@ Returns a JSON object with:
 ### Streaming JSON Output
 For real-time token streaming, use `stream-json` with `--verbose`:
 ```
-terminal(command="claude -p 'Write a summary' --output-format stream-json --verbose --include-partial-messages", timeout=60)
+claude -p 'Write a summary' --output-format stream-json --verbose --include-partial-messages
 ```
 
 Returns newline-delimited JSON events. Filter with jq for live text:
@@ -190,18 +182,18 @@ claude -p "task" --input-format stream-json --output-format stream-json --replay
 ### Piped Input
 ```
 # Pipe a file for analysis
-terminal(command="cat src/auth.py | claude -p 'Review this code for bugs' --max-turns 1", timeout=60)
+cat src/auth.py | claude -p 'Review this code for bugs' --max-turns 1
 
 # Pipe multiple files
-terminal(command="cat src/*.py | claude -p 'Find all TODO comments' --max-turns 1", timeout=60)
+cat src/*.py | claude -p 'Find all TODO comments' --max-turns 1
 
 # Pipe command output
-terminal(command="git diff HEAD~3 | claude -p 'Summarize these changes' --max-turns 1", timeout=60)
+git diff HEAD~3 | claude -p 'Summarize these changes' --max-turns 1
 ```
 
 ### JSON Schema for Structured Extraction
 ```
-terminal(command="claude -p 'List all functions in src/' --output-format json --json-schema '{\"type\":\"object\",\"properties\":{\"functions\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}},\"required\":[\"functions\"]}' --max-turns 5", workdir="/project", timeout=90)
+cd /project && claude -p 'List all functions in src/' --output-format json --json-schema '{"type":"object","properties":{"functions":{"type":"array","items":{"type":"string"}}},"required":["functions"]}' --max-turns 5
 ```
 
 Parse `structured_output` from the JSON result. Claude validates output against the schema before returning.
@@ -209,21 +201,21 @@ Parse `structured_output` from the JSON result. Claude validates output against 
 ### Session Continuation
 ```
 # Start a task
-terminal(command="claude -p 'Start refactoring the database layer' --output-format json --max-turns 10 > /tmp/session.json", workdir="/project", timeout=180)
+cd /project && claude -p 'Start refactoring the database layer' --output-format json --max-turns 10 > /tmp/session.json
 
 # Resume with session ID
-terminal(command="claude -p 'Continue and add connection pooling' --resume $(cat /tmp/session.json | python3 -c 'import json,sys; print(json.load(sys.stdin)[\"session_id\"])') --max-turns 5", workdir="/project", timeout=120)
+cd /project && claude -p 'Continue and add connection pooling' --resume $(cat /tmp/session.json | python3 -c 'import json,sys; print(json.load(sys.stdin)["session_id"])') --max-turns 5
 
 # Or resume the most recent session in the same directory
-terminal(command="claude -p 'What did you do last time?' --continue --max-turns 1", workdir="/project", timeout=30)
+cd /project && claude -p 'What did you do last time?' --continue --max-turns 1
 
 # Fork a session (new ID, keeps history)
-terminal(command="claude -p 'Try a different approach' --resume <id> --fork-session --max-turns 10", workdir="/project", timeout=120)
+cd /project && claude -p 'Try a different approach' --resume <id> --fork-session --max-turns 10
 ```
 
 ### Bare Mode for CI/Scripting
 ```
-terminal(command="claude --bare -p 'Run all tests and report failures' --allowedTools 'Read,Bash' --max-turns 10", workdir="/project", timeout=180)
+cd /project && claude --bare -p 'Run all tests and report failures' --allowedTools 'Read,Bash' --max-turns 10
 ```
 
 `--bare` skips hooks, plugins, MCP discovery, and CLAUDE.md loading. Fastest startup. Requires `ANTHROPIC_API_KEY` (skips OAuth).
@@ -238,7 +230,7 @@ To selectively load context in bare mode:
 
 ### Fallback Model for Overload
 ```
-terminal(command="claude -p 'task' --fallback-model haiku --max-turns 5", timeout=90)
+claude -p 'task' --fallback-model haiku --max-turns 5
 ```
 Automatically falls back to the specified model when the default is overloaded (print mode only).
 
@@ -470,26 +462,26 @@ Use the keyword "ultrathink" in your prompt for maximum reasoning effort on a sp
 
 ### Quick Review (Print Mode)
 ```
-terminal(command="cd /path/to/repo && git diff main...feature-branch | claude -p 'Review this diff for bugs, security issues, and style problems. Be thorough.' --max-turns 1", timeout=60)
+cd /path/to/repo && git diff main...feature-branch | claude -p 'Review this diff for bugs, security issues, and style problems. Be thorough.' --max-turns 1
 ```
 
 ### Deep Review (Interactive + Worktree)
 ```
-terminal(command="tmux new-session -d -s review -x 140 -y 40")
-terminal(command="tmux send-keys -t review 'cd /path/to/repo && claude -w pr-review' Enter")
-terminal(command="sleep 5 && tmux send-keys -t review Enter")  # Trust dialog
-terminal(command="sleep 2 && tmux send-keys -t review 'Review all changes vs main. Check for bugs, security issues, race conditions, and missing tests.' Enter")
-terminal(command="sleep 30 && tmux capture-pane -t review -p -S -60")
+tmux new-session -d -s review -x 140 -y 40
+tmux send-keys -t review 'cd /path/to/repo && claude -w pr-review' Enter
+sleep 5 && tmux send-keys -t review Enter  # Trust dialog
+sleep 2 && tmux send-keys -t review 'Review all changes vs main. Check for bugs, security issues, race conditions, and missing tests.' Enter
+sleep 30 && tmux capture-pane -t review -p -S -60
 ```
 
 ### PR Review from Number
 ```
-terminal(command="claude -p 'Review this PR thoroughly' --from-pr 42 --max-turns 10", workdir="/path/to/repo", timeout=120)
+cd /path/to/repo && claude -p 'Review this PR thoroughly' --from-pr 42 --max-turns 10
 ```
 
 ### Claude Worktree with tmux
 ```
-terminal(command="claude -w feature-x --tmux", workdir="/path/to/repo")
+cd /path/to/repo && claude -w feature-x --tmux
 ```
 Creates an isolated git worktree at `.claude/worktrees/feature-x` AND a tmux session for it. Uses iTerm2 native panes when available; add `--tmux=classic` for traditional tmux.
 
@@ -499,16 +491,16 @@ Run multiple independent Claude tasks simultaneously:
 
 ```
 # Task 1: Fix backend
-terminal(command="tmux new-session -d -s task1 -x 140 -y 40 && tmux send-keys -t task1 'cd ~/project && claude -p \"Fix the auth bug in src/auth.py\" --allowedTools \"Read,Edit\" --max-turns 10' Enter")
+tmux new-session -d -s task1 -x 140 -y 40 && tmux send-keys -t task1 'cd ~/project && claude -p "Fix the auth bug in src/auth.py" --allowedTools "Read,Edit" --max-turns 10' Enter
 
 # Task 2: Write tests
-terminal(command="tmux new-session -d -s task2 -x 140 -y 40 && tmux send-keys -t task2 'cd ~/project && claude -p \"Write integration tests for the API endpoints\" --allowedTools \"Read,Write,Bash\" --max-turns 15' Enter")
+tmux new-session -d -s task2 -x 140 -y 40 && tmux send-keys -t task2 'cd ~/project && claude -p "Write integration tests for the API endpoints" --allowedTools "Read,Write,Bash" --max-turns 15' Enter
 
 # Task 3: Update docs
-terminal(command="tmux new-session -d -s task3 -x 140 -y 40 && tmux send-keys -t task3 'cd ~/project && claude -p \"Update README.md with the new API endpoints\" --allowedTools \"Read,Edit\" --max-turns 5' Enter")
+tmux new-session -d -s task3 -x 140 -y 40 && tmux send-keys -t task3 'cd ~/project && claude -p "Update README.md with the new API endpoints" --allowedTools "Read,Edit" --max-turns 5' Enter
 
 # Monitor all
-terminal(command="sleep 30 && for s in task1 task2 task3; do echo '=== '$s' ==='; tmux capture-pane -t $s -p -S -5 2>/dev/null; done")
+sleep 30 && for s in task1 task2 task3; do echo '=== '$s' ==='; tmux capture-pane -t $s -p -S -5 2>/dev/null; done
 ```
 
 ## CLAUDE.md — Project Context File
@@ -578,7 +570,7 @@ Invoke via: `@security-reviewer review the auth module`
 
 ### Dynamic Agents via CLI
 ```
-terminal(command="claude --agents '{\"reviewer\": {\"description\": \"Reviews code\", \"prompt\": \"You are a code reviewer focused on performance\"}}' -p 'Use @reviewer to check auth.py'", timeout=120)
+claude --agents '{"reviewer": {"description": "Reviews code", "prompt": "You are a code reviewer focused on performance"}}' -p 'Use @reviewer to check auth.py'
 ```
 
 Claude can orchestrate multiple agents: "Use @db-expert to optimize queries, then @security to audit the changes."
@@ -640,13 +632,13 @@ Add external tool servers for databases, APIs, and services:
 
 ```
 # GitHub integration
-terminal(command="claude mcp add -s user github -- npx @modelcontextprotocol/server-github", timeout=30)
+claude mcp add -s user github -- npx @modelcontextprotocol/server-github
 
 # PostgreSQL queries
-terminal(command="claude mcp add -s local postgres -- npx @anthropic-ai/server-postgres --connection-string postgresql://localhost/mydb", timeout=30)
+claude mcp add -s local postgres -- npx @anthropic-ai/server-postgres --connection-string postgresql://localhost/mydb
 
 # Puppeteer for web testing
-terminal(command="claude mcp add puppeteer -- npx @anthropic-ai/server-puppeteer", timeout=30)
+claude mcp add puppeteer -- npx @anthropic-ai/server-puppeteer
 ```
 
 ### MCP Scopes
@@ -658,7 +650,7 @@ terminal(command="claude mcp add puppeteer -- npx @anthropic-ai/server-puppeteer
 
 ### MCP in Print/CI Mode
 ```
-terminal(command="claude --bare -p 'Query database' --mcp-config mcp-servers.json --strict-mcp-config", timeout=60)
+claude --bare -p 'Query database' --mcp-config mcp-servers.json --strict-mcp-config
 ```
 `--strict-mcp-config` ignores all MCP servers except those from `--mcp-config`.
 
@@ -675,7 +667,7 @@ Reference MCP resources in chat: `@github:issue://123`
 ### Reading the TUI Status
 ```
 # Periodic capture to check if Claude is still working or waiting for input
-terminal(command="tmux capture-pane -t dev -p -S -10")
+tmux capture-pane -t dev -p -S -10
 ```
 
 Look for these indicators:
@@ -718,7 +710,7 @@ Use `/context` in interactive mode to see a colored grid of context usage. Key t
 
 ## Pitfalls & Gotchas
 
-1. **Interactive mode REQUIRES tmux** — Claude Code is a full TUI app. Using `pty=true` alone in Hermes terminal works but tmux gives you `capture-pane` for monitoring and `send-keys` for input, which is essential for orchestration.
+1. **Interactive mode REQUIRES tmux** — Claude Code is a full TUI app. A PTY alone may work, but tmux gives you `capture-pane` for monitoring and `send-keys` for input, which is essential for this orchestration workflow.
 2. **`--dangerously-skip-permissions` dialog defaults to "No, exit"** — you must send Down then Enter to accept. Print mode (`-p`) skips this entirely.
 3. **`--max-budget-usd` minimum is ~$0.05** — system prompt cache creation alone costs this much. Setting lower will error immediately.
 4. **`--max-turns` is print-mode only** — ignored in interactive sessions.
@@ -731,7 +723,7 @@ Use `/context` in interactive mode to see a colored grid of context usage. Key t
 11. **`--bare` skips OAuth** — requires `ANTHROPIC_API_KEY` env var or an `apiKeyHelper` in settings.
 12. **Context degradation is real** — AI output quality measurably degrades above 70% context window usage. Monitor with `/context` and proactively `/compact`.
 
-## Rules for Hermes Agents
+## Rules for Orchestrating Agents
 
 1. **Prefer print mode (`-p`) for single tasks** — cleaner, no dialog handling, structured output
 2. **Use tmux for multi-turn interactive work** — the only reliable way to orchestrate the TUI

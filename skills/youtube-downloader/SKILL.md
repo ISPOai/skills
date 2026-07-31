@@ -7,15 +7,21 @@ description: Download YouTube videos with customizable quality and format option
 
 Download YouTube videos with full control over quality and format settings.
 
+Before invoking the helper, resolve `youtube_downloader_dir` to the directory
+containing this `SKILL.md`. `yt-dlp` is a declared prerequisite: if it is not
+available, report that requirement instead of modifying the user's Python or
+system package environment.
+
 ## Quick Start
 
 The simplest way to download a video:
 
 ```bash
-python scripts/download_video.py "https://www.youtube.com/watch?v=VIDEO_ID"
+python "$youtube_downloader_dir/scripts/download_video.py" "https://www.youtube.com/watch?v=VIDEO_ID"
 ```
 
-This downloads the video in best available quality as MP4 to `/mnt/user-data/outputs/`.
+This downloads the video in best available quality as MP4 to
+`./outputs/youtube/` in the active workspace.
 
 ## Options
 
@@ -32,7 +38,7 @@ Use `-q` or `--quality` to specify video quality:
 
 Example:
 ```bash
-python scripts/download_video.py "URL" -q 720p
+python "$youtube_downloader_dir/scripts/download_video.py" "URL" -q 720p
 ```
 
 ### Format Options
@@ -45,7 +51,7 @@ Use `-f` or `--format` to specify output format (video downloads only):
 
 Example:
 ```bash
-python scripts/download_video.py "URL" -f webm
+python "$youtube_downloader_dir/scripts/download_video.py" "URL" -f webm
 ```
 
 ### Audio Only
@@ -53,7 +59,7 @@ python scripts/download_video.py "URL" -f webm
 Use `-a` or `--audio-only` to download only audio as MP3:
 
 ```bash
-python scripts/download_video.py "URL" -a
+python "$youtube_downloader_dir/scripts/download_video.py" "URL" -a
 ```
 
 ### Custom Output Directory
@@ -61,30 +67,30 @@ python scripts/download_video.py "URL" -a
 Use `-o` or `--output` to specify a different output directory:
 
 ```bash
-python scripts/download_video.py "URL" -o /path/to/directory
+python "$youtube_downloader_dir/scripts/download_video.py" "URL" -o /path/to/directory
 ```
 
 ## Complete Examples
 
 1. Download video in 1080p as MP4:
 ```bash
-python scripts/download_video.py "https://www.youtube.com/watch?v=dQw4w9WgXcQ" -q 1080p
+python "$youtube_downloader_dir/scripts/download_video.py" "https://www.youtube.com/watch?v=dQw4w9WgXcQ" -q 1080p
 ```
 
 2. Download audio only as MP3:
 ```bash
-python scripts/download_video.py "https://www.youtube.com/watch?v=dQw4w9WgXcQ" -a
+python "$youtube_downloader_dir/scripts/download_video.py" "https://www.youtube.com/watch?v=dQw4w9WgXcQ" -a
 ```
 
 3. Download in 720p as WebM to custom directory:
 ```bash
-python scripts/download_video.py "https://www.youtube.com/watch?v=dQw4w9WgXcQ" -q 720p -f webm -o /custom/path
+python "$youtube_downloader_dir/scripts/download_video.py" "https://www.youtube.com/watch?v=dQw4w9WgXcQ" -q 720p -f webm -o /custom/path
 ```
 
 ## How It Works
 
 The skill uses `yt-dlp`, a robust YouTube downloader that:
-- Automatically installs itself if not present
+- Requires the declared `yt-dlp` command; the helper does not install packages
 - Fetches video information before downloading
 - Selects the best available streams matching your criteria
 - Merges video and audio streams when needed
@@ -92,8 +98,9 @@ The skill uses `yt-dlp`, a robust YouTube downloader that:
 
 ## Important Notes
 
-- Downloads are saved to `/mnt/user-data/outputs/` by default
+- Downloads are saved to `./outputs/youtube/` by default
 - Video filename is automatically generated from the video title
-- The script handles installation of yt-dlp automatically
+- A missing `yt-dlp` prerequisite produces an actionable error without changing
+  the ambient package environment
 - Only single videos are downloaded (playlists are skipped by default)
 - Higher quality videos may take longer to download and use more disk space

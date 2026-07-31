@@ -8,11 +8,12 @@ Step 2 of the main workflow.
 ## Flow 1 — Local image
 
 **Typical input:** the user uploads a PNG/JPG/WebP, or passes a path like
-`/mnt/user-data/uploads/ref.png`.
+the attached or local file path exposed by the current agent environment.
 
 **What to do:**
 1. The image is already available via multimodal vision. **No script needed.**
-2. If the path is in `/mnt/user-data/uploads/`, you can reference it directly.
+2. Use the exact attached/local path supplied by the current environment. Do
+   not assume a provider-specific uploads directory.
 3. If you need pixel-precise hex codes for the dominant colors (vision is approximating),
    run `python scripts/extract_colors.py <image-path>` — it returns dominant colors with area
    percentages.
@@ -34,7 +35,7 @@ Step 2 of the main workflow.
 
 ### Step 2.1 — Fetch the HTML
 
-Use the `WebFetch` tool with the URL. This retrieves raw HTML without executing JavaScript.
+Use the runtime's web-fetching capability with the URL. Retrieve raw HTML without executing JavaScript.
 
 Review the HTML for signs of **real content**:
 
@@ -78,10 +79,10 @@ This fetches the HTML, discovers every `<link rel="stylesheet">` and inline `<st
 downloads them, and extracts all `--name: value;` definitions grouped by inferred category
 (color / spacing / typography / radius / other). Stdlib only — no pip install required.
 
-**B. Manual via WebFetch (when you only have one or two stylesheets and want fine control):**
+**B. Manual web fetch (when you only have one or two stylesheets and want fine control):**
 
 1. Parse the HTML response for `<link rel="stylesheet" href="...">`.
-2. For each href (resolving relative URLs against the base), call `WebFetch` with a prompt
+2. For each href (resolving relative URLs against the base), fetch it with an instruction
    like *"Return only the CSS custom property definitions — lines containing `--*: value;`"*.
 3. Manually map each variable to its semantic role for the token table.
 
@@ -147,8 +148,8 @@ Warn them so they're not surprised.
 **Typical input:** a URL like `https://www.figma.com/file/<key>/...` or
 `https://www.figma.com/design/<key>/...` or a specific node with `?node-id=...`.
 
-**Prerequisite:** the user must have the Figma MCP connected. If not, tell them they need to
-connect it from the Claude app before continuing.
+**Prerequisite:** the user must have a Figma MCP or equivalent authenticated API
+connected to the current host. If not, explain that requirement before continuing.
 
 ### Step 3.1 — Identify the scope
 
@@ -156,19 +157,19 @@ connect it from the Claude app before continuing.
   a link to a specific frame/page.
 - **URL with `node-id`** → already scoped. Better.
 
-### Step 3.2 — MCP tools in order
+### Step 3.2 — MCP capabilities in order
 
-1. **`get_metadata`** → first, to understand the structure of the file/node (what's inside,
+1. **Retrieve metadata** → first, to understand the structure of the file/node (what's inside,
    what element types, hierarchy). Orients you before requesting heavy content.
 
-2. **`get_variable_defs`** → if the file uses Figma Variables (colors, spacing, typography),
+2. **Retrieve variable definitions** → if the file uses Figma Variables (colors, spacing, typography),
    you have them explicit here. **This is gold:** they're the design system tokens already
    structured by the designer. No need to infer them.
 
-3. **`get_design_context`** → detailed content of the node. Returns components, properties,
+3. **Retrieve design context** → detailed content of the node. Returns components, properties,
    values. Richest but also most token-expensive. Request it after having the overview.
 
-4. **`get_screenshot`** → if you need visual reference besides structure (useful for Layer 1
+4. **Capture a screenshot** → if you need visual reference besides structure (useful for Layer 1
    "Identity" — mood, personality).
 
 ### Step 3.3 — Advantage of the Figma flow
@@ -178,7 +179,8 @@ inferring from pixels, you **document** what the designer already defined and ad
 interpretation (mood, implicit components, system decisions).
 
 Mark this in the `design.md`: tokens with ✅ high confidence are those that came from
-`get_variable_defs`, not those you inferred yourself.
+the MCP's variable-definition operation, not those you inferred yourself. Inspect
+the connected tool schema because exact function names differ between integrations.
 
 ---
 

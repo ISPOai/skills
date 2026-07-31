@@ -1,26 +1,14 @@
 ---
 name: himalaya
 description: "Himalaya CLI: IMAP/SMTP email from terminal."
-version: 1.1.0
-author: community
-license: MIT
-platforms: [linux, macos, windows]
-metadata:
-  hermes:
-    tags: [Email, IMAP, SMTP, CLI, Communication]
-    homepage: https://github.com/pimalaya/himalaya
-prerequisites:
-  commands: [himalaya]
 ---
 
 # Himalaya Email CLI
 
 Himalaya is a CLI email client that lets you manage emails from the terminal using IMAP, SMTP, Notmuch, or Sendmail backends.
 
-This skill is separate from the Hermes Email gateway adapter. The gateway
-adapter lets people email the agent and uses Hermes' built-in IMAP/SMTP
-adapter; this skill lets the agent operate a mailbox from terminal tools and
-requires the external `himalaya` CLI.
+This skill lets any local agent operate a mailbox through the external
+`himalaya` CLI. It does not depend on an agent runtime's built-in email gateway.
 
 ## References
 
@@ -99,12 +87,20 @@ folder.aliases.trash = "Trash"
 > emails to recipients. Always use `folder.aliases.X` (plural, dotted
 > keys, directly under `[accounts.NAME]`).
 
-## Hermes Integration Notes
+## Agent integration notes
 
-- **Reading, listing, searching, moving, deleting** all work directly through the terminal tool
+- **Reading, listing, and searching** work directly through a shell tool
 - **Composing/replying/forwarding** — piped input (`cat << EOF | himalaya template send`) is recommended for reliability. Interactive `$EDITOR` mode works with `pty=true` + background + process tool, but requires knowing the editor and its commands
 - Use `--output json` for structured output that's easier to parse programmatically
-- The `himalaya account configure` wizard requires interactive input — use PTY mode: `terminal(command="himalaya account configure", pty=true)`
+- The `himalaya account configure` wizard requires interactive input; use the
+  runtime's PTY-capable shell mode
+
+Reading is the default. Before sending, replying, forwarding, moving, or
+deleting mail, show the account, recipients or message IDs, and content or
+effect, then get explicit user approval unless the user already requested that
+exact mailbox action. A send command can deliver successfully even if saving to
+Sent fails, so never retry a send solely because the process exited non-zero;
+check Sent before retrying.
 
 ## Common Operations
 
@@ -156,7 +152,7 @@ himalaya message export 42 --full
 
 ### Reply to an Email
 
-To reply non-interactively from Hermes, read the original message, compose a reply, and pipe it:
+To reply non-interactively from an agent, read the original message, compose a reply, and pipe it:
 
 ```bash
 # Get the reply template, edit it, and send
@@ -191,7 +187,7 @@ himalaya template forward 42 | sed 's/^To:.*/To: newrecipient@example.com/' | hi
 
 ### Write a New Email
 
-**Non-interactive (use this from Hermes)** — pipe the message via stdin:
+**Non-interactive agent workflow** — pipe the message via stdin:
 
 ```bash
 cat << 'EOF' | himalaya template send

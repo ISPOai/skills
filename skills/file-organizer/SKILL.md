@@ -34,7 +34,7 @@ This skill acts as your personal organization assistant, helping you maintain a 
 cd ~
 ```
 
-Then run Claude Code and ask for help:
+Then start a local agent session and ask for help:
 
 ```
 Help me organize my Downloads folder
@@ -430,4 +430,3 @@ Documents folder.
 - Cleaning up before storage cleanup
 - Organizing shared team folders
 - Structuring new project directories
-

@@ -1,14 +1,6 @@
 ---
 name: python-debugpy
 description: "Debug Python: pdb REPL + debugpy remote (DAP)."
-version: 1.0.0
-author: Hermes Agent
-license: MIT
-platforms: [linux, macos]
-metadata:
-  hermes:
-    tags: [debugging, python, pdb, debugpy, breakpoints, dap, post-mortem]
-    related_skills: [systematic-debugging, node-inspect-debugger]
 ---
 
 # Python Debugger (pdb + debugpy)
@@ -29,7 +21,7 @@ Three tools, picked by situation:
 
 - A test fails and the traceback doesn't reveal why a value is wrong
 - You need to step through a function and watch a collection mutate
-- A long-running process (hermes gateway, tui_gateway) misbehaves and you can't restart it
+- A long-running service, worker, or daemon misbehaves and you can't restart it
 - Post-mortem: an exception fired in prod-ish code and you want to inspect locals at the crash site
 - A subprocess / child (Python `_SlashWorker`, PTY bridge worker) is the actual bug site
 
@@ -94,27 +86,29 @@ python -m pdb path/to/script.py arg1 arg2
 
 ## Recipe 3: Debug a pytest test
 
-The hermes test runner and pytest both support this:
+Pytest supports this directly:
 
 ```bash
 # Drop to pdb on failure (or on any raised exception):
-scripts/run_tests.sh tests/path/to/test_file.py::test_name --pdb
+python -m pytest tests/path/to/test_file.py::test_name --pdb
 
 # Drop to pdb at the START of the test:
-scripts/run_tests.sh tests/path/to/test_file.py::test_name --trace
+python -m pytest tests/path/to/test_file.py::test_name --trace
 
 # Show locals in tracebacks without pdb:
-scripts/run_tests.sh tests/path/to/test_file.py --showlocals --tb=long
+python -m pytest tests/path/to/test_file.py --showlocals --tb=long
 ```
 
-Note: `scripts/run_tests.sh` runs each test file in a captured subprocess via `run_tests_parallel.py` (no xdist), so interactive pdb does NOT work under the wrapper. Run pytest directly for `--pdb`:
+Note: interactive pdb does not work through a parallel or output-capturing test
+wrapper. Run pytest directly for `--pdb`.
 
 ```bash
 source .venv/bin/activate
 python -m pytest tests/foo_test.py::test_bar --pdb
 ```
 
-This bypasses the hermetic-env guarantees — fine for debugging, but re-run under the wrapper to confirm before pushing.
+This may bypass a project's normal hermetic test wrapper. After debugging,
+re-run the project's standard test command before reporting success.
 
 ## Recipe 4: Post-mortem on any exception
 
@@ -144,12 +138,12 @@ sys.excepthook = excepthook
 
 ## Recipe 5: Remote debug with debugpy (attach to running process)
 
-For long-lived processes: Hermes gateway, tui_gateway, a daemon, a process that's already misbehaving and can't be restarted clean.
+For long-lived services, workers, daemons, or processes that cannot be restarted cleanly.
 
 ### Setup
 
 ```bash
-source /home/bb/hermes-agent/.venv/bin/activate
+source .venv/bin/activate
 pip install debugpy
 ```
 
@@ -188,14 +182,16 @@ python -m debugpy --listen 127.0.0.1:5678 --pid <pid>
 # debugpy injects itself into the process. Then attach a client as below.
 ```
 
-Some kernels/security configs block the ptrace-based injection (`/proc/sys/kernel/yama/ptrace_scope`). Fix with:
-```bash
-echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
-```
+Some kernels/security configs block ptrace-based injection
+(`/proc/sys/kernel/yama/ptrace_scope`). Do not weaken a host security policy
+automatically. Prefer launching the target under `debugpy`; only change ptrace
+policy when the user explicitly authorizes that system-level consequence.
 
 ### Connecting a client from the terminal
 
-The easiest terminal-side DAP client is VS Code CLI or a small script. From inside Hermes you have two practical options:
+The easiest DAP client is an editor such as VS Code, Cursor, or Zed. A small
+protocol client is possible but is not a substitute for a complete interactive
+debugger.
 
 **Option 1: `debugpy`'s own CLI REPL** — not an official feature, but a tiny DAP client script:
 
@@ -240,13 +236,13 @@ This is fine for one-off automation but painful as an interactive UX.
 
 ```json
 {
-  "name": "Attach to Hermes",
+  "name": "Attach to Python service",
   "type": "debugpy",
   "request": "attach",
   "connect": { "host": "127.0.0.1", "port": 5678 },
   "justMyCode": false,
   "pathMappings": [
-    { "localRoot": "${workspaceFolder}", "remoteRoot": "/home/bb/hermes-agent" }
+    { "localRoot": "${workspaceFolder}", "remoteRoot": "/path/inside/target" }
   ]
 }
 ```
@@ -271,42 +267,20 @@ nc 127.0.0.1 4444
 
 `remote-pdb` is the cleanest agent-friendly choice when `debugpy`'s DAP protocol is overkill. Use `debugpy` only when you actually need IDE integration.
 
-## Debugging Hermes-specific Processes
+## Debugging Long-Lived and Child Processes
 
-### Tests
-See Recipe 3. The wrapper captures subprocess output, so run pytest directly for interactive pdb.
-
-### `run_agent.py` / CLI — one-shot
-Easiest: add `breakpoint()` near the suspect line, then run `hermes` normally. Control returns to your terminal at the pause point.
-
-### `tui_gateway` subprocess (spawned by `hermes --tui`)
-The gateway runs as a child of the Node TUI. Options:
-
-**A. Source-edit the gateway:**
-```python
-# tui_gateway/server.py near the top of serve()
-import debugpy
-debugpy.listen(("127.0.0.1", 5678))
-debugpy.wait_for_client()
-```
-Start `hermes --tui`. The TUI will appear frozen (its backend is waiting). Attach a client; execution resumes when you `continue`.
-
-**B. Use `remote-pdb` at a specific handler:**
-```python
-from remote_pdb import set_trace
-set_trace(host="127.0.0.1", port=4444)   # in the RPC handler you want to trap
-```
-Trigger the matching slash command from the TUI, then `nc 127.0.0.1 4444` in another terminal.
-
-### `_SlashWorker` subprocess
-Same pattern — `remote-pdb` with `set_trace()` inside the worker's `exec` path. The worker is persistent across slash commands, so the first trigger blocks until you connect; subsequent slash commands pass through normally unless you re-arm.
-
-### Gateway (`gateway/run.py`)
-Long-lived. Use `remote-pdb` at a handler, or `debugpy` with `--wait-for-client` if you're restarting the gateway anyway.
+- For a restartable service, launch it under `python -m debugpy` and attach an
+  editor client.
+- For a process that cannot be restarted, use PID attach only when the user has
+  authorized process tracing and the operating system permits it.
+- For a child worker, place `remote-pdb` or `debugpy` inside the child entry
+  point; a breakpoint in the parent will not follow a fork automatically.
+- For captured test runners, reproduce with one direct pytest invocation before
+  attaching an interactive debugger.
 
 ## Common Pitfalls
 
-1. **pdb under a parallel/output-capturing runner silently does nothing.** You won't see the prompt, the test just hangs (true of pytest-xdist and of `scripts/run_tests.sh`'s captured per-file subprocesses). Run pytest directly on a single file for interactive debugging.
+1. **pdb under a parallel/output-capturing runner silently does nothing.** You won't see the prompt and the test may hang. Run pytest directly on a single file for interactive debugging.
 
 2. **`breakpoint()` in CI / non-TTY contexts hangs the process.** Safe locally; never commit it. Add a pre-commit grep as a safety net.
 
@@ -317,15 +291,17 @@ Long-lived. Use `remote-pdb` at a handler, or `debugpy` with `--wait-for-client`
 
 4. **`debugpy.listen` blocks only if you also call `wait_for_client()`.** Without it, execution continues and your first breakpoint may fire before the client is attached.
 
-5. **Attach to PID fails on hardened kernels.** `ptrace_scope=1` (Ubuntu default) allows only same-user ptrace of child processes. Workaround: `echo 0 > /proc/sys/kernel/yama/ptrace_scope` (needs root) or launch under `debugpy` from the start.
+5. **Attach to PID fails on hardened kernels.** `ptrace_scope=1` (Ubuntu default) allows only same-user ptrace of child processes. Prefer launching under `debugpy` from the start; do not weaken host ptrace policy without explicit user authorization.
 
 6. **Threads.** `pdb` only debugs the current thread. For multithreaded code, use `debugpy` (thread-aware DAP) or set `threading.settrace()` per thread.
 
 7. **asyncio.** `pdb` works in coroutines but `await` inside pdb requires Python 3.13+ or `await` from `interact` mode on older versions. For 3.11/3.12, use `asyncio.run_coroutine_threadsafe` tricks or `!stmt`-based awaits via `asyncio.ensure_future`.
 
-8. **`scripts/run_tests.sh` strips credentials and sets `HOME=<tmpdir>`.** If your bug depends on user config or real API keys, it won't reproduce under the wrapper. Debug with raw `pytest` first to repro, then re-confirm under the wrapper.
+8. **Hermetic wrappers may strip credentials or replace the home directory.** If
+   a bug depends on user configuration, reproduce with the project's approved
+   local command, then re-confirm under the wrapper without exposing secrets.
 
-9. **Forking / multiprocessing.** pdb does not follow forks. Each child needs its own `breakpoint()` or `set_trace()`. For Hermes subagents, debug one process at a time.
+9. **Forking / multiprocessing.** pdb does not follow forks. Each child needs its own `breakpoint()` or `set_trace()`. Debug one process at a time.
 
 ## Verification Checklist
 
@@ -352,7 +328,7 @@ breakpoint()
 
 **"This test passes in isolation but fails in the suite."**
 ```bash
-scripts/run_tests.sh tests/the_test.py   # confirm it fails under the isolated runner first
+python -m pytest tests/the_test.py       # confirm the failure directly first
 # For interactive debugging, or if it only fails WITH other tests:
 source .venv/bin/activate
 python -m pytest tests/ -x --pdb

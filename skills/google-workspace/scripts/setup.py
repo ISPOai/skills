@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Google Workspace OAuth2 setup for Hermes Agent.
+"""Provider-neutral Google Workspace OAuth2 setup.
 
 Fully non-interactive — designed to be driven by the agent via terminal commands.
 The agent mediates between this script and the user (works on CLI, Telegram, Discord, etc.)
@@ -31,17 +31,17 @@ import subprocess
 import sys
 from pathlib import Path
 
-# Ensure sibling modules (_hermes_home) are importable when run standalone.
+# Ensure sibling modules are importable when run standalone.
 _SCRIPTS_DIR = str(Path(__file__).resolve().parent)
 if _SCRIPTS_DIR not in sys.path:
     sys.path.insert(0, _SCRIPTS_DIR)
 
-from _hermes_home import display_hermes_home, get_hermes_home
+from _storage import display_google_workspace_home, get_google_workspace_home
 
-HERMES_HOME = get_hermes_home()
-TOKEN_PATH = HERMES_HOME / "google_token.json"
-CLIENT_SECRET_PATH = HERMES_HOME / "google_client_secret.json"
-PENDING_AUTH_PATH = HERMES_HOME / "google_oauth_pending.json"
+GOOGLE_WORKSPACE_HOME = get_google_workspace_home()
+TOKEN_PATH = GOOGLE_WORKSPACE_HOME / "google_token.json"
+CLIENT_SECRET_PATH = GOOGLE_WORKSPACE_HOME / "google_client_secret.json"
+PENDING_AUTH_PATH = GOOGLE_WORKSPACE_HOME / "google_oauth_pending.json"
 
 SCOPES = [
     "https://www.googleapis.com/auth/gmail.readonly",
@@ -60,6 +60,14 @@ REQUIRED_PACKAGES = ["google-api-python-client", "google-auth-oauthlib", "google
 # Google deprecated OOB, so we use a localhost redirect and tell the user to
 # copy the code from the browser's URL bar (or the page body).
 REDIRECT_URI = "http://localhost:1"
+
+
+def _ensure_storage_dir() -> None:
+    GOOGLE_WORKSPACE_HOME.mkdir(parents=True, exist_ok=True)
+    try:
+        GOOGLE_WORKSPACE_HOME.chmod(0o700)
+    except OSError:
+        pass
 
 
 def _normalize_authorized_user_payload(payload: dict) -> dict:
@@ -89,7 +97,7 @@ def _format_missing_scopes(missing_scopes: list[str]) -> str:
     return (
         "Token is valid but missing required Google Workspace scopes:\n"
         f"{bullets}\n"
-        "Run the Google Workspace setup again from this same Hermes profile to refresh consent."
+        "Run the Google Workspace setup again with the same GOOGLE_WORKSPACE_HOME to refresh consent."
     )
 
 
@@ -116,7 +124,7 @@ def install_deps():
     except subprocess.CalledProcessError as e:
         pip_error = e
 
-    # Fallback: the interpreter has no pip (the Hermes Docker image's venv is
+    # Fallback: the interpreter has no pip (some minimal/Nix environments are
     # built with `uv sync`, which does not bootstrap pip). `uv pip install
     # --python <interpreter>` installs into that exact interpreter without
     # needing pip present. Targeting sys.executable keeps us on the venv the
@@ -138,10 +146,10 @@ def install_deps():
 
     print(f"ERROR: Failed to install dependencies: {pip_error}")
     print(
-        "On environments without pip (e.g. Nix, or the Hermes Docker image's "
+        "On environments without pip (for example Nix or a minimal container "
         "uv-managed venv), install the optional extra instead:"
     )
-    print("  hermes setup")
+    print("  Re-run this setup script after installing the dependencies.")
     print(f"Or manually: {sys.executable} -m pip install {' '.join(REQUIRED_PACKAGES)}")
     return False
 
@@ -222,6 +230,7 @@ def check_auth(quiet: bool = False):
                     indent=2,
                 ), encoding="utf-8"
             )
+            TOKEN_PATH.chmod(0o600)
             missing_scopes = _missing_scopes_from_payload(_load_token_payload(TOKEN_PATH))
             if missing_scopes:
                 print(f"AUTHENTICATED (partial): Token refreshed but missing {len(missing_scopes)} scopes:")
@@ -253,7 +262,7 @@ def check_auth(quiet: bool = False):
 
 
 def store_client_secret(path: str):
-    """Copy and validate client_secret.json to Hermes home."""
+    """Copy and validate client_secret.json to the persistent config directory."""
     src = Path(path).expanduser().resolve()
     if not src.exists():
         print(f"ERROR: File not found: {src}")
@@ -270,12 +279,15 @@ def store_client_secret(path: str):
         print("Download the correct file from: https://console.cloud.google.com/apis/credentials")
         sys.exit(1)
 
+    _ensure_storage_dir()
     CLIENT_SECRET_PATH.write_text(json.dumps(data, indent=2), encoding="utf-8")
+    CLIENT_SECRET_PATH.chmod(0o600)
     print(f"OK: Client secret saved to {CLIENT_SECRET_PATH}")
 
 
 def _save_pending_auth(*, state: str, code_verifier: str):
     """Persist the OAuth session bits needed for a later token exchange."""
+    _ensure_storage_dir()
     PENDING_AUTH_PATH.write_text(
         json.dumps(
             {
@@ -286,6 +298,7 @@ def _save_pending_auth(*, state: str, code_verifier: str):
             indent=2,
         ), encoding="utf-8"
     )
+    PENDING_AUTH_PATH.chmod(0o600)
 
 
 def _load_pending_auth() -> dict:
@@ -410,10 +423,12 @@ def exchange_auth_code(code: str):
         print(f"WARNING: Token missing some Google Workspace scopes: {', '.join(missing_scopes)}")
         print("Some services may not be available.")
 
+    _ensure_storage_dir()
     TOKEN_PATH.write_text(json.dumps(token_payload, indent=2), encoding="utf-8")
+    TOKEN_PATH.chmod(0o600)
     PENDING_AUTH_PATH.unlink(missing_ok=True)
     print(f"OK: Authenticated. Token saved to {TOKEN_PATH}")
-    print(f"Profile-scoped token location: {display_hermes_home()}/google_token.json")
+    print(f"Token location: {display_google_workspace_home()}/google_token.json")
 
 
 def revoke():
@@ -450,7 +465,7 @@ def revoke():
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Google Workspace OAuth setup for Hermes")
+    parser = argparse.ArgumentParser(description="Google Workspace OAuth setup")
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument("--check", action="store_true", help="Check if auth is valid (exit 0=yes, 1=no)")
     group.add_argument("--check-live", action="store_true", help="Check auth with a real API call (detects disabled_client)")

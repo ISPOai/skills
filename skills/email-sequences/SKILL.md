@@ -1,9 +1,6 @@
 ---
 name: email-sequences
 description: "Design and write email campaigns and sequences including onboarding flows, lifecycle campaigns, transactional emails, newsletters, broadcast sends, and launch and announcement emails. Use this skill whenever the user wants to write email copy, plan an email sequence, design an onboarding drip, or set up lifecycle email campaigns. Triggers on email sequence, drip campaign, onboarding email, lifecycle email, welcome email, transactional email, newsletter, email broadcast, launch email, announcement email, nurture sequence, abandoned cart, re-engagement, win-back. Also triggers when planning email automation flows or writing email subject lines for campaigns."
-category: content
-catalog_summary: "Onboarding flows, lifecycle campaigns, transactional copy"
-display_order: 5
 ---
 
 # Email Sequences

@@ -1,9 +1,6 @@
 ---
 name: data-warehouse-experimentation
 description: "Running experiments out of the data warehouse instead of via dedicated experiment platforms. SQL-based assignment, exposure logging discipline, metric definitions in dbt models, statistical analysis in SQL or Python, variance reduction with CUPED, sequential testing, and the operational tradeoffs vs platforms like Statsig and Optimizely. Triggers on warehouse-native experimentation, run experiments in BigQuery, run experiments in Snowflake, dbt experiments, SQL t-test, CUPED variance reduction, exposure log, sample ratio mismatch, sequential testing, mSPRT, doubly robust estimation, build vs buy experimentation. Also triggers when the team is choosing between platform and warehouse, building warehouse-native experiment infrastructure, auditing one, or running an experiment with a custom metric the platform cannot handle."
-category: product
-catalog_summary: "Run experiments out of the warehouse: SQL assignment, exposure logs, dbt metric definitions, statistical analysis, variance reduction with CUPED, sequential testing, and the operational tradeoffs vs platforms"
-display_order: 9
 ---
 
 # Data Warehouse Experimentation

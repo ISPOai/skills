@@ -1,9 +1,6 @@
 ---
 name: ads-creative-development
 description: "How to produce ad creative that converts at performance scale. Hook patterns, format selection, video pacing, variation systems, sequential testing methodology, fatigue detection, brand-voice alignment without conversion dilution, and platform-specific creative norms. Triggers on ad creative, ad design, hook patterns, ad video pacing, creative testing, ad variations, creative refresh, creative fatigue, refresh ad creative, video ads for Meta, TikTok creative, LinkedIn ad creative, ad asset library. Also triggers when a team is producing creative at scale, planning a creative test cycle, or auditing why creative is not converting."
-category: marketing
-catalog_summary: "Hook patterns, format selection, video pacing, variation systems, testing methodology, fatigue detection, and the platform-specific creative norms that separate ads from clutter"
-display_order: 2
 ---
 
 # Ads Creative Development

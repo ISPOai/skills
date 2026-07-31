@@ -1,9 +1,6 @@
 ---
 name: interactive-product-tour
 description: "Designing in-product tours, tooltips, and contextual help that teach product capabilities without becoming friction. Trigger logic, tour architecture, contextual placement, completion tracking. Honest about tooltip-spam (visual noise that users develop blindness to), one-and-done (help invisible at the moment of need), and contextual-when-needed (surfaces help at the moment friction occurs) patterns. Triggers on product tour, in-product tooltip, contextual help, walkthrough, feature tour, hint system, in-app guidance, tour platform. Also triggers when feature adoption is low, when users miss key product capabilities, or when an in-product help system is being scoped for the first time."
-category: growth-tooling
-catalog_summary: "Designing in-product tours and contextual help. Distinguishes tooltip-spam (every button has a tour stop) from one-and-done (tour shows once, never seen again) from contextual-when-needed (surfaces help at the moment friction occurs)"
-display_order: 8
 ---
 
 # Interactive Product Tour

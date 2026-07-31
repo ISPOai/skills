@@ -260,7 +260,7 @@ Real bundle from the Vercel run:
 - **🧩 Tokens from a screenshot** — *"Pull the palette and typography from this Dribbble shot."* Direct vision + `extract_colors.py` for pixel-precise hexes, confidence-marked.
 - **🪄 Copy one element — including art** — *"Give me a prompt to generate this 3D blob for my own palette."* Element mode: token-grounded image prompt + consistency notes telling you which hex to swap for *your* brand.
 - **🛠️ Brief an AI builder** — *"A portfolio like vercel.com but simpler — give me something I can hand to v0."* Reconstruction-emphasis `design.md`, paste and go.
-- **🎯 Audit a Figma handoff** — declared variables (`get_variable_defs`) cross-referenced against actual usage; inconsistencies land in Open Questions.
+- **🎯 Audit a Figma handoff** — declared variables from the connected MCP cross-referenced against actual usage; inconsistencies land in Open Questions.
 - **🔍 Design vs production** — pass the Figma file *and* the live site; get a discrepancies section: diverged tokens, off-spec components, missing states.
 - **📚 Document a legacy product** — extract the implicit system your team built without naming it; start from a baseline instead of zero.
 - **♿ WCAG quick-check** — `design-a11y.md` with AA/AAA ratios for every captured text/surface pair.

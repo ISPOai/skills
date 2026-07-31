@@ -1,14 +1,6 @@
 ---
 name: github-repo-management
 description: "Clone/create/fork repos; manage remotes, releases."
-version: 1.1.0
-author: Hermes Agent
-license: MIT
-platforms: [linux, macos, windows]
-metadata:
-  hermes:
-    tags: [GitHub, Repositories, Git, Releases, Secrets, Configuration]
-    related_skills: [github-auth, github-pr-workflow, github-issues]
 ---
 
 # GitHub Repository Management
@@ -19,6 +11,11 @@ Create, clone, fork, configure, and manage GitHub repositories. Each section sho
 
 - Authenticated with GitHub (see `github-auth` skill)
 
+Repository creation, settings changes, collaborator changes, releases, secret
+changes, archival, transfer, and deletion are external mutations. Show the
+target and consequence and get explicit user approval unless the user already
+requested that exact action.
+
 ### Setup
 
 ```bash
@@ -26,13 +23,7 @@ if command -v gh &>/dev/null && gh auth status &>/dev/null; then
   AUTH="gh"
 else
   AUTH="git"
-  if [ -z "$GITHUB_TOKEN" ]; then
-    if _hermes_env="${HERMES_HOME:-$HOME/.hermes}/.env"; [ -f "$_hermes_env" ] && grep -q "^GITHUB_TOKEN=" "$_hermes_env"; then
-      GITHUB_TOKEN=$(grep "^GITHUB_TOKEN=" "$_hermes_env" | head -1 | cut -d= -f2 | tr -d '\n\r')
-    elif grep -q "github.com" ~/.git-credentials 2>/dev/null; then
-      GITHUB_TOKEN=$(uv run python3 "${HERMES_HOME:-$HOME/.hermes}/skills/github/github-auth/scripts/git-credential-token.py")
-    fi
-  fi
+  # API operations require GITHUB_TOKEN to be supplied by the environment.
 fi
 
 # Get your GitHub username (needed for several operations)

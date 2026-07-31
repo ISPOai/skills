@@ -1,9 +1,6 @@
 ---
 name: content-repurposing
 description: "Cross-format content adaptation. Turning one substantial piece into many derivative formats (blog series, email sequences, social posts, webinars, podcasts, video shorts) without losing the original's value or producing AI-slop variants. The discipline of adaptation per medium rather than mass-blast distribution. Triggers on content repurposing, content adaptation, cross-format content, content atomization, content multiplication, content distribution across formats, source-piece-to-derivative, video shorts from blog, email from whitepaper, podcast from article, blog series from research. Also triggers when a flagship piece is shipping but the team has not planned how to extend it across formats, when repurposing is happening but the derivatives feel mass-produced, or when AI-assisted repurposing is producing slop variants of strong source pieces."
-category: content
-catalog_summary: "Cross-format content adaptation: one piece becomes many (blog series, email, social, webinar, podcast, video) with per-format adaptation rather than mass-blast that ignores medium constraints"
-display_order: 11
 ---
 
 # Content Repurposing

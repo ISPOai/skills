@@ -1,16 +1,6 @@
 ---
 name: songwriting-and-ai-music
 description: "Songwriting craft and Suno AI music prompts."
-tags: [songwriting, music, suno, parody, lyrics, creative]
-platforms: [linux, macos, windows]
-triggers:
-  - writing a song
-  - song lyrics
-  - music prompt
-  - suno prompt
-  - parody song
-  - adapting a song
-  - AI music generation
 ---
 
 # Songwriting & AI Music Generation
@@ -290,15 +280,14 @@ Style can drift in extensions — restate genre/mood when extending.
 
 ## 10. Local / Open-Source Music Generation
 
-For local, GPU-based generation instead of Suno, two optional skills
-cover this (heavy dependencies, so not installed by default):
+For local, GPU-based generation instead of Suno, optional HeartMuLa or
+AudioCraft skills may cover this when they are present in the installed
+registry. They have heavy dependencies and are not assumed to exist:
 
 - **heartmula** — full songs with vocals from lyrics + tags
-  (open-source Suno alternative, 8-16GB VRAM):
-  `hermes skills install official/creative/heartmula`
+  (open-source Suno alternative, 8-16GB VRAM)
 - **audiocraft** — Meta's MusicGen (instrumental text-to-music) and
-  AudioGen (sound effects):
-  `hermes skills install official/creative/audiocraft-audio-generation`
+  AudioGen (sound effects)
 
 The lyric-writing and prompting craft in this skill applies to
 heartmula too — its input format is lyrics with bracketed structure

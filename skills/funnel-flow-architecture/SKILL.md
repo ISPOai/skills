@@ -1,9 +1,6 @@
 ---
 name: funnel-flow-architecture
 description: "Architecting cross-tool conversion flows that match audience and stage. Landing page to lead magnet to nurture sequence to offer to advanced funnels. Honest about silo-funnels (every tool standalone), kitchen-sink-funnels (every audience squeezed through one path), and matched-funnels (architecture matched to audience-and-stage) patterns. Triggers on funnel design, conversion architecture, marketing funnel, growth funnel, lifecycle architecture, nurture sequence design, multi-tool funnel orchestration. Also triggers when the team's growth tools are working individually but not together, when audience segments share one nurture path, or when a funnel is being architected from scratch."
-category: growth-tooling
-catalog_summary: "Architecting cross-tool conversion flows that match audience and stage. Distinguishes silo-funnels (every tool standalone) from kitchen-sink-funnels (every audience squeezed through one path) from matched-funnels (architecture matched to audience-and-stage)"
-display_order: 6
 ---
 
 # Funnel Flow Architecture

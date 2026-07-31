@@ -1,10 +1,6 @@
 ---
 name: postgres
 description: "Execute read-only SQL queries against multiple PostgreSQL databases. Use when: (1) querying PostgreSQL databases, (2) exploring database schemas/tables, (3) running SELECT queries for data analysis, (4) checking database contents. Supports multiple database connections with descriptions for intelligent auto-selection. Blocks all write operations (INSERT, UPDATE, DELETE, DROP, etc.) for safety."
-license: Apache-2.0
-metadata:
-  author: sanjay3290
-  version: "1.0"
 ---
 
 # PostgreSQL Read-Only Query Skill
@@ -18,11 +14,15 @@ Execute safe, read-only queries against configured PostgreSQL databases.
 
 ## Setup
 
-Create `connections.json` in the skill directory or `~/.config/claude/postgres-connections.json`.
+Pass an explicit credential file with `--config`, set
+`POSTGRES_SKILL_CONFIG`, or use
+`${XDG_CONFIG_HOME:-$HOME/.config}/ispo/postgres-connections.json`. Never store
+database credentials inside the installed skill directory or commit them to a
+project.
 
 **Security**: Set file permissions to `600` since it contains credentials:
 ```bash
-chmod 600 connections.json
+chmod 600 "${XDG_CONFIG_HOME:-$HOME/.config}/ispo/postgres-connections.json"
 ```
 
 ```json
@@ -57,29 +57,33 @@ chmod 600 connections.json
 
 ## Usage
 
+Resolve `postgres_skill_dir` to the directory containing this `SKILL.md`, then
+invoke the bundled helper by its absolute path. This works regardless of the
+active project directory.
+
 ### List configured databases
 ```bash
-python3 scripts/query.py --list
+python3 "$postgres_skill_dir/scripts/query.py" --list
 ```
 
 ### Query a database
 ```bash
-python3 scripts/query.py --db production --query "SELECT * FROM users LIMIT 10"
+python3 "$postgres_skill_dir/scripts/query.py" --db production --query "SELECT * FROM users LIMIT 10"
 ```
 
 ### List tables
 ```bash
-python3 scripts/query.py --db production --tables
+python3 "$postgres_skill_dir/scripts/query.py" --db production --tables
 ```
 
 ### Show schema
 ```bash
-python3 scripts/query.py --db production --schema
+python3 "$postgres_skill_dir/scripts/query.py" --db production --schema
 ```
 
 ### Limit results
 ```bash
-python3 scripts/query.py --db production --query "SELECT * FROM orders" --limit 100
+python3 "$postgres_skill_dir/scripts/query.py" --db production --query "SELECT * FROM orders" --limit 100
 ```
 
 ## Database Selection
@@ -110,11 +114,11 @@ If unclear, run `--list` and ask user which database.
 
 | Error | Solution |
 |-------|----------|
-| Config not found | Create `connections.json` in skill directory |
+| Config not found | Create the external XDG config or pass `--config` |
 | Authentication failed | Check username/password in config |
 | Connection timeout | Verify host/port, check firewall/VPN |
 | SSL error | Try `"sslmode": "disable"` for local databases |
-| Permission warning | Run `chmod 600 connections.json` |
+| Permission warning | Run `chmod 600` on the external config path |
 
 ## Exit Codes
 

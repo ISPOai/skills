@@ -1,9 +1,6 @@
 ---
 name: product-configurator-design
 description: "Designing build-your-own product configurators (Tesla-style, custom-pricing, plan-builders) with constraint logic, real-time pricing, validation, and save-and-share mechanics. Honest about infinite-options (decision paralysis), canned-bundles-only (no real customization), and guided-configuration (smart defaults plus meaningful constraints plus escape hatches) patterns. Triggers on configurator design, build-your-own, custom configuration, plan builder, product customizer, configuration tool. Also triggers when users abandon mid-configuration, when configurator conversion is poor, or when a configurator is being scoped for the first time."
-category: growth-tooling
-catalog_summary: "Designing interactive product configurators. Distinguishes infinite-options (decision paralysis from too many options) from canned-bundles-only (no real customization) from guided-configuration (smart defaults plus meaningful constraints plus escape hatches)"
-display_order: 12
 ---
 
 # Product Configurator Design

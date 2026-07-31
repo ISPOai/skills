@@ -1,9 +1,6 @@
 ---
 name: design-standards
 description: "Apply production-grade design standards when building or reviewing pages, components, or UI. Use this skill whenever the user asks to build a page, design a component, lay out a section, review the UI, fix the layout, or check design quality. Triggers on build a page, create a component, design a section, hero, card, CTA, layout, review the UI, fix the design, design system, design tokens, spacing, typography scale, button standards, mobile design. Also triggers for any production design decision where contrast, accessibility, spacing, or visual hierarchy matters."
-category: design
-catalog_summary: "Production-grade page and component design standards"
-display_order: 2
 ---
 
 # Design Standards
@@ -93,7 +90,10 @@ Common failures to avoid:
 - Light borders on form fields that compute under 3:1
 - Bright orange or yellow on white at small sizes
 
-For the math, the contrast checker, and brand-color strategies, see `brand-identity/references/contrast-and-accessibility.md`.
+Use an available WCAG contrast checker for exact ratios. If the separately
+installed `brand-identity` skill is available, its contrast guidance can help
+with brand-color strategies; do not assume that another skill's bundled files
+exist in this package.
 
 ### 3. Visual hierarchy
 

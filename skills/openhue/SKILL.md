@@ -1,16 +1,6 @@
 ---
 name: openhue
 description: "Control Philips Hue lights, scenes, rooms via OpenHue CLI."
-version: 1.0.1
-author: community
-license: MIT
-platforms: [linux, macos, windows]
-metadata:
-  hermes:
-    tags: [Smart-Home, Hue, Lights, IoT, Automation]
-    homepage: https://www.openhue.io/cli
-prerequisites:
-  commands: [openhue]
 ---
 
 # OpenHue CLI
@@ -105,8 +95,12 @@ openhue set room "Living Room" --off
 
 ## Notes
 
-- Bridge must be on the same local network as the machine running Hermes
+- Bridge must be on the same local network as the machine running the agent
 - First run requires physically pressing the button on the Hue Bridge to authorize
 - Colors only work on color-capable bulbs (not white-only models)
 - Light and room names are case-sensitive — use `openhue get light` to check exact names
-- Works great with cron jobs for scheduled lighting (e.g. dim at bedtime, bright at wake)
+- Listing resources is read-only. Before changing a light, room, scene, or
+  schedule, confirm the exact target and effect unless the user already asked
+  for that action.
+- Create scheduled lighting only when explicitly requested; state the schedule
+  and how to disable it before installation.

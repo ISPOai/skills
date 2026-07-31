@@ -4,9 +4,11 @@ Read-only PostgreSQL query skill. Query multiple databases safely with write pro
 
 ## Setup
 
-1. Copy the example config:
+1. Create an external config directory and file (never inside the skill):
 ```bash
-cp connections.example.json connections.json
+mkdir -p "${XDG_CONFIG_HOME:-$HOME/.config}/ispo"
+chmod 700 "${XDG_CONFIG_HOME:-$HOME/.config}/ispo"
+touch "${XDG_CONFIG_HOME:-$HOME/.config}/ispo/postgres-connections.json"
 ```
 
 2. Add your database credentials:
@@ -29,7 +31,7 @@ cp connections.example.json connections.json
 
 3. Secure the config:
 ```bash
-chmod 600 connections.json
+chmod 600 "${XDG_CONFIG_HOME:-$HOME/.config}/ispo/postgres-connections.json"
 ```
 
 ## Usage
@@ -72,6 +74,4 @@ python3 scripts/query.py --db prod --query "SELECT * FROM users" --limit 100
 
 ## Requirements
 
-```bash
-pip install psycopg2-binary
-```
+Install `psycopg2-binary` in a user-managed isolated Python environment.

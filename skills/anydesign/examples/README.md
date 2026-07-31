@@ -8,7 +8,7 @@ like before installing.
 ### [`vercel-landing/`](./vercel-landing) — Real analysis of vercel.com
 
 End-to-end run of the skill against the **live Vercel homepage**. Demonstrates the URL
-flow with all three capture mechanisms: HTML via `WebFetch`, 808 CSS custom properties
+flow with all three capture mechanisms: HTML via the runtime web-fetching capability, 808 CSS custom properties
 extracted via `scripts/extract_css_vars.py`, plus a Playwright screenshot.
 
 The output includes the full Geist design-system token map (10-shade palette × 8 hues,

@@ -8,15 +8,21 @@ import argparse
 import sys
 import subprocess
 import json
+from pathlib import Path
 
 
 def check_yt_dlp():
-    """Check if yt-dlp is installed, install if not."""
+    """Check whether the declared yt-dlp prerequisite is available."""
     try:
         subprocess.run(["yt-dlp", "--version"], capture_output=True, check=True)
+        return True
     except (subprocess.CalledProcessError, FileNotFoundError):
-        print("yt-dlp not found. Installing...")
-        subprocess.run([sys.executable, "-m", "pip", "install", "--break-system-packages", "yt-dlp"], check=True)
+        print(
+            "Error: yt-dlp is required but was not found. "
+            "Install it in a user-managed environment, then retry.",
+            file=sys.stderr,
+        )
+        return False
 
 
 def get_video_info(url):
@@ -30,7 +36,7 @@ def get_video_info(url):
     return json.loads(result.stdout)
 
 
-def download_video(url, output_path="/mnt/user-data/outputs", quality="best", format_type="mp4", audio_only=False):
+def download_video(url, output_path="outputs/youtube", quality="best", format_type="mp4", audio_only=False):
     """
     Download a YouTube video.
     
@@ -41,7 +47,10 @@ def download_video(url, output_path="/mnt/user-data/outputs", quality="best", fo
         format_type: Output format (mp4, webm, mkv, etc.)
         audio_only: Download only audio (mp3)
     """
-    check_yt_dlp()
+    if not check_yt_dlp():
+        return False
+
+    Path(output_path).mkdir(parents=True, exist_ok=True)
     
     # Build command
     cmd = ["yt-dlp"]
@@ -107,8 +116,8 @@ def main():
     parser.add_argument("url", help="YouTube video URL")
     parser.add_argument(
         "-o", "--output",
-        default="/mnt/user-data/outputs",
-        help="Output directory (default: /mnt/user-data/outputs)"
+        default="outputs/youtube",
+        help="Output directory (default: ./outputs/youtube)"
     )
     parser.add_argument(
         "-q", "--quality",

@@ -1,9 +1,6 @@
 ---
 name: creative-direction
 description: "Walk the user through four directional axes (tone register, aesthetic philosophy, audience relationship, sensory ambition) and produce a structured aesthetic brief that downstream content, copy, design, and art-direction skills consume as required input. The aesthetic depth layer, distinct from `creative-brief` (operational kickoff: scope, audience, deliverables, constraints). Use when a project needs aesthetic coherence across many small decisions and the user has only a vague feeling, or when multiple downstream aesthetic-producing skills need a shared brief. Triggers on creative direction, aesthetic direction, set the aesthetic, define the visual direction, what's the vibe, what's the tone, the four axes. Does NOT fire for a general kickoff brief (use `creative-brief`), tactical single-piece work, already-documented direction, purely functional output, or locked production-stage work."
-category: strategy-and-discovery
-catalog_summary: "Four-axis aesthetic brief (tone, aesthetic, audience, sensory ambition) for cross-skill coherence"
-display_order: 3
 ---
 
 # Creative Direction

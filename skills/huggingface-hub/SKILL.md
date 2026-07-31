@@ -1,11 +1,6 @@
 ---
 name: huggingface-hub
 description: "HuggingFace hf CLI: search/download/upload models, datasets."
-version: 1.0.1
-author: Hugging Face
-license: MIT
-tags: [huggingface, hf, models, datasets, hub, mlops]
-platforms: [linux, macos, windows]
 ---
 
 # Hugging Face CLI (`hf`) Reference Guide
@@ -17,7 +12,14 @@ The `hf` command is the modern command-line interface for interacting with the H
 ## Quick Start
 *   **Installation:** `curl -LsSf https://hf.co/cli/install.sh | bash -s`
 *   **Help:** Use `hf --help` to view all available functions and real-world examples.
-*   **Authentication:** Recommended via `HF_TOKEN` environment variable or the `--token` flag.
+*   **Authentication:** Prefer `HF_TOKEN` from the user's configured secret
+    environment. Avoid command-line `--token` values because process listings
+    and shell history can expose them.
+
+Listing, searching, and downloading are read-only. Before uploading, syncing,
+creating/deleting/moving repositories or files, merging discussions, deploying
+endpoints, starting jobs, or changing webhooks, show the target and consequence
+and get explicit user approval unless that exact external action was requested.
 
 ---
 

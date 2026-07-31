@@ -37,7 +37,7 @@ class CleanupManager:
         Returns:
             Dict with paths and sizes
 
-        Note: .venv is NEVER deleted - it's part of the skill infrastructure
+        Note: the external runtime cache is never deleted by data cleanup
         """
         paths = {
             'browser_state': [],
@@ -96,7 +96,7 @@ class CleanupManager:
                 })
                 total_size += size
 
-            # Other files in data dir (but NEVER .venv!)
+            # Other files in the persistent data directory only
             for item in self.data_dir.iterdir():
                 if item.name not in ['browser_state', 'sessions.json', 'library.json', 'auth_info.json']:
                     size = self._get_size(item)
@@ -273,7 +273,7 @@ Examples:
             manager.print_cleanup_preview(args.preserve_library)
 
             print("\n⚠️  WARNING: This will delete the files shown above!")
-            print("   Note: .venv is preserved (part of skill infrastructure)")
+            print("   Note: the external runtime cache is preserved")
             response = input("Are you sure? (yes/no): ")
 
             if response.lower() != 'yes':
@@ -294,7 +294,7 @@ Examples:
     else:
         # Just show preview
         manager.print_cleanup_preview(args.preserve_library)
-        print("\n💡 Note: Virtual environment (.venv) is never deleted")
+        print("\n💡 Note: the external runtime cache is never deleted")
         print("   It's part of the skill infrastructure, not user data")
 
 

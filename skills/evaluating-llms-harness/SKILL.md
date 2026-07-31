@@ -1,15 +1,6 @@
 ---
 name: evaluating-llms-harness
 description: "lm-eval-harness: benchmark LLMs (MMLU, GSM8K, etc.)."
-version: 1.0.1
-author: Orchestra Research
-license: MIT
-dependencies: [lm-eval, transformers, vllm]
-platforms: [linux, macos]
-metadata:
-  hermes:
-    tags: [Evaluation, LM Evaluation Harness, Benchmarking, MMLU, HumanEval, GSM8K, EleutherAI, Model Quality, Academic Benchmarks, Industry Standard]
-
 ---
 
 # lm-evaluation-harness - LLM Benchmarking
@@ -109,7 +100,7 @@ lm_eval --model hf \
 lm_eval --model hf \
   --model_args pretrained=meta-llama/Llama-2-7b-hf \
   --tasks mmlu \
-  --num_fewshot 5 \  # 5-shot evaluation (standard)
+  --num_fewshot 5 \
   --batch_size 8 \
   --output_path results/ \
   --log_samples  # Save individual predictions
@@ -177,7 +168,7 @@ STEP=$2
 lm_eval --model hf \
   --model_args pretrained=$CHECKPOINT_DIR/checkpoint-$STEP \
   --tasks gsm8k,hellaswag \
-  --num_fewshot 0 \  # 0-shot for speed
+  --num_fewshot 0 \
   --batch_size 16 \
   --output_path results/step-$STEP.json
 ```
@@ -493,6 +484,5 @@ code execution.
 - Docs: https://github.com/EleutherAI/lm-evaluation-harness/tree/main/docs
 - Task library: 60+ tasks including MMLU, GSM8K, HumanEval, TruthfulQA, HellaSwag, ARC, WinoGrande, etc.
 - Leaderboard: https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard (uses this harness)
-
 
 

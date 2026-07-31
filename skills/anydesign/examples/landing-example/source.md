@@ -15,7 +15,7 @@ path.
 
 ## Capture method used by the skill
 
-1. `WebFetch https://lumen.example/` → HTML had real content (no Playwright needed).
+1. `runtime web fetch https://lumen.example/` → HTML had real content (no Playwright needed).
 2. `python scripts/extract_css_vars.py https://lumen.example/ --pretty` →
    pulled 22 custom properties grouped into color (12), spacing (5), typography (3),
    radius (2).

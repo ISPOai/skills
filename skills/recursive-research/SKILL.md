@@ -1,9 +1,5 @@
 ---
 name: recursive-research
-version: 2.2.0
-author: Joseph Huayhualla (@Anjos2)
-license: MIT
-repository: https://github.com/Anjos2/recursive-research
 description: Investigación recursiva profunda con loop auto-regulado hasta nivel PhD. Aplicable a cualquier dominio (ciencia, tecnología, negocio, arte, humanidades). Usa WDM + Inversión Munger para decisiones autónomas, tiering de fuentes confiables, y checkpointing a disco para sobrevivir límites de contexto.
 ---
 
@@ -101,7 +97,9 @@ Antes del primer ciclo, detectar MCPs disponibles y ordenar por preferencia:
 
 1. **MCPs de scraping optimizados para IA**: Firecrawl (`firecrawl_scrape`, `firecrawl_crawl`, `firecrawl_search`, `firecrawl_extract`) — texto estructurado, rápido
 2. **MCPs de documentación oficial**: Context7 (`query-docs`) — cuando la fuente es una librería/framework
-3. **Herramientas nativas**: `WebSearch`, `WebFetch` — fallback universal
+3. **Búsqueda y lectura web del runtime** — fallback cuando esas capacidades
+   estén disponibles; si el agente no tiene acceso web, limitarse al modo local
+   y decirlo explícitamente
 4. **MCPs de navegación real (Chrome DevTools)**: DESPRIORIZADOS — solo si el contenido requiere ejecución JS explícita (SPAs sin SSR, contenido tras auth)
 
 Razón: scrapers de IA son 10-50× más rápidos que navegadores reales y dan texto ya estructurado.

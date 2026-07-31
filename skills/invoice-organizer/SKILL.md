@@ -55,7 +55,7 @@ Navigate to your messy invoice folder:
 cd ~/Desktop/receipts-to-sort
 ```
 
-Then ask Claude Code:
+Then ask the local agent:
 ```
 Organize these invoices for taxes
 ```
@@ -443,4 +443,3 @@ For unusual receipt formats:
 - Archiving old financial records
 - Preparing for audits
 - Tracking subscription costs over time
-

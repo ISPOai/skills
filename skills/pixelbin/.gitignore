@@ -1,0 +1,6 @@
+.env
+node_modules/
+*-urls.json
+seo-brief.json
+page-spec.json
+dist/

@@ -1,12 +1,23 @@
 ---
 name: slack-gif-creator
 description: Toolkit for creating animated GIFs optimized for Slack, with validators for size constraints and composable animation primitives. This skill applies when users request animated GIFs or emoji animations for Slack from descriptions like "make me a GIF for Slack of X doing Y".
-license: Complete terms in LICENSE.txt
 ---
 
 # Slack GIF Creator - Flexible Toolkit
 
 A toolkit for creating animated GIFs optimized for Slack. Provides validators for Slack's constraints, composable animation primitives, and optional helper utilities. **Apply these tools however needed to achieve the creative vision.**
+
+Resolve `slack_gif_skill_dir` to the directory containing this `SKILL.md` before
+using the bundled Python modules. Run examples with the package on Python's
+module search path:
+
+```bash
+PYTHONPATH="$slack_gif_skill_dir/scripts${PYTHONPATH:+:$PYTHONPATH}" python your_animation.py
+```
+
+Do not install dependencies into an ambient interpreter automatically. If the
+declared packages are unavailable, report them and let the user choose a managed
+environment.
 
 ## Slack's Requirements
 
@@ -496,7 +507,7 @@ y = interpolate(start=0, end=400, t=progress, easing='bounce_out')
 scale = interpolate(start=0.5, end=1.0, t=progress, easing='elastic_out')
 ```
 
-Available easings: `linear`, `ease_in`, `ease_out`, `ease_in_out`, `bounce_out`, `elastic_out`, `back_out` (overshoot), and more in `core/easing.py`.
+Available easings: `linear`, `ease_in`, `ease_out`, `ease_in_out`, `bounce_out`, `elastic_out`, `back_out` (overshoot), and more in `scripts/core/easing.py`.
 
 ### Frame Composition
 

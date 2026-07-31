@@ -3,12 +3,14 @@
 
 from __future__ import annotations
 
+import ast
 import json
 import re
 import stat
 import subprocess
 import sys
 from pathlib import Path
+from urllib.parse import unquote
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -38,6 +40,33 @@ UV_WITH_PATTERN = re.compile(
     r"\buv\s+run[^\n]*?--with(?:=|\s+)(?P<package>[A-Za-z0-9_.-]+)",
     re.IGNORECASE,
 )
+MARKDOWN_LINK_PATTERN = re.compile(r"!?\[[^\]]*\]\(([^)]+)\)")
+MARKDOWN_REFERENCE_PATTERN = re.compile(r"^\s*\[[^\]]+\]:\s*(\S+)", re.MULTILINE)
+LEGACY_RUNTIME_PATTERNS = {
+    "Hermes home path": re.compile(
+        r"\$\{?HERMES_HOME\}?|(?<![A-Za-z0-9_])(?:~/)?\.hermes/|/home/bb/hermes-agent",
+        re.IGNORECASE,
+    ),
+    "Hermes terminal call": re.compile(r"\bterminal\s*\(\s*command\s*=", re.IGNORECASE),
+    "Hermes process call": re.compile(r"\bprocess\s*\(\s*action\s*=", re.IGNORECASE),
+    "Hermes skill call": re.compile(r"\b(?:skill_view|skill_manage)\s*\(", re.IGNORECASE),
+    "Hermes delegation call": re.compile(r"\bdelegate_task\s*\(", re.IGNORECASE),
+    "hosted-only workspace path": re.compile(r"/mnt/(?:user-data|data)(?:/|\b)"),
+    "unsafe system-Python override": re.compile(r"--break-system-packages"),
+    "disabled browser sandbox": re.compile(r"--(?:no-sandbox|disable-setuid-sandbox|disable-web-security)"),
+}
+EXECUTABLE_SUFFIXES = {".py", ".sh", ".js", ".cjs", ".mjs", ".ts", ".tsx"}
+NON_RUNTIME_DIRECTORIES = {"assets", "references", "templates", "tests"}
+FRONTMATTER_KEYS = {"name", "description"}
+# This package documents an external product whose real configuration and tool
+# names are necessarily Hermes-specific. It must still pass every other catalog
+# check, including the ban on hosted-only workspace paths.
+PRODUCT_RUNTIME_DOCUMENTATION = {"hermes-agent"}
+RESTRICTED_REDISTRIBUTION_MARKERS = {
+    "ADDITIONAL RESTRICTIONS",
+    "users may not reproduce",
+    "users may not distribute",
+}
 
 
 class ValidationError(Exception):
@@ -73,18 +102,163 @@ def skill_name(markdown: str, source: str) -> str:
         fail(f"{source}: SKILL.md must start with YAML frontmatter")
 
     names: list[str] = []
+    descriptions: list[str] = []
+    keys: list[str] = []
     for line in lines[1:]:
         if line.strip() == "---":
             break
+        key_match = re.match(r"^([A-Za-z][A-Za-z0-9_-]*):", line)
+        if key_match:
+            keys.append(key_match.group(1))
         match = re.match(r"^name:\s*(.+?)\s*$", line)
         if match:
             names.append(match.group(1).strip().strip("\"'"))
+        match = re.match(r"^description:\s*(.*?)\s*$", line)
+        if match:
+            descriptions.append(match.group(1).strip().strip("\"'"))
     else:
         fail(f"{source}: SKILL.md frontmatter is not closed")
 
+    unexpected_keys = sorted(set(keys) - FRONTMATTER_KEYS)
+    if unexpected_keys:
+        fail(
+            f"{source}: SKILL.md frontmatter may contain only name and description; "
+            f"remove {unexpected_keys}"
+        )
+
     if len(names) != 1 or not names[0]:
         fail(f"{source}: SKILL.md frontmatter must contain exactly one name")
+    if len(descriptions) != 1:
+        fail(f"{source}: SKILL.md frontmatter must contain exactly one description")
+    if not descriptions[0] and not any(
+        line.startswith((" ", "\t")) and line.strip()
+        for line in lines[2 : lines.index("---", 1)]
+    ):
+        fail(f"{source}: SKILL.md description must not be empty")
     return names[0]
+
+
+def markdown_without_code(markdown: str) -> str:
+    """Remove fenced and inline code before interpreting Markdown links."""
+    visible: list[str] = []
+    fence: str | None = None
+    for line in markdown.splitlines():
+        marker = re.match(r"^\s*(```+|~~~+)", line)
+        if marker:
+            delimiter = marker.group(1)[0]
+            if fence is None:
+                fence = delimiter
+            elif fence == delimiter:
+                fence = None
+            visible.append("")
+            continue
+        visible.append("" if fence else re.sub(r"`[^`\n]*`", "", line))
+    return "\n".join(visible)
+
+
+def validate_local_skill_links(
+    skill_id: str,
+    package: Path,
+    markdown: str,
+    source: Path | None = None,
+) -> None:
+    """Ensure local Markdown links stay inside the package and resolve."""
+    visible = markdown_without_code(markdown)
+    raw_targets = MARKDOWN_LINK_PATTERN.findall(visible)
+    raw_targets.extend(MARKDOWN_REFERENCE_PATTERN.findall(visible))
+    package_root = package.resolve()
+    source = source or package / "SKILL.md"
+
+    for raw_target in raw_targets:
+        target = raw_target.strip().strip("<>").split("#", 1)[0]
+        if (
+            not target
+            or target.startswith(("/", "//"))
+            or re.match(r"^[A-Za-z][A-Za-z0-9+.-]*:", target)
+        ):
+            continue
+        target = unquote(target)
+        candidate = (source.parent / target).resolve()
+        try:
+            candidate.relative_to(package_root)
+        except ValueError:
+            fail(
+                f"{skill_id}: {source.relative_to(package)} link escapes its "
+                f"installable package: {target}"
+            )
+        if not candidate.exists():
+            fail(
+                f"{skill_id}: {source.relative_to(package)} link is missing from its "
+                f"package: {target}"
+            )
+
+
+def validate_python_scripts(skill_id: str, package: Path) -> None:
+    """Parse bundled Python helpers without importing or executing them."""
+    for script in sorted(package.rglob("*.py")):
+        try:
+            ast.parse(script.read_text(encoding="utf-8"), filename=str(script))
+        except (OSError, UnicodeError, SyntaxError) as error:
+            fail(f"{skill_id}: bundled Python helper cannot be parsed: {script.name}: {error}")
+
+
+def validate_package_licensing(skill_id: str, package: Path) -> None:
+    """Require explicit provenance and reject known non-redistributable packages."""
+    upstream = package / "UPSTREAM.md"
+    if not upstream.is_file():
+        fail(f"{skill_id}: package must include UPSTREAM.md provenance")
+    licenses = sorted(
+        path for path in package.iterdir() if path.is_file() and path.name.startswith("LICENSE")
+    )
+    if not licenses:
+        fail(f"{skill_id}: package must include a root LICENSE file")
+    for license_path in licenses:
+        contents = license_path.read_text(encoding="utf-8", errors="replace")
+        lowered = contents.lower()
+        for marker in RESTRICTED_REDISTRIBUTION_MARKERS:
+            if marker.lower() in lowered:
+                fail(
+                    f"{skill_id}: {license_path.name} contains redistribution "
+                    f"restrictions incompatible with a public installable catalog"
+                )
+
+
+def package_has_runtime_helpers(package: Path) -> bool:
+    """Return whether a package contains executable helper code, wherever vendored."""
+    for path in package.rglob("*"):
+        relative_parts = path.relative_to(package).parts
+        if (
+            path.is_file()
+            and path.suffix.lower() in EXECUTABLE_SUFFIXES
+            and not NON_RUNTIME_DIRECTORIES.intersection(relative_parts)
+        ):
+            return True
+    return False
+
+
+def validate_package_portability(skill_id: str, package: Path) -> None:
+    """Reject concrete calls and paths that only exist in the upstream runtime."""
+    checked_suffixes = {".md", ".py", ".sh", ".js", ".cjs", ".mjs"}
+    for path in sorted(package.rglob("*")):
+        if (
+            not path.is_file()
+            or path.name == "UPSTREAM.md"
+            or path.name.startswith("LICENSE")
+            or path.suffix.lower() not in checked_suffixes
+        ):
+            continue
+        try:
+            contents = path.read_text(encoding="utf-8")
+        except (OSError, UnicodeError) as error:
+            fail(f"{skill_id}: cannot inspect {path.relative_to(package)}: {error}")
+        for label, pattern in LEGACY_RUNTIME_PATTERNS.items():
+            if skill_id in PRODUCT_RUNTIME_DOCUMENTATION and label.startswith("Hermes "):
+                continue
+            if pattern.search(contents):
+                fail(
+                    f"{skill_id}: {path.relative_to(package)} contains a {label}; "
+                    "use capability-based instructions and provider-neutral state paths"
+                )
 
 
 def requirement_name(requirement: str) -> str:
@@ -158,6 +332,18 @@ def validate_worktree_package(
     current_name = skill_name(markdown, str((package / "SKILL.md").relative_to(ROOT)))
     if current_name != skill_id:
         fail(f"{skill_id}: SKILL.md name is {current_name!r}")
+    for document in sorted(package.rglob("*.md")):
+        if document.name == "UPSTREAM.md" or document.name.startswith("LICENSE"):
+            continue
+        validate_local_skill_links(
+            skill_id,
+            package,
+            document.read_text(encoding="utf-8"),
+            source=document,
+        )
+    validate_python_scripts(skill_id, package)
+    validate_package_licensing(skill_id, package)
+    validate_package_portability(skill_id, package)
     validate_skill_portability(
         skill_id,
         markdown,
@@ -166,8 +352,7 @@ def validate_worktree_package(
         has_scripts=has_scripts,
     )
 
-    scripts = package / "scripts"
-    scripts_present = scripts.is_dir() and any(path.is_file() for path in scripts.rglob("*"))
+    scripts_present = package_has_runtime_helpers(package)
     if has_scripts != scripts_present:
         fail(f"{skill_id}: hasScripts does not match package contents")
 

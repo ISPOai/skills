@@ -1,6 +1,6 @@
 # Description cookbook
 
-The skill description is the single most important sentence (or paragraph) in your skill. It is what Claude sees in the system prompt to decide whether to load the rest of the skill. If the description is wrong, the skill never fires when it should, or fires when it should not.
+The skill description is the single most important sentence (or paragraph) in your skill. It is what a compatible runtime indexes to decide whether to load the rest of the skill. If the description is wrong, the skill never fires when it should, or fires when it should not.
 
 This cookbook gives you description patterns for common skill types, each with a worked example.
 
@@ -58,7 +58,7 @@ Generate a creative brief that aligns stakeholders before a project starts. Use 
 Why this works:
 
 - "Generate" is the verb.
-- "That aligns stakeholders before a project starts" tells Claude the context.
+- "That aligns stakeholders before a project starts" tells the agent the context.
 - Multiple ways the user might phrase the request.
 - The "also triggers" catches the upstream signal (no shared context yet).
 
@@ -187,7 +187,7 @@ Too narrow. Real users will not always use the exact phrase.
 
 ### "Comprehensive guide to [topic]"
 
-Marketing copy, not a trigger. Does not tell Claude when to load.
+Marketing copy, not a trigger. Does not tell the agent when to load.
 
 ### "[no description, just a name]"
 

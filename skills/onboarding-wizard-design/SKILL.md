@@ -1,9 +1,6 @@
 ---
 name: onboarding-wizard-design
 description: "Designing first-run product onboarding wizards that get users to the ah-ha moment without overwhelming them. Step architecture, progressive disclosure, escape hatches, completion incentives, drop-off measurement. Honest about tutorial-overload (dump everything upfront), skip-friendly-empty (skipped onboarding leads to abandoned product), and earned-progressive-disclosure (right things at the right moments) patterns. Triggers on onboarding wizard, product onboarding, first-run experience, signup flow, activation flow, FRX, time-to-value, ah-ha moment design. Also triggers when activation rates are low, when users skip onboarding and never return, when onboarding flows are being scoped for the first time, or when audience research shows users not finding key features."
-category: growth-tooling
-catalog_summary: "Designing first-run product onboarding wizards. Distinguishes tutorial-overload (dump everything upfront) from skip-friendly-empty (skipped onboarding leads to abandoned product) from earned-progressive-disclosure (right things at the right moments)"
-display_order: 7
 ---
 
 # Onboarding Wizard Design

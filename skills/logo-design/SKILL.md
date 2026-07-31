@@ -1,9 +1,6 @@
 ---
 name: logo-design
 description: "Generate logo variants for a brand, producing multiple production-grade marks across different architectures (wordmark, lockup, symbol-only, letterform-as-symbol, monogram) with rationale, application specs, and decision-ready presentation. Distinct from `brand-identity`, which produces the complete system (logo plus color, type, voice, applications). Goes deep on the logo specifically: typographic register, symbol approach, application-context discipline (16px favicon, embroidery, signage, motion), and production specs (SVG-ready, single-color, reverse). Triggers on logo design, design a logo, wordmark, monogram, lockup, mark variants, logo iterations, redesign or refine the logo, logo refresh, letterform-as-symbol, and exploring mark variants for an established brand. Does NOT fire for full brand identity (use `brand-identity`), positioning or strategy (use `brand-discovery`), project-wide creative direction (use `creative-direction`), or one-off illustration."
-category: brand
-catalog_summary: "Logo variants across architectures (wordmark, lockup, monogram, letterform-as-symbol), with rationale and application specs"
-display_order: 5
 ---
 
 # Logo Design

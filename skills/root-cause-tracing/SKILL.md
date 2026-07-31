@@ -103,10 +103,11 @@ npm test 2>&1 | grep 'DEBUG git init'
 
 If something appears during tests but you don't know which test:
 
-Use the bisection script: @find-polluter.sh
+Resolve `root_cause_tracing_dir` to the directory containing this `SKILL.md`,
+then use the bundled diagnostic script:
 
 ```bash
-./find-polluter.sh '.git' 'src/**/*.test.ts'
+bash "$root_cause_tracing_dir/scripts/find-polluter.sh" '.git' '*/src/*.test.ts' npm test --
 ```
 
 Runs tests one-by-one, stops at first polluter. See script for usage.

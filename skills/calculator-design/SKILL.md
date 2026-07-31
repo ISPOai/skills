@@ -1,9 +1,6 @@
 ---
 name: calculator-design
 description: "Designing interactive calculators (ROI calculators, pricing estimators, savings projections, mortgage calculators, custom assessments) that deliver real decision-support value while serving as lead magnets and qualified-traffic generators. Honest about vanity-calculator (no real value), lead-trap (hides the answer behind email), and transparent-decision-tool (gives the result and earns the email through tiered value) patterns. Triggers on calculator, ROI calculator, pricing estimator, savings calculator, custom calculator, interactive tool, decision tool, financial calculator. Also triggers when an audience needs a calculation-driven lead magnet, when a vanity calculator is producing leads but no qualified ones, or when a calculator is being scoped for the first time."
-category: growth-tooling
-catalog_summary: "Designing interactive calculators that deliver decision-support value while qualifying leads. Distinguishes vanity-calculator (no real value) from lead-trap (hides answer behind email) from transparent-decision-tool (gives genuine value, captures leads honestly)"
-display_order: 2
 ---
 
 # Calculator Design

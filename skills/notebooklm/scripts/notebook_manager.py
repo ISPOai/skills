@@ -13,16 +13,18 @@ from pathlib import Path
 from typing import Dict, List, Optional, Any
 from datetime import datetime
 
+from config import DATA_DIR
+
 
 class NotebookLibrary:
     """Manages a collection of NotebookLM notebooks with metadata"""
 
     def __init__(self):
         """Initialize the notebook library"""
-        # Store data within the skill directory
-        skill_dir = Path(__file__).parent.parent
-        self.data_dir = skill_dir / "data"
+        # Store persistent state outside the installed skill/project tree.
+        self.data_dir = DATA_DIR
         self.data_dir.mkdir(parents=True, exist_ok=True)
+        os.chmod(self.data_dir, 0o700)
 
         self.library_file = self.data_dir / "library.json"
         self.notebooks: Dict[str, Dict[str, Any]] = {}
@@ -57,6 +59,7 @@ class NotebookLibrary:
             }
             with open(self.library_file, 'w') as f:
                 json.dump(data, f, indent=2)
+            os.chmod(self.library_file, 0o600)
         except Exception as e:
             print(f"❌ Error saving library: {e}")
 

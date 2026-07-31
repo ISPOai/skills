@@ -1,16 +1,6 @@
 ---
 name: codebase-inspection
 description: "Inspect codebases w/ pygount: LOC, languages, ratios."
-version: 1.0.0
-author: Hermes Agent
-license: MIT
-platforms: [linux, macos, windows]
-metadata:
-  hermes:
-    tags: [LOC, Code Analysis, pygount, Codebase, Metrics, Repository]
-    related_skills: [github-repo-management]
-prerequisites:
-  commands: [pygount]
 ---
 
 # Codebase Inspection with pygount
@@ -27,9 +17,15 @@ Analyze repositories for lines of code, language breakdown, file counts, and cod
 
 ## Prerequisites
 
+Install into an isolated environment after getting approval for the download:
+
 ```bash
-pip install --break-system-packages pygount 2>/dev/null || pip install pygount
+python3 -m venv .venv
+.venv/bin/python -m pip install pygount
 ```
+
+Invoke `.venv/bin/pygount` in the commands below if `pygount` is not already
+available on `PATH`.
 
 ## 1. Basic Summary (Most Common)
 

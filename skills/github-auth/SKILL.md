@@ -1,14 +1,6 @@
 ---
 name: github-auth
 description: "GitHub auth setup: HTTPS tokens, SSH keys, gh CLI login."
-version: 1.1.0
-author: Hermes Agent
-license: MIT
-platforms: [linux, macos, windows]
-metadata:
-  hermes:
-    tags: [GitHub, Authentication, Git, gh-cli, SSH, Setup]
-    related_skills: [github-pr-workflow, github-code-review, github-issues, github-repo-management]
 ---
 
 # GitHub Authentication Setup
@@ -35,7 +27,7 @@ git config --global credential.helper 2>/dev/null || echo "no git credential hel
 **Decision tree:**
 1. If `gh auth status` shows authenticated → you're good, use `gh` for everything
 2. If `gh` is installed but not authenticated → use "gh auth" method below
-3. If `gh` is not installed → use "git-only" method below (no sudo needed)
+3. If `gh` is not installed → prefer SSH or an OS credential manager
 
 ---
 
@@ -43,29 +35,30 @@ git config --global credential.helper 2>/dev/null || echo "no git credential hel
 
 This works on any machine with `git` installed. No root access needed.
 
-### Option A: HTTPS with Personal Access Token (Recommended)
+### Option A: HTTPS with an OS credential manager
 
-This is the most portable method — works everywhere, no SSH config needed.
+Use a platform credential manager so the token is encrypted at rest. Never put
+a token in a remote URL, shell history, repo file, or plaintext
+`~/.git-credentials`.
 
 **Step 1: Create a personal access token**
 
 Tell the user to go to: **https://github.com/settings/tokens**
 
-- Click "Generate new token (classic)"
-- Give it a name like "hermes-agent"
-- Select scopes:
-  - `repo` (full repository access — read, write, push, PRs)
-  - `workflow` (trigger and manage GitHub Actions)
-  - `read:org` (if working with organization repos)
+- Prefer a fine-grained token scoped to only the required repositories
+- Give it a name that identifies this machine or agent workspace
+- Grant only the permissions required for the user's requested workflow
 - Set expiration (90 days is a good default)
 - Copy the token — it won't be shown again
 
-**Step 2: Configure git to store the token**
+**Step 2: Configure an encrypted credential helper**
 
 ```bash
-# Set up the credential helper to cache credentials
-# "store" saves to ~/.git-credentials in plaintext (simple, persistent)
-git config --global credential.helper store
+# macOS Keychain
+git config --global credential.helper osxkeychain
+
+# Git Credential Manager (Windows/macOS/Linux, when installed)
+git config --global credential.helper manager
 
 # Now do a test operation that triggers auth — git will prompt for credentials
 # Username: <their-github-username>
@@ -73,7 +66,7 @@ git config --global credential.helper store
 git ls-remote https://github.com/<their-username>/<any-repo>.git
 ```
 
-After entering credentials once, they're saved and reused for all future operations.
+After entering credentials once, the selected OS credential manager stores them.
 
 **Alternative: cache helper (credentials expire from memory)**
 
@@ -82,12 +75,9 @@ After entering credentials once, they're saved and reused for all future operati
 git config --global credential.helper 'cache --timeout=28800'
 ```
 
-**Alternative: set the token directly in the remote URL (per-repo)**
-
-```bash
-# Embed token in the remote URL (avoids credential prompts entirely)
-git remote set-url origin https://<username>:<token>@github.com/<owner>/<repo>.git
-```
+Do not use `credential.helper store` or token-bearing remote URLs. Both persist
+the secret in plaintext and remote URLs also leak through config, logs, and
+process output.
 
 **Step 3: Configure git identity**
 
@@ -122,7 +112,7 @@ ls -la ~/.ssh/id_*.pub 2>/dev/null || echo "No SSH keys found"
 
 ```bash
 # Generate an ed25519 key (modern, secure, fast)
-ssh-keygen -t ed25519 -C "their-email@example.com" -f ~/.ssh/id_ed25519 -N ""
+ssh-keygen -t ed25519 -C "their-email@example.com" -f ~/.ssh/id_ed25519
 
 # Display the public key for them to add to GitHub
 cat ~/.ssh/id_ed25519.pub
@@ -131,7 +121,7 @@ cat ~/.ssh/id_ed25519.pub
 Tell the user to add the public key at: **https://github.com/settings/keys**
 - Click "New SSH key"
 - Paste the public key content
-- Give it a title like "hermes-agent-<machine-name>"
+- Give it a title like "agent-<machine-name>"
 
 **Step 3: Test the connection**
 
@@ -172,7 +162,7 @@ gh auth login
 ### Token-Based Login (Headless / SSH Servers)
 
 ```bash
-echo "<THEIR_TOKEN>" | gh auth login --with-token
+printf '%s' "$GITHUB_TOKEN" | gh auth login --with-token
 
 # Set up git credentials through gh
 gh auth setup-git
@@ -201,15 +191,6 @@ curl -s -H "Authorization: token $GITHUB_TOKEN" \
   https://api.github.com/user
 ```
 
-### Extracting the Token from Git Credentials
-
-If git credentials are already configured (via credential.helper store), the token can be extracted:
-
-```bash
-# Read from git credential store
-uv run python3 "${HERMES_HOME:-$HOME/.hermes}/skills/github/github-auth/scripts/git-credential-token.py"
-```
-
 ### Helper: Detect Auth Method
 
 Use this pattern at the start of any GitHub workflow:
@@ -219,12 +200,6 @@ Use this pattern at the start of any GitHub workflow:
 if command -v gh &>/dev/null && gh auth status &>/dev/null; then
   echo "AUTH_METHOD=gh"
 elif [ -n "$GITHUB_TOKEN" ]; then
-  echo "AUTH_METHOD=curl"
-elif _hermes_env="${HERMES_HOME:-$HOME/.hermes}/.env"; [ -f "$_hermes_env" ] && grep -q "^GITHUB_TOKEN=" "$_hermes_env"; then
-  export GITHUB_TOKEN=$(grep "^GITHUB_TOKEN=" "$_hermes_env" | head -1 | cut -d= -f2 | tr -d '\n\r')
-  echo "AUTH_METHOD=curl"
-elif grep -q "github.com" ~/.git-credentials 2>/dev/null; then
-  export GITHUB_TOKEN=$(uv run python3 "${HERMES_HOME:-$HOME/.hermes}/skills/github/github-auth/scripts/git-credential-token.py")
   echo "AUTH_METHOD=curl"
 else
   echo "AUTH_METHOD=none"

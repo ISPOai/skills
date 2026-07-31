@@ -1,14 +1,6 @@
 ---
 name: systematic-debugging
 description: "4-phase root cause debugging: understand bugs before fixing."
-version: 1.1.0
-author: Hermes Agent (adapted from obra/superpowers)
-license: MIT
-platforms: [linux, macos, windows]
-metadata:
-  hermes:
-    tags: [debugging, troubleshooting, problem-solving, root-cause, investigation]
-    related_skills: [test-driven-development, plan, subagent-driven-development]
 ---
 
 # Systematic Debugging
@@ -359,37 +351,29 @@ If you catch yourself thinking:
 | **3. Hypothesis** | Form theory, test minimally, one variable at a time | Confirmed or new hypothesis |
 | **4. Implementation** | Create regression test, fix root cause, verify | Bug resolved, all tests pass |
 
-## Hermes Agent Integration
+## Agent Integration
 
 ### Investigation Tools
 
-Use these Hermes tools during Phase 1:
+Use the runtime's equivalent capabilities during Phase 1:
 
-- **`search_files`** — Find error strings, trace function calls, locate patterns
-- **`read_file`** — Read source code with line numbers for precise analysis
-- **`terminal`** — Run tests, check git history, reproduce bugs
-- **`web_search`/`web_extract`** — Research error messages, library docs
+- **Project search** — Find error strings, trace function calls, locate patterns
+- **File reading** — Read source code with line numbers for precise analysis
+- **Terminal execution** — Run tests, check git history, reproduce bugs
+- **Web research** — Research error messages and primary documentation
 
-### With delegate_task
+### With isolated subagents
 
 For complex multi-component debugging, dispatch investigation subagents:
 
-```python
-delegate_task(
-    goal="Investigate why [specific test/behavior] fails",
-    context="""
-    Follow systematic-debugging skill:
-    1. Read the error message carefully
-    2. Reproduce the issue
-    3. Trace the data flow to find root cause
-    4. Report findings — do NOT fix yet
-
-    Error: [paste full error]
-    File: [path to failing code]
-    Test command: [exact command]
-    """,
-    toolsets=['terminal', 'file']
-)
+```text
+Goal: Investigate why [specific test/behavior] fails.
+Follow systematic-debugging: read the error, reproduce it, trace the data flow,
+and report the root cause without fixing it.
+Error: [paste full error]
+File: [path]
+Test command: [exact command]
+Needed capabilities: terminal and project files.
 ```
 
 ### With test-driven-development

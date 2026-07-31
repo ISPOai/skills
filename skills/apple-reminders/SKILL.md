@@ -1,15 +1,6 @@
 ---
 name: apple-reminders
 description: "Apple Reminders via remindctl: add, list, complete."
-version: 1.0.0
-author: Hermes Agent
-license: MIT
-platforms: [macos]
-metadata:
-  hermes:
-    tags: [Reminders, tasks, todo, macOS, Apple]
-prerequisites:
-  commands: [remindctl]
 ---
 
 # Apple Reminders
@@ -32,7 +23,7 @@ Use `remindctl` to manage Apple Reminders directly from the terminal. Tasks sync
 
 ## When NOT to Use
 
-- Scheduling agent alerts → use the cronjob tool instead
+- Scheduling agent-only alerts → use the environment's scheduler, if available, instead
 - Calendar events → use Apple Calendar or Google Calendar
 - Project task management → use GitHub Issues, Notion, etc.
 - If user says "remind me" but means an agent alert → clarify first
@@ -125,6 +116,6 @@ Accepted by `--due` and date filters:
 
 ## Rules
 
-1. When user says "remind me", clarify: Apple Reminders (syncs to phone) vs agent cronjob alert
+1. When user says "remind me", clarify: Apple Reminders (syncs to phone) vs an agent-only scheduled alert
 2. Always confirm reminder content and due date before creating
 3. Use `--json` for programmatic parsing

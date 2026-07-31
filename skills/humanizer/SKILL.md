@@ -1,16 +1,6 @@
 ---
 name: humanizer
 description: "Humanize text: strip AI-isms and add real voice."
-version: 2.5.1
-author: Siqi Chen (@blader, https://github.com/blader/humanizer), ported by Hermes Agent
-license: MIT
-platforms: [linux, macos, windows]
-metadata:
-  hermes:
-    tags: [writing, editing, humanize, anti-ai-slop, voice, prose, text]
-    category: creative
-    homepage: https://github.com/blader/humanizer
-    related_skills: [songwriting-and-ai-music]
 ---
 
 # Humanizer: Remove AI Writing Patterns
@@ -28,9 +18,13 @@ Load this skill whenever the user asks to:
 - match their voice in writing they're producing
 - review text for AI tells before publishing
 
-Also apply this skill to **your own** output when writing user-facing prose such as release notes, PR descriptions, docs, and summaries. Hermes's baseline voice already strips most of these, but a focused pass catches what slips through.
+Also apply this skill to **your own** output when writing user-facing prose such as release notes, PR descriptions, docs, and summaries. A focused pass catches habits that ordinary drafting misses.
 
-## How to use it in Hermes
+## How to use it in an agent
+
+Some upstream examples use generic file-read and edit tool names. Use the
+equivalent capabilities exposed by the current runtime; the workflow does not
+depend on one agent provider.
 
 The text usually arrives one of three ways:
 1. **Inline.** The user pastes the text into the message. Work on it in place and reply with the rewrite.

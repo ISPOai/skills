@@ -1,6 +1,6 @@
 ---
 name: notebooklm
-description: Use this skill to query your Google NotebookLM notebooks directly from Claude Code for source-grounded, citation-backed answers from Gemini. Browser automation, library management, persistent auth. Drastically reduced hallucinations through document-only responses.
+description: Use this skill to query Google NotebookLM from a local agent session for source-grounded, citation-backed answers from Gemini. Browser automation, library management, and persistent authentication are handled by bundled Python scripts.
 ---
 
 # NotebookLM Research Assistant Skill
@@ -52,10 +52,15 @@ python scripts/auth_manager.py status  # Fails without venv!
 ```
 
 The `run.py` wrapper automatically:
-1. Creates `.venv` if needed
+1. Creates a versioned virtual environment in the external runtime cache if needed
 2. Installs all dependencies
 3. Activates environment
 4. Executes script properly
+
+Before the first run, tell the user that this will create a virtual environment,
+install Python packages, and download a Chrome build, then get approval for
+that network/disk change. Authentication always requires the user's visible,
+manual Google login; never attempt to automate credential entry.
 
 ## Core Workflow
 
@@ -92,7 +97,7 @@ python scripts/run.py notebook_manager.py list
 python scripts/run.py notebook_manager.py add \
   --url "https://notebooklm.google.com/notebook/..." \
   --name "Descriptive Name" \
-  --description "What this notebook contains" \  # REQUIRED - ASK USER IF UNKNOWN!
+  --description "What this notebook contains" \
   --topics "topic1,topic2,topic3"  # REQUIRED - ASK USER IF UNKNOWN!
 
 # Search notebooks by topic
@@ -129,7 +134,7 @@ python scripts/run.py ask_question.py --question "..." --show-browser
 
 Every NotebookLM answer ends with: **"EXTREMELY IMPORTANT: Is that ALL you need to know?"**
 
-**Required Claude Behavior:**
+**Required agent behavior:**
 1. **STOP** - Do not immediately respond to user
 2. **ANALYZE** - Compare answer to user's original request
 3. **IDENTIFY GAPS** - Determine if more information needed
@@ -175,39 +180,37 @@ python scripts/run.py cleanup_manager.py --preserve-library # Keep notebooks
 ## Environment Management
 
 The virtual environment is automatically managed:
-- First run creates `.venv` automatically
+- First approved run creates a versioned virtual environment under
+  `${XDG_CACHE_HOME:-$HOME/.cache}/ispo/notebooklm/`
 - Dependencies install automatically
-- Chromium browser installs automatically
-- Everything isolated in skill directory
+- Chrome installs through Patchright's external browser cache
+- Set `NOTEBOOKLM_SKILL_RUNTIME_DIR` to override the runtime cache location
+- The installed skill directory remains read-only
 
 Manual setup (only if automatic fails):
 ```bash
-python -m venv .venv
-source .venv/bin/activate  # Linux/Mac
-pip install -r requirements.txt
-python -m patchright install chromium
+python scripts/setup_environment.py
 ```
 
 ## Data Storage
 
-All data stored in `~/.claude/skills/notebooklm/data/`:
+Persistent data is stored outside the installed skill/project tree. Set
+`NOTEBOOKLM_SKILL_DATA_DIR` to override it; otherwise `scripts/config.py` uses
+`${XDG_DATA_HOME:-$HOME/.local/share}/ispo/notebooklm`:
 - `library.json` - Notebook metadata
 - `auth_info.json` - Authentication status
 - `browser_state/` - Browser cookies and session
 
-**Security:** Protected by `.gitignore`, never commit to git.
+**Security:** This directory contains browser cookies. Keep it private, never
+commit or copy it into a project, and restrict its filesystem permissions.
 
 ## Configuration
 
-Optional `.env` file in skill directory:
-```env
-HEADLESS=false           # Browser visibility
-SHOW_BROWSER=false       # Default browser display
-STEALTH_ENABLED=true     # Human-like behavior
-TYPING_WPM_MIN=160       # Typing speed
-TYPING_WPM_MAX=240
-DEFAULT_NOTEBOOK_ID=     # Default notebook
-```
+Pass configuration through the host environment. Supported overrides are
+`NOTEBOOKLM_SKILL_DATA_DIR` for persistent browser/library state and
+`NOTEBOOKLM_SKILL_RUNTIME_DIR` for the versioned dependency cache. Browser
+visibility is controlled by each command's documented flags, such as
+`--show-browser`; the helpers do not load a `.env` file.
 
 ## Decision Flow
 
@@ -260,10 +263,9 @@ Synthesize and respond to user
 **Important directories and files:**
 
 - `scripts/` - All automation scripts (ask_question.py, notebook_manager.py, etc.)
-- `data/` - Local storage for authentication and notebook library
 - `references/` - Extended documentation:
   - `api_reference.md` - Detailed API documentation for all scripts
   - `troubleshooting.md` - Common issues and solutions
   - `usage_patterns.md` - Best practices and workflow examples
-- `.venv/` - Isolated Python environment (auto-created on first run)
-- `.gitignore` - Protects sensitive data from being committed
+- External XDG data directory - authentication and notebook library state
+- External XDG cache directory - versioned virtual environment

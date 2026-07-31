@@ -1,10 +1,19 @@
 ---
 name: twitter-algorithm-optimizer
-description: Analyze and optimize tweets for maximum reach using Twitter's open-source algorithm insights. Rewrite and edit user tweets to improve engagement and visibility based on how the recommendation system ranks content.
-license: AGPL-3.0 (referencing Twitter's algorithm source)
+description: Improve X/Twitter drafts using durable engagement heuristics informed by historical open-source ranking code. Rewrite and edit posts for clarity, relevance, and likely engagement without claiming access to the current private ranking system.
 ---
 
 # Twitter Algorithm Optimizer
+
+## Evidence Boundary
+
+The open-source Twitter recommendation code this skill was derived from is a
+historical snapshot, not proof of X's current production ranking system. Treat
+RealGraph, SimClusters, TwHIN, and Tweepcred as explanatory background and the
+writing advice as testable heuristics. For claims about current ranking weights
+or behavior, verify against current first-party X documentation and clearly
+label any inference. Never promise reach or present an optimization as a known
+current ranking rule.
 
 ## When to Use This Skill
 
@@ -320,7 +329,7 @@ Use this skill when:
 - You want to become known for something specific
 - You're debugging inconsistent engagement rates
 
-Use Claude without this skill for:
+Use general writing assistance without this skill for:
 - General writing and grammar fixes
 - Tone adjustments not related to algorithm
 - Off-Twitter content (LinkedIn, Medium, blogs, etc.)

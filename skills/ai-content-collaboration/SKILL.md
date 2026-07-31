@@ -1,9 +1,6 @@
 ---
 name: ai-content-collaboration
 description: "How humans and AI compose in content workflows. Where AI legitimately participates, where humans must own, hybrid workflow patterns, voice ownership preservation, the AI slop problem, disclosure and transparency, team calibration, and the ethics of intellectually honest AI-assisted content production. Triggers on AI content workflow, AI-assisted writing, hybrid content production, AI in editorial, AI slop, AI disclosure, AI usage policy, AI content ethics, voice preservation with AI, team AI calibration. Also triggers when content feels generic despite quality tools, when team AI usage has drifted into inconsistency, or when a regulated or trust-sensitive context requires explicit AI policy."
-category: content
-catalog_summary: "How humans and AI compose in content workflows: participation boundaries, hybrid patterns, voice ownership, the AI slop problem, disclosure and transparency, team calibration, and the ethics of honest AI-assisted production"
-display_order: 8
 ---
 
 # AI Content Collaboration

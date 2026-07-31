@@ -44,6 +44,8 @@ class AuthManager:
         # Ensure directories exist
         DATA_DIR.mkdir(parents=True, exist_ok=True)
         BROWSER_STATE_DIR.mkdir(parents=True, exist_ok=True)
+        DATA_DIR.chmod(0o700)
+        BROWSER_STATE_DIR.chmod(0o700)
 
         self.state_file = STATE_FILE
         self.auth_info_file = AUTH_INFO_FILE
@@ -162,6 +164,7 @@ class AuthManager:
         try:
             # Save storage state (cookies, localStorage)
             context.storage_state(path=str(self.state_file))
+            self.state_file.chmod(0o600)
             print(f"  💾 Saved browser state to: {self.state_file}")
         except Exception as e:
             print(f"  ❌ Failed to save browser state: {e}")
@@ -176,6 +179,7 @@ class AuthManager:
             }
             with open(self.auth_info_file, 'w') as f:
                 json.dump(info, f, indent=2)
+            self.auth_info_file.chmod(0o600)
         except Exception:
             pass  # Non-critical
 
@@ -203,6 +207,7 @@ class AuthManager:
             if self.browser_state_dir.exists():
                 shutil.rmtree(self.browser_state_dir)
                 self.browser_state_dir.mkdir(parents=True, exist_ok=True)
+                self.browser_state_dir.chmod(0o700)
                 print("  ✅ Cleared browser data")
 
             return True

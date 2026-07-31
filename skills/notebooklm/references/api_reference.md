@@ -143,7 +143,7 @@ python scripts/run.py ask_question.py --question "..."
 ```
 
 **Automatic actions:**
-1. Creates `.venv` if missing
+1. Creates a versioned virtual environment in the external runtime cache if missing
 2. Installs dependencies
 3. Activates environment
 4. Executes target script
@@ -182,7 +182,8 @@ is_auth = auth.is_authenticated()
 
 ## Data Storage
 
-Location: `~/.claude/skills/notebooklm/data/`
+Location: `$NOTEBOOKLM_SKILL_DATA_DIR` when set; otherwise
+`${XDG_DATA_HOME:-$HOME/.local/share}/ispo/notebooklm`.
 
 ```
 data/
@@ -192,20 +193,16 @@ data/
     └── state.json
 ```
 
-**Security:** Protected by `.gitignore`, never commit.
+**Security:** This directory contains browser cookies. Keep it private and
+never commit or copy it into a project.
 
 ## Environment Variables
 
-Optional `.env` file configuration:
+- `NOTEBOOKLM_SKILL_DATA_DIR`: optional persistent browser/library state path.
+- `NOTEBOOKLM_SKILL_RUNTIME_DIR`: optional versioned dependency-cache path.
 
-```env
-HEADLESS=false           # Browser visibility
-SHOW_BROWSER=false       # Default display
-STEALTH_ENABLED=true     # Human behavior
-TYPING_WPM_MIN=160       # Typing speed
-TYPING_WPM_MAX=240
-DEFAULT_NOTEBOOK_ID=     # Default notebook
-```
+The helpers do not load `.env` files. Use command flags such as
+`--show-browser` for behavior exposed by an individual command.
 
 ## Error Handling
 

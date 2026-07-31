@@ -1,16 +1,6 @@
 ---
 name: excalidraw
 description: "Hand-drawn Excalidraw JSON diagrams (arch, flow, seq)."
-version: 1.0.1
-author: Hermes Agent
-license: MIT
-dependencies: []
-platforms: [linux, macos, windows]
-metadata:
-  hermes:
-    tags: [Excalidraw, Diagrams, Flowcharts, Architecture, Visualization, JSON]
-    related_skills: []
-
 ---
 
 # Excalidraw Diagram Skill
@@ -25,8 +15,8 @@ Generate `.excalidraw` files for architecture diagrams, flowcharts, sequence dia
 
 1. **Load this skill** (you already did)
 2. **Write the elements JSON** -- an array of Excalidraw element objects
-3. **Save the file** using `write_file` to create a `.excalidraw` file
-4. **Optionally upload** for a shareable link using `scripts/upload.py` via `terminal`
+3. **Save the file** with the runtime's file-editing capability
+4. **Optionally upload** for a shareable link by running the bundled helper in an available shell
 
 ### Saving a Diagram
 
@@ -36,7 +26,7 @@ Wrap your elements array in the standard `.excalidraw` envelope and save with `w
 {
   "type": "excalidraw",
   "version": 2,
-  "source": "hermes-agent",
+  "source": "ispo-skill-catalog",
   "elements": [ ...your elements array here... ],
   "appState": {
     "viewBackgroundColor": "#ffffff"
@@ -48,13 +38,16 @@ Save to any path, e.g. `~/diagrams/my_diagram.excalidraw`.
 
 ### Uploading for a Shareable Link
 
-Run the upload script (located in this skill's `scripts/` directory) via terminal:
+Resolve `excalidraw_skill_dir` to the directory containing this `SKILL.md`, then
+run the bundled helper by absolute path:
 
 ```bash
-python skills/creative/excalidraw/scripts/upload.py ~/diagrams/my_diagram.excalidraw
+python3 "$excalidraw_skill_dir/scripts/upload.py" ~/diagrams/my_diagram.excalidraw
 ```
 
-This uploads to excalidraw.com (no account needed) and prints a shareable URL. Requires the `cryptography` pip package (`pip install cryptography`).
+This uploads to excalidraw.com (no account needed) and prints a shareable URL.
+It requires `cryptography`; install that dependency in a user-managed isolated
+environment, never into the ambient system Python.
 
 ---
 
@@ -195,5 +188,3 @@ See `references/colors.md` for full color tables. Quick reference:
 - Do NOT use emoji in text -- they don't render in Excalidraw's font
 - For dark mode diagrams, see `references/dark-mode.md`
 - For larger examples, see `references/examples.md`
-
-

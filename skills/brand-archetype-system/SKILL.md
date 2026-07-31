@@ -1,9 +1,6 @@
 ---
 name: brand-archetype-system
 description: "Apply pre-composed aesthetic archetype defaults to jumpstart brand design work covering color, typography, layout, voice, and imagery direction. Use this skill whenever the user wants a starting point for brand visual and verbal direction, references a brand they want to design near (for example 'something like Stripe' or 'editorial like Linear'), needs to converge faster from many directions to one, or wants known-good defaults for a specific industry vertical. Triggers on archetype, design archetype, brand archetype, near to (brand), in the style of, similar aesthetic, design starting point, brand template, vertical-typical, industry-typical. Also triggers when the user has a brief and wants to map it to a known aesthetic family rather than design from first principles."
-category: brand
-catalog_summary: "12 archetype defaults across 18 verticals: color, type, voice, imagery starters"
-display_order: 5
 ---
 
 # Brand Archetype System

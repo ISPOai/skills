@@ -1,9 +1,6 @@
 ---
 name: ads-performance-analytics
 description: "How to read paid media dashboards without fooling yourself. Attribution models, platform reporting quirks, multi-platform reconciliation, ROAS vs LTV horizon traps, statistical noise in performance metrics, incrementality testing, and the failure modes that produce expensive lessons. Triggers on read paid media dashboard, attribution analysis, ROAS vs LTV, multi-platform reconciliation, ad incrementality, geo holdout, conversion lift study, ghost bidding, paid media reporting, board-deck paid media metrics, blended CAC, MMM, MTA, last-click attribution. Also triggers when a marketer is about to scale, kill, or rebudget a campaign based on platform metrics, or when reconciling platform reports against warehouse revenue."
-category: marketing
-catalog_summary: "Read paid media dashboards without fooling yourself: attribution models, platform reporting quirks, ROAS vs LTV, multi-platform reconciliation, incrementality testing, and the interpretation failures that compound into wasted budget"
-display_order: 3
 ---
 
 # Ads Performance Analytics

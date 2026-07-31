@@ -98,7 +98,8 @@ with open("state.json", 'r') as f:
 ## File Structure
 
 ```
-~/.claude/skills/notebooklm/data/
+$NOTEBOOKLM_SKILL_DATA_DIR
+# Default: ${XDG_DATA_HOME:-$HOME/.local/share}/ispo/notebooklm
 ├── auth_info.json              # Metadata about authentication
 ├── browser_state/
 │   ├── state.json             # Cookies + localStorage (for manual injection)

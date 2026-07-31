@@ -13,7 +13,7 @@ description: Run a 5-minute personal standup for a solo dev — what shipped yes
 
 ## When NOT to use
 
-- The user wants a **multi-day retrospective** — that's [postmortem-solo](../postmortem-solo/SKILL.md).
+- The user wants a **multi-day retrospective** — use the separately installed `postmortem-solo` skill.
 - They want to **plan a sprint** — too granular, use a planning skill instead.
 - They are clearly **burned out** — pushing them through standup theater is harmful. Suggest rest.
 

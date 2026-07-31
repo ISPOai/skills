@@ -1,9 +1,6 @@
 ---
 name: experimentation-platform-orchestrator
 description: "A platform decision framework for experimentation. When to use Statsig vs PostHog vs GrowthBook vs Optimizely vs Amplitude vs Eppo vs Kameleoon. How to migrate between them. How to coordinate when multi-platform is genuinely warranted. The decisions that compound for years and the ones you can defer. Triggers on which experimentation platform, choose Statsig vs PostHog, evaluate experimentation tools, switch experimentation platform, migrate from Optimizely, consolidate experimentation tools, multi-platform experimentation, experimentation platform decision, ab test platform selection, feature flag platform vs experiment platform, warehouse-native experiments, vendor lock-in experimentation. Also triggers when a team is asking about cost, governance, or migration cost across experimentation tools, or when an evaluation is starting."
-category: product
-catalog_summary: "Pick the right experimentation platform, migrate when wrong, coordinate when multi-platform: a decision framework for Statsig, PostHog, GrowthBook, Optimizely, Amplitude, Eppo, Kameleoon"
-display_order: 7
 ---
 
 # Experimentation Platform Orchestrator

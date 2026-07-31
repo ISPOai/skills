@@ -1,14 +1,6 @@
 ---
 name: arxiv
 description: "Search arXiv papers by keyword, author, category, or ID."
-version: 1.0.0
-author: Hermes Agent
-license: MIT
-platforms: [linux, macos, windows]
-metadata:
-  hermes:
-    tags: [Research, Arxiv, Papers, Academic, Science, API]
-    related_skills: [ocr-and-documents]
 ---
 
 # arXiv Research
@@ -21,8 +13,8 @@ Search and retrieve academic papers from arXiv via their free REST API. No API k
 |--------|---------|
 | Search papers | `curl "https://export.arxiv.org/api/query?search_query=all:QUERY&max_results=5"` |
 | Get specific paper | `curl "https://export.arxiv.org/api/query?id_list=2402.03300"` |
-| Read abstract (web) | `web_extract(urls=["https://arxiv.org/abs/2402.03300"])` |
-| Read full paper (PDF) | `web_extract(urls=["https://arxiv.org/pdf/2402.03300"])` |
+| Read abstract (web) | Open or fetch `https://arxiv.org/abs/2402.03300` with an available web capability |
+| Read full paper (PDF) | Download/open `https://arxiv.org/pdf/2402.03300` with an available web/PDF capability |
 
 ## Searching Papers
 
@@ -148,11 +140,11 @@ print('}')
 After finding a paper, read it:
 
 ```
-# Abstract page (fast, metadata + abstract)
-web_extract(urls=["https://arxiv.org/abs/2402.03300"])
+# Abstract page (fast, metadata + abstract):
+# open or fetch https://arxiv.org/abs/2402.03300
 
-# Full paper (PDF → markdown via Firecrawl)
-web_extract(urls=["https://arxiv.org/pdf/2402.03300"])
+# Full paper:
+# download/open https://arxiv.org/pdf/2402.03300 with a PDF-capable reader
 ```
 
 For local PDF processing, see the `ocr-and-documents` skill.
@@ -174,7 +166,7 @@ Full list: https://arxiv.org/category_taxonomy
 
 ## Helper Script
 
-The `scripts/search_arxiv.py` script handles XML parsing and provides clean output:
+The `scripts/search_arxiv.py` script, resolved relative to this skill's directory, handles XML parsing and provides clean output:
 
 ```bash
 python scripts/search_arxiv.py "GRPO reinforcement learning"
@@ -245,8 +237,8 @@ curl -s "https://api.semanticscholar.org/graph/v1/author/search?query=Yann+LeCun
 
 1. **Discover**: `python scripts/search_arxiv.py "your topic" --sort date --max 10`
 2. **Assess impact**: `curl -s "https://api.semanticscholar.org/graph/v1/paper/arXiv:ID?fields=citationCount,influentialCitationCount"`
-3. **Read abstract**: `web_extract(urls=["https://arxiv.org/abs/ID"])`
-4. **Read full paper**: `web_extract(urls=["https://arxiv.org/pdf/ID"])`
+3. **Read abstract**: open or fetch `https://arxiv.org/abs/ID`
+4. **Read full paper**: download/open `https://arxiv.org/pdf/ID` with a PDF-capable reader
 5. **Find related work**: `curl -s "https://api.semanticscholar.org/graph/v1/paper/arXiv:ID/references?fields=title,citationCount&limit=20"`
 6. **Get recommendations**: POST to Semantic Scholar recommendations endpoint
 7. **Track authors**: `curl -s "https://api.semanticscholar.org/graph/v1/author/search?query=NAME"`
