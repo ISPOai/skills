@@ -34,3 +34,12 @@ in the catalog's `requirements` field.
 
 The dead upstream links for `root-cause-tracing` and `tapestry` are preserved
 from the last licensed revisions where those exact packages existed.
+
+## Validation
+
+Validate catalog coverage, package structure, and immutable refs before
+publishing:
+
+```sh
+python3 scripts/validate_catalog.py
+```
