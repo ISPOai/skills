@@ -29,6 +29,15 @@ SKILL_KEYS = {
 ID_PATTERN = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 REF_PATTERN = re.compile(r"^[0-9a-f]{40}$")
 PROVIDERS = {"claude", "codex"}
+PROVIDER_ENVIRONMENT_PATTERN = re.compile(
+    r"\b(?P<provider>Hermes(?: Agent)?|Claude(?: Code)?|Codex)[ -]+managed environment\b",
+    re.IGNORECASE,
+)
+AMBIENT_UV_INSTALL_PATTERN = re.compile(r"\buv\s+pip\s+install\b", re.IGNORECASE)
+UV_WITH_PATTERN = re.compile(
+    r"\buv\s+run[^\n]*?--with(?:=|\s+)(?P<package>[A-Za-z0-9_.-]+)",
+    re.IGNORECASE,
+)
 
 
 class ValidationError(Exception):
@@ -78,7 +87,58 @@ def skill_name(markdown: str, source: str) -> str:
     return names[0]
 
 
-def validate_worktree_package(skill_id: str, subpath: str, has_scripts: bool) -> None:
+def requirement_name(requirement: str) -> str:
+    """Return the normalized leading tool/package token from a requirement."""
+    token = re.split(r"[\s<>=!~;\[]", requirement.strip(), maxsplit=1)[0]
+    return token.lower().replace("_", "-")
+
+
+def validate_skill_portability(
+    skill_id: str,
+    markdown: str,
+    providers: list[str],
+    requirements: list[str],
+    has_scripts: bool = False,
+) -> None:
+    """Reject high-confidence provider and ambient-environment assumptions."""
+    provider_claim = PROVIDER_ENVIRONMENT_PATTERN.search(markdown)
+    if provider_claim:
+        claim = provider_claim.group("provider").lower()
+        claim_provider = "claude" if claim.startswith("claude") else claim.split()[0]
+        if len(providers) > 1 or claim_provider not in providers:
+            fail(
+                f"{skill_id}: provider-specific environment claim "
+                f"{provider_claim.group(0)!r} is incompatible with providers {providers}; "
+                "state concrete tool and path prerequisites instead"
+            )
+
+    if has_scripts and AMBIENT_UV_INSTALL_PATTERN.search(markdown):
+        fail(
+            f"{skill_id}: 'uv pip install' mutates an ambient environment; "
+            "invoke the bundled helper with an atomic "
+            "'uv run --with <package>' command instead"
+        )
+
+    declared = {requirement_name(requirement) for requirement in requirements}
+    atomic_dependencies = list(UV_WITH_PATTERN.finditer(markdown))
+    if atomic_dependencies and "uv" not in declared:
+        fail(f"{skill_id}: uses uv run but catalog requirements do not declare uv")
+    for match in atomic_dependencies:
+        package = match.group("package")
+        if requirement_name(package) not in declared:
+            fail(
+                f"{skill_id}: uv run --with dependency {package!r} is not declared "
+                "in catalog requirements"
+            )
+
+
+def validate_worktree_package(
+    skill_id: str,
+    subpath: str,
+    has_scripts: bool,
+    providers: list[str],
+    requirements: list[str],
+) -> None:
     package = ROOT / subpath
     if package.is_symlink() or not package.is_dir():
         fail(f"{skill_id}: package directory is missing or is a symlink")
@@ -94,12 +154,17 @@ def validate_worktree_package(skill_id: str, subpath: str, has_scripts: bool) ->
         if not (stat.S_ISDIR(mode) or stat.S_ISREG(mode)):
             fail(f"{skill_id}: special file is not allowed: {path.relative_to(ROOT)}")
 
-    current_name = skill_name(
-        (package / "SKILL.md").read_text(encoding="utf-8"),
-        str((package / "SKILL.md").relative_to(ROOT)),
-    )
+    markdown = (package / "SKILL.md").read_text(encoding="utf-8")
+    current_name = skill_name(markdown, str((package / "SKILL.md").relative_to(ROOT)))
     if current_name != skill_id:
         fail(f"{skill_id}: SKILL.md name is {current_name!r}")
+    validate_skill_portability(
+        skill_id,
+        markdown,
+        providers,
+        requirements,
+        has_scripts=has_scripts,
+    )
 
     scripts = package / "scripts"
     scripts_present = scripts.is_dir() and any(path.is_file() for path in scripts.rglob("*"))
@@ -165,7 +230,7 @@ def validate() -> int:
 
     seen_ids: set[str] = set()
     seen_subpaths: set[str] = set()
-    entries: list[tuple[str, str, str, bool]] = []
+    entries: list[tuple[str, str, str, bool, list[str], list[str]]] = []
 
     for index, item in enumerate(catalog["skills"]):
         if not isinstance(item, dict) or set(item) != SKILL_KEYS:
@@ -211,7 +276,9 @@ def validate() -> int:
         if len(requirements) != len(set(requirements)):
             fail(f"{skill_id}: requirements must contain unique non-empty strings")
 
-        entries.append((skill_id, subpath, ref, item["hasScripts"]))
+        entries.append(
+            (skill_id, subpath, ref, item["hasScripts"], providers, requirements)
+        )
 
     if not SKILLS_PATH.is_dir():
         fail("skills/ directory is missing")
@@ -231,8 +298,14 @@ def validate() -> int:
             f"directory-only={sorted(package_ids - seen_ids)}"
         )
 
-    for skill_id, subpath, ref, has_scripts in entries:
-        validate_worktree_package(skill_id, subpath, has_scripts)
+    for skill_id, subpath, ref, has_scripts, providers, requirements in entries:
+        validate_worktree_package(
+            skill_id,
+            subpath,
+            has_scripts,
+            providers,
+            requirements,
+        )
         validate_pinned_package(skill_id, subpath, ref)
 
     return len(entries)
