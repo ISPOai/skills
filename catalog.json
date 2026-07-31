@@ -3102,13 +3102,17 @@
       "description": "YouTube transcripts to summaries, threads, blogs.",
       "category": "Creative & Media",
       "subpath": "skills/youtube-content",
-      "ref": "9b60582a3a640940ba2f30708e1c0c5fdbfd3f85",
+      "ref": "42491fa7c92adc6adc3e73651d76307f20dfaa6e",
       "providers": [
         "claude",
         "codex"
       ],
       "hasScripts": true,
-      "requirements": []
+      "requirements": [
+        "uv",
+        "youtube-transcript-api",
+        "Internet access"
+      ]
     },
     {
       "id": "youtube-downloader",
