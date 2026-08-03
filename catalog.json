@@ -3056,6 +3056,118 @@
         "Internet access",
         "ffmpeg, openai-whisper, and model storage (optional fallback)"
       ]
+    },
+    {
+      "id": "writing-quality",
+      "name": "Writing Quality",
+      "description": "Surface-independent prose rules that make writing read like a person wrote it: strip AI tells (em-dash overuse, delve, leverage, it's-not-just-X-it's-Y), swap corporate phrasing for plain English, front-load the point, and prefer concrete over abstract. Includes reference tables of AI phrases to avoid and plain-English alternatives. Load before drafting, editing, or reviewing any prose meant for humans. Triggers on make this sound human, remove AI tells, humanize this writing, plain English rewrite, writing quality pass, does this sound like AI, de-AI this text.",
+      "category": "Communication & Writing",
+      "subpath": "skills/writing-quality",
+      "ref": "5947419218bbf98928b5e2f0198592eb4b81bfa1",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "blog-style",
+      "name": "Blog Voice & Style",
+      "description": "Voice and structure guide for blog posts and long-form articles: front-loaded structure written for scanners, descriptive subheads that read as a map, short paragraphs, readability targets, and sourced SEO specs for titles, meta descriptions, slugs, internal links, and image alt text. Match length to intent, not a word count. Triggers on blog post, write an article, long-form content, blog draft, edit this post, article structure, blog SEO basics.",
+      "category": "Communication & Writing",
+      "subpath": "skills/blog-style",
+      "ref": "5947419218bbf98928b5e2f0198592eb4b81bfa1",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "email-style",
+      "name": "Email Voice & Style",
+      "description": "Copy guide for emails, newsletters, and broadcasts: one email one job, subject line and preview text written as one unit, front-loaded body, real link text, alt text rules, an always-written plain-text version, and sourced truncation and Gmail-clipping specs. Treats spam words as a copy problem, not a deliverability trick. Triggers on write an email, newsletter copy, email campaign, subject line, preview text, broadcast draft, email body copy.",
+      "category": "Communication & Writing",
+      "subpath": "skills/email-style",
+      "ref": "5947419218bbf98928b5e2f0198592eb4b81bfa1",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "x-style",
+      "name": "X (Twitter) Post Style",
+      "description": "Platform voice and style for X (Twitter): hook-first openers, one idea per post, 280-character discipline, thread structure that earns the tap, 0-2 hashtags, links in the first reply, and no engagement bait. Includes sourced best-practice checklists, hard post specs, and a banned-words list. Triggers on write a tweet, X post, Twitter post, tweet thread, X thread, edit this tweet, post this on X.",
+      "category": "Social Media",
+      "subpath": "skills/x-style",
+      "ref": "5947419218bbf98928b5e2f0198592eb4b81bfa1",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "linkedin-style",
+      "name": "LinkedIn Post Style",
+      "description": "Platform voice and style for LinkedIn: a hook before the ~200-character mobile fold, single-sentence paragraphs with white space, value delivered in the feed, link in the first comment, 3-5 CamelCase hashtags, and document/carousel specs. Includes sourced checklists and a banned-words list. Triggers on LinkedIn post, write for LinkedIn, LinkedIn copy, LinkedIn carousel, post this on LinkedIn.",
+      "category": "Social Media",
+      "subpath": "skills/linkedin-style",
+      "ref": "5947419218bbf98928b5e2f0198592eb4b81bfa1",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "threads-style",
+      "name": "Threads Post Style",
+      "description": "Platform voice and style for Threads (Meta): casual, conversational, reply-driven posts under the 500-character cap, one topic tag maximum, native-to-Threads content rather than cross-posts, and writing that earns a reply instead of begging for one. Includes sourced checklists, post specs, and a banned-words list. Triggers on Threads post, Meta Threads, post on Threads, Threads copy.",
+      "category": "Social Media",
+      "subpath": "skills/threads-style",
+      "ref": "5947419218bbf98928b5e2f0198592eb4b81bfa1",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "bluesky-style",
+      "name": "Bluesky Post Style",
+      "description": "Platform voice and style for Bluesky: candid, marketing-averse posts within the 300-grapheme cap, direct links (no reach penalty), alt text on every image as a community norm, sparing hashtags with keyword-rich text for custom-feed discovery, and thread etiquette. Includes sourced checklists, post specs, and a banned-words list. Triggers on Bluesky post, post on Bluesky, Bluesky copy, skeet.",
+      "category": "Social Media",
+      "subpath": "skills/bluesky-style",
+      "ref": "5947419218bbf98928b5e2f0198592eb4b81bfa1",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
+    },
+    {
+      "id": "mastodon-style",
+      "name": "Mastodon Post Style",
+      "description": "Platform voice and style for Mastodon and the fediverse: community-first posts near the 500-character default, CamelCase hashtags that drive discovery, content warnings used as considerate subject lines, alt text on every image, and flat 23-character links with no shorteners. Includes sourced checklists, post specs, and a banned-words list. Triggers on Mastodon post, toot, fediverse post, post on Mastodon.",
+      "category": "Social Media",
+      "subpath": "skills/mastodon-style",
+      "ref": "5947419218bbf98928b5e2f0198592eb4b81bfa1",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": false,
+      "requirements": []
     }
   ]
 }
