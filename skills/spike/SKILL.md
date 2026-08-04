@@ -1,196 +1,46 @@
 ---
 name: spike
-description: "Throwaway experiments to validate an idea before build."
+description: Build a throwaway spike or prototype to answer a design question — a runnable logic harness or several UI variants inside an ISPO project. Use when sanity-checking a state model, comparing UI directions, or validating feasibility before a real build.
 ---
 
-# Spike
+# Spike / Throwaway Prototype
 
-Use this skill when the user wants to **feel out an idea** before committing to a real build — validating feasibility, comparing approaches, or surfacing unknowns that no amount of research will answer. Spikes are disposable by design. Throw them away once they've paid their debt.
+A spike is **throwaway code that answers a question**. The question decides the shape.
 
-Load this when the user says things like "let me try this", "I want to see if X works", "spike this out", "before I commit to Y", "quick prototype of Z", "is this even possible?", or "compare A vs B".
+## ISPO project rules
 
-## When NOT to use this
+These rules apply whenever this skill is used inside an ISPO project:
 
-- The answer is knowable from docs or reading code — just do research, don't build
-- The work is production path — use the `plan` skill instead
-- The idea is already validated — jump straight to implementation
+1. **Authority** — this skill never grants access. Do not edit `.ispo/project.json` grants, host grant stores, or install harness plugins for capabilities ISPO already mediates (`@ispo/sdk`, host connectors, powerbox, MCP tools). New authority goes through `request_grant` or Confirm plan only.
+2. **Canonical docs** — product direction lives in `.ispo/spec.md` and project `devlog.md`. Do not invent `PLAN.md`, parallel PRDs, or issue-tracker specs as authority.
+3. **Glossary vs spec** — optional `CONTEXT.md` is a **glossary only** (terms). Hard-to-reverse implementation trade-offs may become ADRs under `docs/adr/`. Product intent stays in `.ispo/spec.md`. Never treat `CONTEXT.md` as a second spec.
+4. **Planning boundary** — alignment and grilling happen before Confirm plan / before acting. Do not install skills, seed grants, or start build work during a grill.
+5. **Verify loop** (project-app changes): `typecheck` → `wait_for_fresh_build` → `get_console` → rendered QA with `query_dom` / `screenshot` (use `ui_outline` first when you need the semantic map) → `git commit` after DOM-confirmed success → `append_devlog_entry` (or `mark_devlog_gap`) citing MCP evidence. Typecheck alone is not success.
+6. **Primitives first** — prefer ISPO MCP/SDK surfaces over generic browser/CLI substitutes when working in an ISPO project.
+7. **Provider-neutral** — if parallel exploration helps, spawn parallel agents when the harness supports it; otherwise run sequential passes. Do not assume a Claude-Code-only Agent tool.
 
-## If the user has the full GSD system installed
 
-If `gsd-spike` is already available as a sibling skill, prefer it when the user
-wants the full GSD workflow: persistent `.planning/spikes/` state, MANIFEST
-tracking across sessions, Given/When/Then verdict format, and commit patterns
-that integrate with the rest of GSD. Do not invoke a provider-specific
-installer. This skill is the lightweight standalone version.
+## Pick a branch
 
-## Core method
+Identify which question is being answered — from the user's prompt, the surrounding code, or by asking:
 
-Regardless of scale, every spike follows this loop:
+- **"Does this logic / state model feel right?"** → [LOGIC.md](LOGIC.md). Build a tiny interactive terminal (or script) harness that pushes the state machine through hard cases.
+- **"What should this look like?"** → [UI.md](UI.md). Generate several radically different UI variations switchable inside the project iframe.
 
-```
-decompose  →  research  →  build  →  verdict
-   ↑__________________________________________↓
-                  iterate on findings
-```
+If the question is ambiguous and the user isn't reachable, default to whichever branch matches the surrounding code and state the assumption at the top of the prototype.
 
-### 1. Decompose
+## Rules that apply to both
 
-Break the user's idea into **2-5 independent feasibility questions**. Each question is one spike. Present them as a table with Given/When/Then framing:
+1. **Throwaway from day one, and clearly marked.** Locate the prototype close to where it will be used, but name it so a casual reader sees it is not production.
+2. **One command to run.** Use the project's existing task runner (`pnpm <script>`, etc.).
+3. **No persistence by default.** State lives in memory. Persistence is what you are checking, not what you depend on.
+4. **Skip the polish.** No tests, no abstractions, no error handling beyond runnable. Learn fast.
+5. **Surface the state.** After every action (logic) or on every variant switch (UI), show the full relevant state.
+6. **No new authority.** A spike does not call Confirm plan, install skills, or request grants "just in case."
+7. **Capture when done.** Fold any validated decision into real code and record the verdict in `.ispo/spec.md` or an ADR. Keep the prototype itself only as a primary source on a throwaway branch (or delete it). Main keeps the validated decision, not the scaffolding.
 
-| # | Spike | Validates (Given/When/Then) | Risk |
-|---|-------|----------------------------|------|
-| 001 | websocket-streaming | Given a WS connection, when LLM streams tokens, then client receives chunks < 100ms | High |
-| 002a | pdf-parse-pdfjs | Given a multi-page PDF, when parsed with pdfjs, then structured text is extractable | Medium |
-| 002b | pdf-parse-camelot | Given a multi-page PDF, when parsed with camelot, then structured text is extractable | Medium |
+## When NOT to use
 
-**Spike types:**
-- **standard** — one approach answering one question
-- **comparison** — same question, different approaches (shared number, letter suffix `a`/`b`/`c`)
-
-**Good spike questions:** specific feasibility with observable output.
-**Bad spike questions:** too broad, no observable output, or just "read the docs about X".
-
-**Order by risk.** The spike most likely to kill the idea runs first. No point prototyping the easy parts if the hard part doesn't work.
-
-**Skip decomposition** only if the user already knows exactly what they want to spike and says so. Then take their idea as a single spike.
-
-### 2. Align (for multi-spike ideas)
-
-Present the spike table. Ask: "Build all in this order, or adjust?" Let the user drop, reorder, or re-frame before you write any code.
-
-### 3. Research (per spike, before building)
-
-Spikes are not research-free — you research enough to pick the right approach, then you build. Per spike:
-
-1. **Brief it.** 2-3 sentences: what this spike is, why it matters, key risk.
-2. **Surface competing approaches** if there's real choice:
-
-   | Approach | Tool/Library | Pros | Cons | Status |
-   |----------|-------------|------|------|--------|
-   | ... | ... | ... | ... | maintained / abandoned / beta |
-
-3. **Pick one.** State why. If 2+ are credible, build quick variants within the spike.
-4. **Skip research** for pure logic with no external dependencies.
-
-Use the runtime's equivalent capabilities for the research step:
-
-- Web search — find candidates using a current, specific query
-- Web fetch/read — inspect the primary documentation
-- Terminal execution — check what is installed in the project's environment
-
-For libraries without docs pages, clone and read their `README.md` / `examples/` via `read_file`. Context7 MCP (if the user has it configured) is also a good source — `mcp_*_resolve-library-id` then `mcp_*_query-docs`.
-
-### 4. Build
-
-One directory per spike. Keep it standalone.
-
-```
-spikes/
-├── 001-websocket-streaming/
-│   ├── README.md
-│   └── main.py
-├── 002a-pdf-parse-pdfjs/
-│   ├── README.md
-│   └── parse.js
-└── 002b-pdf-parse-camelot/
-    ├── README.md
-    └── parse.py
-```
-
-**Bias toward something the user can interact with.** Spikes fail when the only output is a log line that says "it works." The user wants to *feel* the spike working. Default choices, in order of preference:
-
-1. A runnable CLI that takes input and prints observable output
-2. A minimal HTML page that demonstrates the behavior
-3. A small web server with one endpoint
-4. A unit test that exercises the question with recognizable assertions
-
-**Depth over speed.** Never declare "it works" after one happy-path run. Test edge cases. Follow surprising findings. The verdict is only trustworthy when the investigation was honest.
-
-**Avoid** unless the spike specifically requires it: complex package management, build tools/bundlers, Docker, env files, config systems. Hardcode everything — it's a spike.
-
-**Building one spike** — a typical tool sequence:
-
-```
-terminal("mkdir -p spikes/001-websocket-streaming")
-write_file("spikes/001-websocket-streaming/README.md", "# 001: websocket-streaming\n\n...")
-write_file("spikes/001-websocket-streaming/main.py", "...")
-terminal("cd spikes/001-websocket-streaming && python3 main.py")
-# Observe output, iterate.
-```
-
-**Parallel comparison spikes (002a / 002b).** When two approaches can run in
-parallel and both need real engineering, use isolated subagents if the runtime
-provides them. Otherwise build the variants sequentially. Give each worker a
-complete, self-contained brief such as:
-
-```
-- Goal: Build 002a-pdf-parse-pdfjs and return an evidence-backed verdict.
-  Needed capabilities: terminal, project files, web research.
-- Goal: Build 002b-pdf-parse-camelot and return an evidence-backed verdict.
-  Needed capabilities: terminal, project files, web research.
-```
-
-Each subagent returns its own verdict; you write the head-to-head.
-
-### 5. Verdict
-
-Each spike's `README.md` closes with:
-
-```markdown
-## Verdict: VALIDATED | PARTIAL | INVALIDATED
-
-### What worked
-- ...
-
-### What didn't
-- ...
-
-### Surprises
-- ...
-
-### Recommendation for the real build
-- ...
-```
-
-**VALIDATED** = the core question was answered yes, with evidence.
-**PARTIAL** = it works under constraints X, Y, Z — document them.
-**INVALIDATED** = doesn't work, for this reason. This is a successful spike.
-
-## Comparison spikes
-
-When two approaches answer the same question (002a / 002b), build them **back to back**, then do a head-to-head comparison at the end:
-
-```markdown
-## Head-to-head: pdfjs vs camelot
-
-| Dimension | pdfjs (002a) | camelot (002b) |
-|-----------|--------------|----------------|
-| Extraction quality | 9/10 structured | 7/10 table-only |
-| Setup complexity | npm install, 1 line | pip + ghostscript |
-| Perf on 100-page PDF | 3s | 18s |
-| Handles rotated text | no | yes |
-
-**Winner:** pdfjs for our use case. Camelot if we need table-first extraction later.
-```
-
-## Frontier mode (picking what to spike next)
-
-If spikes already exist and the user says "what should I spike next?", walk the existing directories and look for:
-
-- **Integration risks** — two validated spikes that touch the same resource but were tested independently
-- **Data handoffs** — spike A's output was assumed compatible with spike B's input; never proven
-- **Gaps in the vision** — capabilities assumed but unproven
-- **Alternative approaches** — different angles for PARTIAL or INVALIDATED spikes
-
-Propose 2-4 candidates as Given/When/Then. Let the user pick.
-
-## Output
-
-- Create `spikes/` (or `.planning/spikes/` if the user is using GSD conventions) in the repo root
-- One dir per spike: `NNN-descriptive-name/`
-- `README.md` per spike captures question, approach, results, verdict
-- Keep the code throwaway — a spike that takes 2 days to "clean up for production" was a bad spike
-
-## Attribution
-
-Adapted from the GSD (Get Shit Done) project's `/gsd-spike` workflow — MIT © 2025 Lex Christopherson ([gsd-build/get-shit-done](https://github.com/gsd-build/get-shit-done)). The full GSD system is historical provenance; this standalone skill does not assume its provider-specific installer.
+- The answer is knowable from docs or reading code — research instead of building
+- The work is already on the production path after Confirm plan — use `test-driven-development`
+- The idea is already validated — implement for real

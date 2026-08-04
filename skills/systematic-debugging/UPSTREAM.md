@@ -1,11 +1,12 @@
 # Upstream
 
-- Source: https://github.com/NousResearch/hermes-agent
-- Revision: `daa1befaf61f2e2f3f0643818cfd6b32e2b51b10`
+- Source: https://github.com/mattpocock/skills
+- Revision: `2ab958093e83e0ec752e6c1c5932da465bf23e0c`
 - License: MIT
-- Original path: `skills/software-development/systematic-debugging/`
+- Original path: `skills/engineering/diagnosing-bugs/`
 
 Vendored for the ISPO skills registry. This catalog copy includes standardized
-frontmatter and may include provider-neutral portability fixes or package repairs.
-Those changes are maintained in this repository's Git history; the original source,
-revision, and governing license remain identified above.
+frontmatter and ISPO workflow adaptations (authority, canonical project docs,
+verify loop, MCP primitives). Those changes are maintained in this repository's
+Git history; the original source, revision, and governing license remain
+identified above.

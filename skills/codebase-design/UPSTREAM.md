@@ -3,7 +3,7 @@
 - Source: https://github.com/mattpocock/skills
 - Revision: `2ab958093e83e0ec752e6c1c5932da465bf23e0c`
 - License: MIT
-- Original path: `skills/engineering/tdd/`
+- Original path: `skills/engineering/codebase-design/`
 
 Vendored for the ISPO skills registry. This catalog copy includes standardized
 frontmatter and ISPO workflow adaptations (authority, canonical project docs,
