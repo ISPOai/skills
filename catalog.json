@@ -2883,6 +2883,22 @@
       "requirements": []
     },
     {
+      "id": "soundshuman",
+      "name": "SoundsHuman",
+      "description": "Remove signs of AI-generated writing from prose and keep them out of a repository. Use when drafting, editing, or reviewing text to make it sound natural and human, or when auditing a documentation tree for AI slop. Covers 41 content, language, style, communication, filler, and rhetoric patterns; voice calibration; no-fabrication checks; statistical tells; and a draft-audit-final rewrite loop. Includes a zero-dependency scanner for scoring, explainable findings, safe mechanical fixes, repository scans, and CI thresholds.",
+      "category": "Communication & Writing",
+      "subpath": "skills/soundshuman",
+      "ref": "31d7b92c23792aabdc097da8ac3a358f14db3541",
+      "providers": [
+        "claude",
+        "codex"
+      ],
+      "hasScripts": true,
+      "requirements": [
+        "Node.js 18+"
+      ]
+    },
+    {
       "id": "spike",
       "name": "Spike / Throwaway Prototype",
       "description": "Build a throwaway spike or prototype to answer a design question \u2014 a runnable logic harness or several UI variants inside an ISPO project. Use when sanity-checking a state model, comparing UI directions, or validating feasibility before a real build.",

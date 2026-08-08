@@ -4,7 +4,8 @@ Project-installable skills for ISPO agents, sourced from curated upstream
 collections including
 [ComposioHQ/awesome-claude-skills](https://github.com/ComposioHQ/awesome-claude-skills)
 and [NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent/tree/main/skills),
-and [mattpocock/skills](https://github.com/mattpocock/skills).
+[mattpocock/skills](https://github.com/mattpocock/skills), and
+[aashaexo/soundshuman](https://github.com/aashaexo/soundshuman).
 
 Each package lives under `skills/<id>/` with one root `SKILL.md`, its governing
 license, and an `UPSTREAM.md` attribution file. `catalog.json` is the
@@ -20,7 +21,7 @@ immutable content commit.
 | Document Processing | 4 |
 | Data & Analysis | 14 |
 | Business & Marketing | 40 |
-| Communication & Writing | 26 |
+| Communication & Writing | 27 |
 | Creative & Media | 37 |
 | MLOps | 5 |
 | Productivity & Organization | 50 |
@@ -28,7 +29,7 @@ immutable content commit.
 | Smart Home | 1 |
 | Social Media | 6 |
 | Software Development | 16 |
-| **Total** | **211** |
+| **Total** | **212** |
 
 Multi-skill repositories listed in the source catalog are expanded into their
 individual installable packages. Packages may declare external tools or services
